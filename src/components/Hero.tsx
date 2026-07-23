@@ -85,10 +85,6 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
 
       {/* 3. Central typography & call-to-actions */}
       <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8 lg:px-12 text-center">
-        <div className="animate-fadeUp inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white/90 ring-1 ring-inset ring-white/20 backdrop-blur-md">
-          <Sparkles className="h-3.5 w-3.5 text-emerald-accent" />
-          <span>Series B · Now serving 15,000+ farms worldwide</span>
-        </div>
 
         <h1 className="animate-fadeUp mt-6 text-5xl font-bold leading-[1.02] tracking-tightest text-white sm:text-6xl xl:text-7xl" style={{ animationDelay: '60ms' }}>
           The Operating System for{' '}
@@ -117,15 +113,6 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
             </span>
             Watch 2-Minute Overview
           </button>
-        </div>
-
-        <div className="animate-fadeUp mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/60" style={{ animationDelay: '240ms' }}>
-          {['SOC 2 Type II', 'GDPR Compliant', '99.99% Uptime SLA'].map((t) => (
-            <span key={t} className="inline-flex items-center gap-1.5">
-              <Check className="h-4 w-4 text-emerald-accent" />
-              {t}
-            </span>
-          ))}
         </div>
       </div>
     </section>
