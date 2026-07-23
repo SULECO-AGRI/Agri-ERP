@@ -4,6 +4,7 @@ import { Footer } from './components/Footer';
 import { Hero, TrustBar } from './components/Hero';
 import { Pillars } from './components/Pillars';
 import { InteractiveCallout } from './components/InteractiveCallout';
+import { OrbitSection } from './components/OrbitSection';
 import { SolutionsPage } from './components/SolutionsPage';
 import { PricingPage } from './components/PricingPage';
 import { AboutPage } from './components/AboutPage';
@@ -34,6 +35,7 @@ function App() {
           <>
             <Hero onNavigate={navigate} />
             <TrustBar />
+            <OrbitSection />
             <Pillars />
             <InteractiveCallout />
           </>
