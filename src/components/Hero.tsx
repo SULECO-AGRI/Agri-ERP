@@ -1,19 +1,52 @@
 import { useState, useRef, useEffect } from 'react';
-import { ArrowUpRight, Play, Sparkles, Check, X } from 'lucide-react';
+import { ArrowUpRight, Play, Sparkles, Check, X, Activity, TrendingUp, Brain, Navigation } from 'lucide-react';
 import { DashboardMockup } from './DashboardMockup';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 import heroVideo from '../Video/generate_a_video_related_this.mp4';
+import heroBgVideo from '../Video/Hero_background.mp4';
 
 export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
   const [showVideo, setShowVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [scrollY, setScrollY] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     if (showVideo && videoRef.current) {
       videoRef.current.play();
     }
   }, [showVideo]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    const motionListener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', motionListener);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      const x = (clientX / innerWidth) - 0.5;
+      const y = (clientY / innerHeight) - 0.5;
+      setMousePos({ x, y });
+    };
+
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      mediaQuery.removeEventListener('change', motionListener);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const closeVideo = () => {
     if (videoRef.current) {
@@ -25,51 +58,71 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
 
   return (
     <>
-    <section className="relative overflow-hidden bg-white pt-28 pb-20 sm:pt-36 sm:pb-24">
-      {/* ambient backdrop */}
-      <div className="pointer-events-none absolute inset-0 bg-grid grid-fade opacity-70" />
-      <div className="pointer-events-none absolute -right-32 -top-32 h-[32rem] w-[32rem] rounded-full bg-emerald-accent/[0.07] blur-3xl" />
-      <div className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-forest-950/[0.04] blur-3xl" />
+    <section className="relative min-h-[90vh] lg:min-h-screen overflow-hidden bg-forest-950 pt-32 pb-24 sm:pt-40 sm:pb-32 flex items-center justify-center">
+      {/* 1. Video background & Overlays */}
+      <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
+        <video
+          src={heroBgVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover scale-[1.03]"
+          style={{
+            transform: prefersReducedMotion ? 'none' : `translateY(${scrollY * 0.12}px) scale(1.03)`,
+          }}
+        />
+        {/* Cinematic dark gradients and glass overlay overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-forest-950/80 via-forest-950/45 to-forest-950/95" />
+        <div className="absolute inset-0 bg-emerald-accent/[0.04] mix-blend-color" />
+        <div className="absolute inset-0 bg-grid-dark grid-fade opacity-25" />
+      </div>
 
-      <div className="relative mx-auto max-w-4xl px-5 sm:px-8 lg:px-12 text-center">
-        <div className="animate-fadeUp inline-flex items-center gap-2 rounded-full bg-forest-950/[0.04] px-3 py-1.5 text-xs font-medium text-forest-950/70 ring-1 ring-inset ring-forest-950/10">
-          <Sparkles className="h-3.5 w-3.5 text-emerald-deep" />
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute -right-32 -top-32 h-[32rem] w-[32rem] rounded-full bg-emerald-accent/[0.12] blur-3xl" />
+      <div className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-emerald-accent/[0.08] blur-3xl" />
+
+
+      {/* 3. Central typography & call-to-actions */}
+      <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8 lg:px-12 text-center">
+        <div className="animate-fadeUp inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white/90 ring-1 ring-inset ring-white/20 backdrop-blur-md">
+          <Sparkles className="h-3.5 w-3.5 text-emerald-accent" />
           <span>Series B · Now serving 15,000+ farms worldwide</span>
         </div>
 
-        <h1 className="animate-fadeUp mt-6 text-5xl font-bold leading-[1.02] tracking-tightest text-forest-950 sm:text-6xl xl:text-7xl" style={{ animationDelay: '60ms' }}>
+        <h1 className="animate-fadeUp mt-6 text-5xl font-bold leading-[1.02] tracking-tightest text-white sm:text-6xl xl:text-7xl" style={{ animationDelay: '60ms' }}>
           The Operating System for{' '}
-          <span className="shimmer-text">Modern Agriculture.</span>
+          <span className="shimmer-text-dark">Modern Agriculture.</span>
         </h1>
 
-        <p className="animate-fadeUp mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-forest-950/65" style={{ animationDelay: '120ms' }}>
+        <p className="animate-fadeUp mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-white/70" style={{ animationDelay: '120ms' }}>
           Empowering commercial farms with real-time IoT telemetry, automated supply chains, and AI-driven
           yield forecasting. Built to scale from local fields to global enterprises.
         </p>
 
-        <div className="animate-fadeUp mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center" style={{ animationDelay: '180ms' }}>
+        <div className="animate-fadeUp mt-8 flex flex-col items-center gap-3.5 sm:flex-row sm:justify-center" style={{ animationDelay: '180ms' }}>
           <button
             onClick={() => onNavigate('pricing')}
-            className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-7 py-3.5 text-base font-semibold text-white shadow-glow-soft transition-all hover:bg-emerald-deep hover:shadow-glow active:scale-[0.98]"
+            className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-7 py-3.5 text-base font-semibold text-white shadow-glow hover:bg-emerald-deep hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
           >
             Get Started Today
             <ArrowUpRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </button>
           <button
             onClick={() => setShowVideo(true)}
-            className="group inline-flex items-center gap-2.5 rounded-full px-5 py-3.5 text-base font-semibold text-forest-950 transition-colors hover:text-emerald-deep"
+            className="group inline-flex items-center gap-2.5 rounded-full px-5 py-3.5 text-base font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/20 backdrop-blur-md transition-all hover:scale-[1.02] active:scale-[0.98] duration-300"
           >
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-forest-950/[0.05] ring-1 ring-inset ring-forest-950/10 transition-all group-hover:bg-emerald-accent/15 group-hover:ring-emerald-accent/30">
-              <Play className="h-3.5 w-3.5 fill-current" />
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-white/10 ring-1 ring-inset ring-white/25 transition-all group-hover:bg-emerald-accent/20 group-hover:ring-emerald-accent/35">
+              <Play className="h-3.5 w-3.5 fill-current text-white" />
             </span>
             Watch 2-Minute Overview
           </button>
         </div>
 
-        <div className="animate-fadeUp mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-forest-950/55" style={{ animationDelay: '240ms' }}>
+        <div className="animate-fadeUp mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/60" style={{ animationDelay: '240ms' }}>
           {['SOC 2 Type II', 'GDPR Compliant', '99.99% Uptime SLA'].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
-              <Check className="h-4 w-4 text-emerald-deep" />
+              <Check className="h-4 w-4 text-emerald-accent" />
               {t}
             </span>
           ))}

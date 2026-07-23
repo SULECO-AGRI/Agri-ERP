@@ -25,6 +25,8 @@ export function NavBar({
     setOpen(false);
   };
 
+  const isDarkHeader = page === 'home' && !scrolled;
+
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div
@@ -34,7 +36,7 @@ export function NavBar({
       >
         <nav className="mx-auto flex h-16 max-w-8xl items-center justify-between px-5 sm:px-8 lg:px-12">
           <button onClick={() => go('home')} className="shrink-0 transition-opacity hover:opacity-80">
-            <Logo />
+            <Logo onDark={isDarkHeader} />
           </button>
 
           <div className="hidden items-center gap-1 lg:flex">
@@ -45,11 +47,15 @@ export function NavBar({
                   key={item.page}
                   onClick={() => go(item.page)}
                   className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    active ? 'text-forest-950' : 'text-forest-950/60 hover:text-forest-950'
+                    isDarkHeader
+                      ? active ? 'text-white' : 'text-white/60 hover:text-white'
+                      : active ? 'text-forest-950' : 'text-forest-950/60 hover:text-forest-950'
                   }`}
                 >
                   {active && (
-                    <span className="absolute inset-0 rounded-full bg-forest-950/[0.06] ring-1 ring-inset ring-forest-950/10" />
+                    <span className={`absolute inset-0 rounded-full ${
+                      isDarkHeader ? 'bg-white/10 ring-1 ring-inset ring-white/10' : 'bg-forest-950/[0.06] ring-1 ring-inset ring-forest-950/10'
+                    }`} />
                   )}
                   <span className="relative">{item.label}</span>
                 </button>
@@ -58,12 +64,18 @@ export function NavBar({
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <button className="text-sm font-medium text-forest-950/70 transition-colors hover:text-forest-950">
+            <button className={`text-sm font-medium transition-colors ${
+              isDarkHeader ? 'text-white/70 hover:text-white' : 'text-forest-950/70 hover:text-forest-950'
+            }`}>
               Sign In
             </button>
             <button
               onClick={() => go('demo')}
-              className="group inline-flex items-center gap-1.5 rounded-full bg-forest-950 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-forest-900 hover:shadow-md active:scale-[0.98]"
+              className={`group inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm transition-all active:scale-[0.98] ${
+                isDarkHeader
+                  ? 'bg-white text-forest-950 hover:bg-cream hover:shadow-md'
+                  : 'bg-forest-950 text-white hover:bg-forest-900 hover:shadow-md'
+              }`}
             >
               Request Enterprise Demo
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -72,7 +84,9 @@ export function NavBar({
 
           <button
             onClick={() => setOpen((o) => !o)}
-            className="grid h-10 w-10 place-items-center rounded-xl text-forest-950 lg:hidden"
+            className={`grid h-10 w-10 place-items-center rounded-xl lg:hidden transition-colors ${
+              isDarkHeader && !open ? 'text-white' : 'text-forest-950'
+            }`}
             aria-label="Menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

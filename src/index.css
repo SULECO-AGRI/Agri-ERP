@@ -90,6 +90,15 @@
     animation: shimmer 4s linear infinite;
   }
 
+  .shimmer-text-dark {
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 40%, #10b981 50%, #ffffff 60%, #ffffff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
