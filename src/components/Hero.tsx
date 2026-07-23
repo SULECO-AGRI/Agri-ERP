@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { ArrowUpRight, Play, Sparkles, Check, X, Activity, TrendingUp, Brain, Navigation } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { ArrowUpRight, Play, X } from 'lucide-react';
 import { DashboardMockup } from './DashboardMockup';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
@@ -10,14 +11,30 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
   const [showVideo, setShowVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     if (showVideo && videoRef.current) {
-      videoRef.current.play();
+      videoRef.current.play().catch((err) => {
+        console.warn("Autoplay was prevented or video element not ready:", err);
+      });
     }
+  }, [showVideo]);
+
+  // Handle escape key to close video
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeVideo();
+      }
+    };
+    if (showVideo) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [showVideo]);
 
   useEffect(() => {
@@ -26,24 +43,14 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
     const motionListener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
     mediaQuery.addEventListener('change', motionListener);
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth) - 0.5;
-      const y = (clientY / innerHeight) - 0.5;
-      setMousePos({ x, y });
-    };
-
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       mediaQuery.removeEventListener('change', motionListener);
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -118,7 +125,7 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
     </section>
 
     {/* Video Modal */}
-    {showVideo && (
+    {showVideo && createPortal(
       <div
         className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm"
         onClick={closeVideo}
@@ -150,7 +157,8 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
             />
           </div>
         </div>
-      </div>
+      </div>,
+      document.body
     )}
     </>
   );
@@ -258,22 +266,35 @@ export function DeviceShowcase() {
 export function TrustBar() {
   const { ref, shown } = useReveal();
   const logos = ['Cargill', 'Bayer', 'John Deere', 'Olam', 'Syngenta'];
+  const duplicatedLogos = [...logos, ...logos, ...logos, ...logos];
+
   return (
-    <section ref={ref} className="relative border-y border-forest-950/[0.06] bg-cream">
-      <div className="mx-auto max-w-8xl px-5 py-10 sm:px-8 lg:px-12">
-        <p className={`text-center text-sm font-medium text-forest-950/55 transition-all duration-700 ${shown ? 'opacity-100' : 'opacity-0'}`}>
-          Trusted by over 15,000+ commercial growers and agronomists globally.
-        </p>
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 sm:gap-x-16">
-          {logos.map((l, i) => (
-            <span
-              key={l}
-              className={`text-xl font-bold tracking-tight text-forest-950/35 grayscale transition-all duration-700 hover:text-forest-950/60 sm:text-2xl ${shown ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'}`}
-              style={{ transitionDelay: `${i * 80}ms`, fontFamily: 'Inter' }}
-            >
-              {l}
-            </span>
-          ))}
+    <section ref={ref} className="relative border-y border-forest-950/[0.06] bg-cream py-10 overflow-hidden">
+      <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
+        <div className="text-center">
+          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
+            Valued Partners
+          </span>
+          <h2 className={`mt-2 text-3xl font-bold tracking-tight text-forest-950 sm:text-4xl transition-all duration-700 ${shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
+            Meet our <span className="shimmer-text">partners.</span>
+          </h2>
+          <p className={`mt-3 text-sm font-medium text-forest-950/55 transition-all duration-700 delay-100 ${shown ? 'opacity-100' : 'opacity-0'}`}>
+            Trusted by over 15,000+ commercial growers and agronomists globally.
+          </p>
+        </div>
+        
+        <div className={`mt-8 overflow-hidden marquee-mask relative w-full transition-all duration-1000 delay-200 ${shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="animate-marquee py-2">
+            {duplicatedLogos.map((l, i) => (
+              <span
+                key={`${l}-${i}`}
+                className="text-xl font-bold tracking-tight text-forest-950/35 grayscale transition-colors duration-300 hover:text-forest-950/60 sm:text-2xl cursor-pointer select-none"
+                style={{ fontFamily: 'Inter' }}
+              >
+                {l}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
