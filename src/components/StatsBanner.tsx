@@ -13,7 +13,7 @@ export function StatsBanner() {
       >
         {/* Background panoramic field aerial view */}
         <img 
-          src="/images/field_aerial.png" 
+          src="/images/orbit.png" 
           alt="Lush agricultural green fields aerial view" 
           className="w-full h-full object-cover transition-transform duration-1000 hover:scale-103"
           draggable={false}
@@ -22,15 +22,15 @@ export function StatsBanner() {
         {/* Cinematic dark/light shadow overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/35" />
 
-        {/* Bottom Right Quote */}
-        <div className="absolute bottom-8 right-8 max-w-[260px] text-right z-10 hidden sm:block">
+        {/* Bottom Left Quote */}
+        <div className="absolute bottom-8 left-8 max-w-[260px] text-left z-10 hidden sm:block">
           <p className="text-xs font-medium leading-relaxed text-white/80">
             Strength, discipline, and precision on the field lead to consistent, measurable results every season.
           </p>
         </div>
 
-        {/* 2. Floating stepped cards (positioned completely INSIDE the banner container) */}
-        <div className="absolute bottom-8 left-8 md:left-12 flex flex-wrap items-end gap-5 z-20 pr-10">
+        {/* 2. Floating stepped cards (positioned completely INSIDE the banner container on the right) */}
+        <div className="absolute bottom-8 right-8 md:right-12 flex flex-wrap items-end justify-end gap-5 z-20 pl-10">
           
           {/* Card 1: Dark main highlight */}
           <div 

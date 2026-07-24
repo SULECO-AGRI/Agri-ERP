@@ -125,16 +125,25 @@ export function OrbitSection() {
 
   const activeModule = modules[activeIndex];
 
-  // Mathematical positioning for 6 nodes
-  const radius = 150; // px (increased for larger buttons & breathing room)
+  // Mathematical positioning for 6 nodes (scaled up for large display)
+  const radius = 185; // px (increased for spacing out larger w-20 nodes)
   const angleStep = (2 * Math.PI) / 6;
   const startAngle = -Math.PI / 2; // start exactly at top
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-white py-24 sm:py-32 border-t border-forest-950/[0.06]">
       {/* Background aesthetics */}
-      <div className="pointer-events-none absolute inset-0 bg-grid grid-fade opacity-30" />
-      <div className="pointer-events-none absolute left-1/3 top-1/4 h-96 w-96 rounded-full bg-emerald-accent/[0.03] blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 z-0 select-none">
+        <img 
+          src="/images/orbit_bg.png" 
+          alt="Agricultural background texture" 
+          className="w-full h-full object-cover opacity-[0.09]"
+          draggable={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-transparent to-white/95" />
+      </div>
+      <div className="pointer-events-none absolute inset-0 bg-grid grid-fade opacity-20 z-0" />
+      <div className="pointer-events-none absolute left-1/3 top-1/4 h-96 w-96 rounded-full bg-emerald-accent/[0.02] blur-3xl z-0" />
 
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
@@ -149,7 +158,7 @@ export function OrbitSection() {
               ref={containerRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="relative w-full max-w-[420px] aspect-square flex items-center justify-center overflow-visible select-none"
+              className="relative w-full max-w-[500px] aspect-square flex items-center justify-center overflow-visible select-none"
               style={{
                 transform: `perspective(1000px) rotateY(calc(var(--mouse-x, 0) * 16deg)) rotateX(calc(var(--mouse-y, 0) * -16deg))`,
                 transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -157,7 +166,7 @@ export function OrbitSection() {
               }}
             >
               {/* Rotating Orbit Dotted Ring */}
-              <svg className="absolute w-[302px] h-[302px] pointer-events-none animate-[spin_100s_linear_infinite]" viewBox="0 0 200 200">
+              <svg className="absolute w-[372px] h-[372px] pointer-events-none animate-[spin_100s_linear_infinite]" viewBox="0 0 200 200">
                 <circle
                   cx="100"
                   cy="100"
@@ -169,9 +178,23 @@ export function OrbitSection() {
                 />
               </svg>
 
+              {/* Glowing active indicator dot rotating around the orbit ring (0 lag GPU transform) */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  width: '372px',
+                  height: '372px',
+                  transform: `rotate(${activeIndex * 60}deg)`,
+                  transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+                  willChange: 'transform',
+                }}
+              >
+                <div className="absolute top-[2px] left-1/2 -translate-x-1/2 h-3.5 w-3.5 rounded-full bg-emerald-accent shadow-[0_0_15px_#10b981] animate-pulse" />
+              </div>
+
               {/* Central Logo Node */}
-              <div className="relative z-10 grid h-24 w-24 place-items-center rounded-3xl bg-forest-950 text-emerald-accent ring-4 ring-emerald-accent/20 shadow-[0_0_40px_-5px_rgba(16,185,129,0.45)]">
-                <LogoIcon className="h-12 w-12 text-emerald-accent" strokeWidth={2.5} />
+              <div className="relative z-10 grid h-28 w-28 place-items-center rounded-3xl bg-forest-950 text-emerald-accent ring-4 ring-emerald-accent/20 shadow-[0_0_40px_-5px_rgba(16,185,129,0.45)]">
+                <LogoIcon className="h-14 w-14 text-emerald-accent" strokeWidth={2.5} />
                 <span className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10" />
               </div>
 
@@ -186,18 +209,18 @@ export function OrbitSection() {
                 return (
                   <div
                     key={m.id}
-                    className="absolute flex flex-col items-center gap-2"
+                    className="absolute flex flex-col items-center gap-2.5"
                     style={{
                       transform: `translate(${x}px, ${y}px)`,
-                      left: 'calc(50% - 32px)', // Half of button width (w-16 is 64px)
-                      top: 'calc(50% - 32px)',  // Half of button height
+                      left: 'calc(50% - 40px)', // Half of button width (w-20 is 80px)
+                      top: 'calc(50% - 40px)',  // Half of button height
                       transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                     }}
                   >
                     <button
                       onClick={() => setActiveIndex(index)}
                       onMouseEnter={() => setActiveIndex(index)}
-                      className={`group/btn relative grid h-16 w-16 place-items-center rounded-full transition-all duration-300 shadow-sm hover:scale-110 active:scale-95 ${
+                      className={`group/btn relative grid h-20 w-20 place-items-center rounded-full transition-all duration-300 shadow-sm hover:scale-110 active:scale-95 ${
                         isActive
                           ? `${m.activeBgClass} text-white ring-4 ${m.activeRingClass} scale-110 ${m.activeShadowClass} z-20`
                           : `bg-white ${m.colorClass} hover:border-forest-950/20 border border-forest-950/10 z-10`
@@ -207,16 +230,16 @@ export function OrbitSection() {
                         transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                       }}
                     >
-                      <ActiveIcon className="h-7.5 w-7.5 transition-transform duration-300 group-hover/btn:scale-110" strokeWidth={2} />
+                      <ActiveIcon className="h-9 w-9 transition-transform duration-300 group-hover/btn:scale-110" strokeWidth={2} />
                       <span className={`absolute -inset-1.5 rounded-full border border-dashed border-emerald-accent/40 scale-75 opacity-0 transition-all duration-300 ${isActive ? 'scale-100 opacity-100 animate-[spin_8s_linear_infinite]' : ''}`} />
                     </button>
                     
                     {/* Node label */}
                     <span 
-                      className={`whitespace-nowrap rounded-full bg-white px-2.5 py-1 text-[9.5px] font-bold text-forest-950 shadow-sm border border-forest-950/5 transition-all duration-300 select-none ${
+                      className={`whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold shadow-sm border transition-all duration-300 select-none ${
                         isActive 
                           ? 'bg-forest-950 text-white scale-105 border-forest-950 shadow-[0_4px_12px_rgba(11,37,38,0.15)]' 
-                          : 'text-forest-950/60 hover:text-forest-950'
+                          : 'bg-white text-forest-950/60 hover:text-forest-950 border-forest-950/5'
                       }`}
                     >
                       {m.short}

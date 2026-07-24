@@ -11,6 +11,9 @@ import { SolutionsPage } from './components/SolutionsPage';
 import { PricingPage } from './components/PricingPage';
 import { AboutPage } from './components/AboutPage';
 import { DemoPage } from './components/DemoPage';
+import { ContactPage } from './components/ContactPage';
+import { FeaturesPage } from './components/FeaturesPage';
+import { FAQSection } from './components/FAQSection';
 import type { Page } from './nav';
 
 function App() {
@@ -38,16 +41,19 @@ function App() {
             <Hero onNavigate={navigate} />
             <AgriculturalServices />
             <StatsBanner />
-            <TrustBar />
             <OrbitSection />
+            <TrustBar />
             <Pillars />
             <InteractiveCallout />
+            <FAQSection />
           </>
         )}
         {page === 'solutions' && <SolutionsPage onNavigate={navigate} />}
         {page === 'pricing' && <PricingPage onNavigate={navigate} />}
         {page === 'about' && <AboutPage onNavigate={navigate} />}
         {page === 'demo' && <DemoPage />}
+        {page === 'contact' && <ContactPage />}
+        {page === 'features' && <FeaturesPage />}
       </main>
 
       <Footer onNavigate={navigate} />
