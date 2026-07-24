@@ -5,6 +5,8 @@ import { Hero, TrustBar } from './components/Hero';
 import { Pillars } from './components/Pillars';
 import { InteractiveCallout } from './components/InteractiveCallout';
 import { OrbitSection } from './components/OrbitSection';
+import { AgriculturalServices } from './components/AgriculturalServices';
+import { StatsBanner } from './components/StatsBanner';
 import { SolutionsPage } from './components/SolutionsPage';
 import { PricingPage } from './components/PricingPage';
 import { AboutPage } from './components/AboutPage';
@@ -35,6 +37,8 @@ function App() {
           <>
             <Hero onNavigate={navigate} />
             <TrustBar />
+            <AgriculturalServices />
+            <StatsBanner />
             <OrbitSection />
             <Pillars />
             <InteractiveCallout />
