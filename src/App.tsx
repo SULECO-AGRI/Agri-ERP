@@ -36,9 +36,9 @@ function App() {
         {page === 'home' && (
           <>
             <Hero onNavigate={navigate} />
-            <TrustBar />
             <AgriculturalServices />
             <StatsBanner />
+            <TrustBar />
             <OrbitSection />
             <Pillars />
             <InteractiveCallout />

@@ -10,14 +10,14 @@ export function AgriculturalServices() {
 
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
         
-        {/* Large Uppercase Header spanning top width */}
+        {/* Large Header spanning top width matching Hero style */}
         <h2 
-          className={`text-4xl font-extrabold tracking-tightest leading-[1.08] text-forest-950 sm:text-5xl md:text-6xl lg:text-[70px] uppercase transition-all duration-1000 ${
+          className={`text-4xl font-bold tracking-tightest leading-[1.05] text-forest-950 sm:text-5xl md:text-6xl lg:text-[70px] transition-all duration-1000 ${
             shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
           Professional Agricultural <span className="text-forest-950/30">Services</span> <br />
-          built on precision <span className="text-forest-950/30">and experience</span>
+          Built on Precision <span className="text-forest-950/30">and Experience</span>
         </h2>
 
         {/* 3-Column Layout Block */}
@@ -30,7 +30,7 @@ export function AgriculturalServices() {
             }`}
           >
             {/* Top pill outline button */}
-            <button className="self-start rounded-full border border-forest-950 px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest text-forest-950 hover:bg-forest-950 hover:text-white transition-all duration-300 active:scale-[0.98]">
+            <button className="self-start rounded-full border border-forest-950 px-5 py-2 text-xs font-semibold text-forest-950 hover:bg-forest-950 hover:text-white transition-all duration-300 active:scale-[0.98]">
               About us
             </button>
 
@@ -39,7 +39,7 @@ export function AgriculturalServices() {
               <p className="text-[15px] font-medium leading-relaxed text-forest-950/75 max-w-[280px]">
                 We use modern equipment and proven processes to deliver consistent, reliable performance across every hectare.
               </p>
-              <button className="mt-6 self-start rounded-full bg-forest-950 px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm hover:bg-forest-900 transition-all duration-300 active:scale-[0.98]">
+              <button className="mt-6 self-start rounded-full bg-forest-950 px-7 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-forest-900 transition-all duration-300 active:scale-[0.98]">
                 Request a service
               </button>
             </div>
@@ -68,8 +68,8 @@ export function AgriculturalServices() {
               shown ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
             }`}
           >
-            {/* Top aligned text, uppercase right-aligned */}
-            <p className="text-[10px] font-bold tracking-widest text-forest-950/50 uppercase text-right leading-relaxed max-w-[240px] self-end pt-2">
+            {/* Top aligned text, standard right-aligned tag */}
+            <p className="text-xs font-medium leading-relaxed text-forest-950/65 text-right max-w-[240px] self-end pt-2">
               Our strength in the field drives productivity, stability, and reliable yields season after season.
             </p>
 
