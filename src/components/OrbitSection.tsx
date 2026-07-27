@@ -97,13 +97,35 @@ export function OrbitSection() {
   // Interactive 3D Card Tilt via CSS variables directly (high performance, no re-renders)
   const containerRef = useRef<HTMLDivElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
     const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
     mediaQuery.addEventListener('change', listener);
-    return () => mediaQuery.removeEventListener('change', listener);
+
+    const handleResize = () => {
+      const w = window.innerWidth;
+      if (w < 380) {
+        setScale(0.68);
+      } else if (w < 480) {
+        setScale(0.78);
+      } else if (w < 640) {
+        setScale(0.85);
+      } else if (w < 1024) {
+        setScale(0.9);
+      } else {
+        setScale(1);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    return () => {
+      mediaQuery.removeEventListener('change', listener);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -160,7 +182,7 @@ export function OrbitSection() {
               onMouseLeave={handleMouseLeave}
               className="relative w-full max-w-[500px] aspect-square flex items-center justify-center overflow-visible select-none"
               style={{
-                transform: `perspective(1000px) rotateY(calc(var(--mouse-x, 0) * 16deg)) rotateX(calc(var(--mouse-y, 0) * -16deg))`,
+                transform: `perspective(1000px) rotateY(calc(var(--mouse-x, 0) * 16deg)) rotateX(calc(var(--mouse-y, 0) * -16deg)) scale(${scale})`,
                 transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
                 willChange: 'transform',
               }}

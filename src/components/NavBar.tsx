@@ -25,13 +25,13 @@ export function NavBar({
     setOpen(false);
   };
 
-  const isDarkHeader = page === 'home' && !scrolled;
+  const isDarkHeader = page === 'home' && !scrolled && !open;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div
         className={`transition-all duration-500 ${
-          scrolled ? 'glass hairline-b shadow-[0_8px_30px_-20px_rgba(11,37,26,0.25)]' : 'bg-transparent'
+          scrolled || open ? 'glass hairline-b shadow-[0_8px_30px_-20px_rgba(11,37,26,0.25)]' : 'bg-transparent'
         }`}
       >
         <nav className="mx-auto flex h-16 max-w-8xl items-center justify-between px-5 sm:px-8 lg:px-12">

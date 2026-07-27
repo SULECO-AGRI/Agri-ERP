@@ -145,7 +145,7 @@ export function InteractiveCallout() {
               </div>
 
               {/* metrics */}
-              <div className="mt-5 grid grid-cols-3 gap-3">
+              <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {tab.metrics.map((m) => (
                   <div key={m.label} className="rounded-2xl bg-white/[0.04] p-4 ring-1 ring-inset ring-white/10">
                     <div className={`font-mono text-[10px] uppercase tracking-wide ${m.green ? 'text-emerald-accent' : 'text-white/40'}`}>

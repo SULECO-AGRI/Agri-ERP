@@ -103,7 +103,7 @@ export function FAQSection() {
                 {/* Animated accordion panel */}
                 <div 
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    isOpen ? 'max-h-40 border-t border-forest-950/5' : 'max-h-0'
+                    isOpen ? 'max-h-[32rem] border-t border-forest-950/5' : 'max-h-0'
                   }`}
                 >
                   <div className="p-6 text-xs sm:text-sm leading-relaxed text-forest-950/70 bg-cream/20">
