@@ -1,39 +1,114 @@
 import { useState } from 'react';
-import { Radio, Repeat, Users, ArrowUpRight, Activity, Cpu, TrendingUp, Droplets, Leaf } from 'lucide-react';
+import {
+  Settings,
+  Repeat,
+  Package,
+  Coins,
+  TrendingUp,
+  Truck,
+  ArrowUpRight,
+  Activity,
+  Users,
+  Leaf,
+  type LucideIcon,
+} from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 
-type TabKey = 'iot' | 'cycles' | 'labor';
+type TabKey = 'financial' | 'sales' | 'operations' | 'shipping' | 'cycles' | 'inventory';
 
 const tabs: {
   key: TabKey;
   label: string;
-  icon: typeof Radio;
+  icon: LucideIcon;
   desc: string;
+  live: string;
+  footerIcons: LucideIcon[];
   metrics: { label: string; value: string; sub: string; green?: boolean }[];
   rows: [string, string, string, string][];
 }[] = [
   {
-    key: 'iot',
-    label: 'IoT Live Sensors',
-    icon: Radio,
-    desc: 'Stream soil moisture, EC, ambient temperature, and NDVI from every probe — sub-minute latency, edge-cached, anomaly-flagged.',
+    key: 'financial',
+    label: 'Financial',
+    icon: Coins,
+    desc: 'Activity-based cost accounting per field, crop batch, and employee — live cashflow and balance sheet visibility.',
+    live: 'synced',
+    footerIcons: [Coins, Activity, TrendingUp],
     metrics: [
-      { label: 'Avg Latency', value: '380ms', sub: 'edge-cached', green: true },
-      { label: 'Sensors Online', value: '1,284', sub: '99.7% uptime' },
-      { label: 'Data Points / day', value: '8.4M', sub: 'streaming' },
+      { label: 'Capital Accrual', value: '$1.2M', sub: 'this quarter', green: true },
+      { label: 'Monthly Spend', value: '$186K', sub: 'on budget' },
+      { label: 'Budget Variance', value: '-3.2%', sub: 'under plan', green: true },
     ],
     rows: [
-      ['FIELD-A12', 'Moisture', '62.1%', 'optimal'],
-      ['FIELD-B07', 'Temp', '24.8°C', 'ok'],
-      ['FIELD-C03', 'NDVI', '0.78', 'optimal'],
-      ['FIELD-A12', 'EC', '1.42 dS/m', 'ok'],
+      ['LEDGER-4471', 'Fertilizer Purchase', '$12,400', 'posted'],
+      ['LEDGER-4472', 'Fuel & Machinery', '$8,150', 'posted'],
+      ['LEDGER-4473', 'Payroll', '$42,900', 'pending'],
+      ['LEDGER-4474', 'Equipment Lease', '$6,300', 'posted'],
+    ],
+  },
+  {
+    key: 'sales',
+    label: 'Sales & Contracts',
+    icon: TrendingUp,
+    desc: 'Manage crop trade contracts, wholesale agreements, and futures pricing — synced with live harvest projections.',
+    live: 'updated',
+    footerIcons: [TrendingUp, Activity, Coins],
+    metrics: [
+      { label: 'Active Contracts', value: '42', sub: 'this season', green: true },
+      { label: 'Contracted Volume', value: '3,240t', sub: 'booked' },
+      { label: 'Avg Price', value: '$312/t', sub: 'market-synced' },
+    ],
+    rows: [
+      ['CNT-1082', 'Wheat Forward', '480t', 'signed'],
+      ['CNT-1083', 'Maize Spot', '620t', 'pending'],
+      ['CNT-1084', 'Soybean Forward', '310t', 'signed'],
+      ['CNT-1085', 'Barley Contract', '150t', 'signed'],
+    ],
+  },
+  {
+    key: 'operations',
+    label: 'Field Operations',
+    icon: Settings,
+    desc: 'Schedule tasks, deploy crews, and track machinery and pesticide application across every field block — in one live plan.',
+    live: 'synced',
+    footerIcons: [Settings, Users, Activity],
+    metrics: [
+      { label: 'Work Orders', value: '34', sub: 'in progress', green: true },
+      { label: 'Crews Deployed', value: '23', sub: 'across 4 sites' },
+      { label: 'Tasks Completed', value: '128', sub: 'this week' },
+    ],
+    rows: [
+      ['FIELD-A12', 'Spraying', 'Crew N1', 'active'],
+      ['FIELD-B07', 'Irrigation', 'Crew S4', 'active'],
+      ['FIELD-C03', 'Harvesting', 'Crew G2', 'scheduled'],
+      ['FIELD-E7', 'Fertilizing', 'Crew E7', 'active'],
+    ],
+  },
+  {
+    key: 'shipping',
+    label: 'Shipping',
+    icon: Truck,
+    desc: 'Coordinate dispatch, route optimization, and cold-chain logs from harvest cart to silo elevators and beyond.',
+    live: '380ms',
+    footerIcons: [Truck, Activity, TrendingUp],
+    metrics: [
+      { label: 'Loads In Transit', value: '18', sub: 'live tracking', green: true },
+      { label: 'On-Time Rate', value: '96.4%', sub: 'last 30 days' },
+      { label: 'Avg Transit', value: '6.2h', sub: 'dock to dock' },
+    ],
+    rows: [
+      ['SHIP-2291', 'Grain Truck', 'North → Silo B', 'in transit'],
+      ['SHIP-2292', 'Reefer Unit', 'Pack House → Port', 'in transit'],
+      ['SHIP-2293', 'Flatbed', 'Field C → Yard', 'delivered'],
+      ['SHIP-2294', 'Grain Truck', 'South → Silo A', 'delivered'],
     ],
   },
   {
     key: 'cycles',
-    label: 'Crop Cycles',
+    label: 'Crop Lifecycle',
     icon: Repeat,
     desc: 'Track every crop from planting to harvest. Growth-stage modeling, GDD accumulation, and automated task scheduling per field block.',
+    live: 'updated',
+    footerIcons: [Leaf, Repeat, TrendingUp],
     metrics: [
       { label: 'Active Cycles', value: '47', sub: 'across 6 crops', green: true },
       { label: 'Avg GDD', value: '1,842', sub: 'on schedule' },
@@ -47,26 +122,28 @@ const tabs: {
     ],
   },
   {
-    key: 'labor',
-    label: 'Labor Matrix',
-    icon: Users,
-    desc: 'Allocate crews, equipment, and contractors against field tasks. Real-time attendance, cost accrual, and productivity scoring.',
+    key: 'inventory',
+    label: 'Inventory',
+    icon: Package,
+    desc: 'Real-time stock levels for seed, fertilizer, and equipment — with low-stock alerts and supplier orders synced automatically.',
+    live: 'synced',
+    footerIcons: [Package, Activity, TrendingUp],
     metrics: [
-      { label: 'Crews Active', value: '23', sub: 'across 4 sites', green: true },
-      { label: 'Hours Logged', value: '1,920', sub: 'this week' },
-      { label: 'Labor Cost/ha', value: '$48.20', sub: '-6.1% MoM', green: true },
+      { label: 'Stock Items', value: '1,842', sub: 'tracked SKUs', green: true },
+      { label: 'Low-Stock Alerts', value: '6', sub: 'this week' },
+      { label: 'Supplier Orders', value: '12', sub: 'in transit' },
     ],
     rows: [
-      ['CREW-N1', 'North Block', '6 workers', 'active'],
-      ['CREW-S4', 'South Block', '9 workers', 'active'],
-      ['CREW-G2', 'Greenhouse', '4 workers', 'break'],
-      ['CREW-E7', 'East Fields', '11 workers', 'active'],
+      ['SEED-WHT4', 'Wheat Seed', '2.4t', 'in stock'],
+      ['FERT-N32', 'Nitrogen Fert.', '480kg', 'low stock'],
+      ['CHEM-PST1', 'Pesticide', '96L', 'in stock'],
+      ['TOOL-IRR2', 'Irrigation Kit', '18 units', 'in stock'],
     ],
   },
 ];
 
 export function InteractiveCallout() {
-  const [active, setActive] = useState<TabKey>('iot');
+  const [active, setActive] = useState<TabKey>('operations');
   const { ref, shown } = useReveal();
   const tab = tabs.find((t) => t.key === active)!;
 
@@ -82,47 +159,44 @@ export function InteractiveCallout() {
             See your farm, in real time.
           </h2>
           <p className="mt-4 text-lg text-forest-950/60">
-            Switch between operational lenses — from sub-second sensor telemetry to crew allocation. This is a live
-            snapshot of what your dashboard could look like.
+            Six live dashboards — financial, sales, field operations, shipping, crop lifecycle, and inventory. This is
+            a snapshot of what your control center could look like.
           </p>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-10">
           {/* left: tab switcher */}
           <div className={`lg:col-span-5 transition-all duration-700 ${shown ? 'translate-x-0 opacity-100' : '-translate-x-6 opacity-0'}`}>
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
               {tabs.map((t) => {
                 const isActive = t.key === active;
                 return (
                   <button
                     key={t.key}
                     onClick={() => setActive(t.key)}
-                    className={`group flex w-full items-start gap-4 rounded-2xl border p-5 text-left transition-all duration-300 ${
+                    className={`group flex items-center gap-3 rounded-2xl border p-4 text-left transition-all duration-300 ${
                       isActive
                         ? 'border-emerald-accent/40 bg-white shadow-glow-soft'
                         : 'border-forest-950/[0.07] bg-white/50 hover:border-forest-950/15 hover:bg-white'
                     }`}
                   >
                     <div
-                      className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl transition-all ${
+                      className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-all ${
                         isActive ? 'bg-forest-950 text-emerald-accent' : 'bg-forest-950/[0.05] text-forest-950/60'
                       }`}
                     >
-                      <t.icon className="h-5 w-5" />
+                      <t.icon className="h-4.5 w-4.5" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between">
-                        <h3 className={`text-base font-bold tracking-tight ${isActive ? 'text-forest-950' : 'text-forest-950/80'}`}>
-                          {t.label}
-                        </h3>
-                        <ArrowUpRight
-                          className={`h-4 w-4 transition-all ${
-                            isActive ? 'text-emerald-deep' : 'text-forest-950/30 group-hover:text-forest-950/60'
-                          }`}
-                        />
-                      </div>
-                      <p className="mt-1.5 text-sm leading-relaxed text-forest-950/55">{t.desc}</p>
+                      <h3 className={`truncate text-sm font-bold tracking-tight ${isActive ? 'text-forest-950' : 'text-forest-950/75'}`}>
+                        {t.label}
+                      </h3>
                     </div>
+                    <ArrowUpRight
+                      className={`h-4 w-4 shrink-0 transition-all ${
+                        isActive ? 'text-emerald-deep' : 'text-forest-950/25 group-hover:text-forest-950/50'
+                      }`}
+                    />
                   </button>
                 );
               })}
@@ -140,9 +214,11 @@ export function InteractiveCallout() {
                 </div>
                 <div className="flex items-center gap-1.5 rounded-full bg-white/5 px-2.5 py-1 font-mono text-[10px] text-emerald-accent ring-1 ring-inset ring-white/10">
                   <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-accent" />
-                  live · {active === 'iot' ? '380ms' : active === 'cycles' ? 'updated' : 'synced'}
+                  live · {tab.live}
                 </div>
               </div>
+
+              <p className="mt-3 text-sm leading-relaxed text-white/60">{tab.desc}</p>
 
               {/* metrics */}
               <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -180,9 +256,9 @@ export function InteractiveCallout() {
               {/* mini footer icons */}
               <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
                 <div className="flex items-center gap-4 text-white/40">
-                  {active === 'iot' && <><Droplets className="h-4 w-4" /><Cpu className="h-4 w-4" /><Activity className="h-4 w-4" /></>}
-                  {active === 'cycles' && <><Leaf className="h-4 w-4" /><Repeat className="h-4 w-4" /><TrendingUp className="h-4 w-4" /></>}
-                  {active === 'labor' && <><Users className="h-4 w-4" /><Activity className="h-4 w-4" /><TrendingUp className="h-4 w-4" /></>}
+                  {tab.footerIcons.map((Icon, i) => (
+                    <Icon key={i} className="h-4 w-4" />
+                  ))}
                 </div>
                 <span className="font-mono text-[10px] text-white/30">exportable · API-ready</span>
               </div>
