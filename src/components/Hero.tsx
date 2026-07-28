@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { ArrowUpRight, Play, X } from 'lucide-react';
-import { DashboardMockup } from './DashboardMockup';
-import { useReveal } from '../hooks/useReveal';
-import type { Page } from '../nav';
-import heroVideo from '../Video/generate_a_video_related_this.mp4';
-import heroBgVideo from '../Video/Hero_background.mp4';
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { ArrowUpRight, Play, X } from "lucide-react";
+import { DashboardMockup } from "./DashboardMockup";
+import { useReveal } from "../hooks/useReveal";
+import type { Page } from "../nav";
+import heroVideo from "../Video/generate_a_video_related_this.mp4";
+import heroBgVideo from "../Video/Hero_background.mp4";
 
 export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
   const [showVideo, setShowVideo] = useState(false);
@@ -25,33 +25,34 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
   // Handle escape key to close video
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         closeVideo();
       }
     };
     if (showVideo) {
-      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener("keydown", handleKeyDown);
     }
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [showVideo]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
-    const motionListener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener('change', motionListener);
+    const motionListener = (e: MediaQueryListEvent) =>
+      setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener("change", motionListener);
 
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      mediaQuery.removeEventListener('change', motionListener);
-      window.removeEventListener('scroll', handleScroll);
+      mediaQuery.removeEventListener("change", motionListener);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -65,101 +66,112 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
 
   return (
     <>
-    <section className="relative min-h-[90vh] lg:min-h-screen overflow-hidden bg-forest-950 pt-32 pb-24 sm:pt-40 sm:pb-32 flex items-center justify-center">
-      {/* 1. Video background & Overlays */}
-      <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
-        <video
-          src={heroBgVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover scale-[1.03]"
-          style={{
-            transform: prefersReducedMotion ? 'none' : `translateY(${scrollY * 0.12}px) scale(1.03)`,
-          }}
-        />
-        {/* Cinematic dark gradients and glass overlay overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-forest-950/80 via-forest-950/45 to-forest-950/95" />
-        <div className="absolute inset-0 bg-emerald-accent/[0.04] mix-blend-color" />
-        <div className="absolute inset-0 bg-grid-dark grid-fade opacity-25" />
-      </div>
-
-      {/* Ambient glows */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-[32rem] w-[32rem] rounded-full bg-emerald-accent/[0.12] blur-3xl" />
-      <div className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-emerald-accent/[0.08] blur-3xl" />
-
-
-      {/* 3. Central typography & call-to-actions */}
-      <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8 lg:px-12 text-center">
-
-        <h1 className="animate-fadeUp mt-6 text-5xl font-bold leading-[1.02] tracking-tightest text-white sm:text-6xl xl:text-7xl" style={{ animationDelay: '60ms' }}>
-          The Operating System for{' '}
-          <span className="shimmer-text-dark">Modern Agriculture.</span>
-        </h1>
-
-        <p className="animate-fadeUp mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-white/70" style={{ animationDelay: '120ms' }}>
-          Empowering commercial farms with real-time IoT telemetry, automated supply chains, and AI-driven
-          yield forecasting. Built to scale from local fields to global enterprises.
-        </p>
-
-        <div className="animate-fadeUp mt-8 flex flex-col items-center gap-3.5 sm:flex-row sm:justify-center" style={{ animationDelay: '180ms' }}>
-          <button
-            onClick={() => onNavigate('pricing')}
-            className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-7 py-3.5 text-base font-semibold text-white shadow-glow hover:bg-emerald-deep hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-          >
-            Get Started Today
-            <ArrowUpRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
-          <button
-            onClick={() => setShowVideo(true)}
-            className="group inline-flex items-center gap-2.5 rounded-full px-5 py-3.5 text-base font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/20 backdrop-blur-md transition-all hover:scale-[1.02] active:scale-[0.98] duration-300"
-          >
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-white/10 ring-1 ring-inset ring-white/25 transition-all group-hover:bg-emerald-accent/20 group-hover:ring-emerald-accent/35">
-              <Play className="h-3.5 w-3.5 fill-current text-white" />
-            </span>
-            Watch 2-Minute Overview
-          </button>
+      <section className="relative min-h-[90vh] lg:min-h-screen overflow-hidden bg-forest-950 pt-32 pb-24 sm:pt-40 sm:pb-32 flex items-center justify-center">
+        {/* 1. Video background & Overlays */}
+        <div className="absolute inset-0 z-0 overflow-hidden select-none pointer-events-none">
+          <video
+            src={heroBgVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover scale-[1.03]"
+            style={{
+              transform: prefersReducedMotion
+                ? "none"
+                : `translateY(${scrollY * 0.12}px) scale(1.03)`,
+            }}
+          />
+          {/* Cinematic dark gradients and glass overlay overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-forest-950/80 via-forest-950/45 to-forest-950/95" />
+          <div className="absolute inset-0 bg-emerald-accent/[0.04] mix-blend-color" />
+          <div className="absolute inset-0 bg-grid-dark grid-fade opacity-25" />
         </div>
-      </div>
-    </section>
 
-    {/* Video Modal */}
-    {showVideo && createPortal(
-      <div
-        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm"
-        onClick={closeVideo}
-        style={{ animation: 'fadeIn 0.3s ease-out' }}
-      >
-        <div
-          className="relative w-full max-w-4xl mx-4"
-          onClick={(e) => e.stopPropagation()}
-          style={{ animation: 'scaleIn 0.3s ease-out' }}
-        >
-          {/* Close button */}
-          <button
-            onClick={closeVideo}
-            className="absolute -top-12 right-0 flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white/80 transition-all hover:bg-white/20 hover:text-white"
+        {/* Ambient glows */}
+        <div className="pointer-events-none absolute -right-32 -top-32 h-[32rem] w-[32rem] rounded-full bg-emerald-accent/[0.12] blur-3xl" />
+        <div className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-emerald-accent/[0.08] blur-3xl" />
+
+        {/* 3. Central typography & call-to-actions */}
+        <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8 lg:px-12 text-center">
+          <h1
+            className="animate-fadeUp mt-6 text-5xl font-bold leading-[1.02] tracking-tightest text-white sm:text-6xl xl:text-7xl"
+            style={{ animationDelay: "60ms" }}
           >
-            <X className="h-4 w-4" />
-            Close
-          </button>
+            One Map, Every Operation.{" "}
+            <span className="shimmer-text-dark">Nothing Left to Memory.</span>
+          </h1>
 
-          {/* Video container */}
-          <div className="overflow-hidden rounded-2xl bg-black shadow-2xl ring-1 ring-white/10">
-            <video
-              ref={videoRef}
-              src={heroVideo}
-              controls
-              autoPlay
-              className="w-full"
-              style={{ maxHeight: '80vh' }}
-            />
+          <p
+            className="animate-fadeUp mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-white/70"
+            style={{ animationDelay: "120ms" }}
+          >
+            Thousands of hectares. Dozens of crops. Hundreds of daily decisions.
+            SPATIO AGRI pulls field operations, crop lifecycle management, and
+            inventory tracking into a single platform.
+          </p>
+
+          <div
+            className="animate-fadeUp mt-8 flex flex-col items-center gap-3.5 sm:flex-row sm:justify-center"
+            style={{ animationDelay: "180ms" }}
+          >
+            <button
+              onClick={() => onNavigate("pricing")}
+              className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-7 py-3.5 text-base font-semibold text-white shadow-glow hover:bg-emerald-deep hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+            >
+              Get Started Today
+              <ArrowUpRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </button>
+            <button
+              onClick={() => setShowVideo(true)}
+              className="group inline-flex items-center gap-2.5 rounded-full px-5 py-3.5 text-base font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/20 backdrop-blur-md transition-all hover:scale-[1.02] active:scale-[0.98] duration-300"
+            >
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-white/10 ring-1 ring-inset ring-white/25 transition-all group-hover:bg-emerald-accent/20 group-hover:ring-emerald-accent/35">
+                <Play className="h-3.5 w-3.5 fill-current text-white" />
+              </span>
+              Watch 2-Minute Overview
+            </button>
           </div>
         </div>
-      </div>,
-      document.body
-    )}
+      </section>
+
+      {/* Video Modal */}
+      {showVideo &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            onClick={closeVideo}
+            style={{ animation: "fadeIn 0.3s ease-out" }}
+          >
+            <div
+              className="relative w-full max-w-4xl mx-4"
+              onClick={(e) => e.stopPropagation()}
+              style={{ animation: "scaleIn 0.3s ease-out" }}
+            >
+              {/* Close button */}
+              <button
+                onClick={closeVideo}
+                className="absolute -top-12 right-0 flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white/80 transition-all hover:bg-white/20 hover:text-white"
+              >
+                <X className="h-4 w-4" />
+                Close
+              </button>
+
+              {/* Video container */}
+              <div className="overflow-hidden rounded-2xl bg-black shadow-2xl ring-1 ring-white/10">
+                <video
+                  ref={videoRef}
+                  src={heroVideo}
+                  controls
+                  autoPlay
+                  className="w-full"
+                  style={{ maxHeight: "80vh" }}
+                />
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
@@ -177,11 +189,11 @@ export function DeviceShowcase() {
 
       <div
         className={`relative mx-auto max-w-5xl px-5 sm:px-8 lg:px-12 transition-all duration-1000 ${
-          shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
         {/* Device mockup container */}
-        <div className="relative mx-auto" style={{ maxWidth: '900px' }}>
+        <div className="relative mx-auto" style={{ maxWidth: "900px" }}>
           {/* The device frame image sits on top */}
           <img
             src="/images/device-mockup.png"
@@ -194,10 +206,10 @@ export function DeviceShowcase() {
           <div
             className="absolute z-0 overflow-hidden"
             style={{
-              top: '5.5%',
-              left: '11.5%',
-              width: '60%',
-              height: '72%',
+              top: "5.5%",
+              left: "11.5%",
+              width: "60%",
+              height: "72%",
             }}
           >
             <DashboardMockup variant="light" />
@@ -207,31 +219,37 @@ export function DeviceShowcase() {
           <div
             className="absolute z-0 overflow-hidden"
             style={{
-              top: '38%',
-              right: '7.5%',
-              width: '16.5%',
-              height: '52%',
+              top: "38%",
+              right: "7.5%",
+              width: "16.5%",
+              height: "52%",
             }}
           >
             {/* mini mobile dashboard */}
             <div className="h-full w-full bg-white p-1.5 space-y-1">
               <div className="flex items-center gap-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-accent" />
-                <span className="text-[6px] font-bold text-forest-950">AgriCore</span>
+                <span className="text-[6px] font-bold text-forest-950">
+                  AgriCore
+                </span>
               </div>
               <div className="grid grid-cols-2 gap-0.5">
                 {[
-                  { label: 'Moisture', val: '64.2%' },
-                  { label: 'Yield', val: '12.4t' },
-                  { label: 'Sensors', val: '1,284' },
-                  { label: 'NDVI', val: '0.78' },
+                  { label: "Moisture", val: "64.2%" },
+                  { label: "Yield", val: "12.4t" },
+                  { label: "Sensors", val: "1,284" },
+                  { label: "NDVI", val: "0.78" },
                 ].map((s) => (
                   <div
                     key={s.label}
                     className="rounded bg-forest-950/[0.03] p-0.5 ring-1 ring-forest-950/5"
                   >
-                    <div className="text-[4px] text-forest-950/50">{s.label}</div>
-                    <div className="text-[6px] font-bold text-forest-950">{s.val}</div>
+                    <div className="text-[4px] text-forest-950/50">
+                      {s.label}
+                    </div>
+                    <div className="text-[6px] font-bold text-forest-950">
+                      {s.val}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -244,12 +262,14 @@ export function DeviceShowcase() {
                   />
                 ))}
               </div>
-              {['FIELD-A12', 'FIELD-B07'].map((f) => (
+              {["FIELD-A12", "FIELD-B07"].map((f) => (
                 <div
                   key={f}
                   className="flex items-center justify-between rounded bg-forest-950/[0.02] px-0.5 py-0.5"
                 >
-                  <span className="text-[4px] font-medium text-forest-950">{f}</span>
+                  <span className="text-[4px] font-medium text-forest-950">
+                    {f}
+                  </span>
                   <span className="rounded-full bg-emerald-accent/15 px-0.5 text-[3px] text-emerald-accent">
                     ok
                   </span>
@@ -265,31 +285,40 @@ export function DeviceShowcase() {
 
 export function TrustBar() {
   const { ref, shown } = useReveal();
-  const logos = ['Cargill', 'Bayer', 'John Deere', 'Olam', 'Syngenta'];
+  const logos = ["Cargill", "Bayer", "John Deere", "Olam", "Syngenta"];
   const duplicatedLogos = [...logos, ...logos, ...logos, ...logos];
 
   return (
-    <section ref={ref} className="relative border-y border-forest-950/[0.06] bg-cream py-10 overflow-hidden">
+    <section
+      ref={ref}
+      className="relative border-y border-forest-950/[0.06] bg-cream py-10 overflow-hidden"
+    >
       <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
         <div className="text-center">
           <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
             Valued Partners
           </span>
-          <h2 className={`mt-2 text-3xl font-bold tracking-tight text-forest-950 sm:text-4xl transition-all duration-700 ${shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
+          <h2
+            className={`mt-2 text-3xl font-bold tracking-tight text-forest-950 sm:text-4xl transition-all duration-700 ${shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+          >
             Meet our <span className="shimmer-text">partners.</span>
           </h2>
-          <p className={`mt-3 text-sm font-medium text-forest-950/55 transition-all duration-700 delay-100 ${shown ? 'opacity-100' : 'opacity-0'}`}>
+          <p
+            className={`mt-3 text-sm font-medium text-forest-950/55 transition-all duration-700 delay-100 ${shown ? "opacity-100" : "opacity-0"}`}
+          >
             Trusted by over 15,000+ commercial growers and agronomists globally.
           </p>
         </div>
-        
-        <div className={`mt-8 overflow-hidden marquee-mask relative w-full transition-all duration-1000 delay-200 ${shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+
+        <div
+          className={`mt-8 overflow-hidden marquee-mask relative w-full transition-all duration-1000 delay-200 ${shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        >
           <div className="animate-marquee py-2">
             {duplicatedLogos.map((l, i) => (
               <span
                 key={`${l}-${i}`}
                 className="text-xl font-bold tracking-tight text-forest-950/35 grayscale transition-colors duration-300 hover:text-forest-950/60 sm:text-2xl cursor-pointer select-none"
-                style={{ fontFamily: 'Inter' }}
+                style={{ fontFamily: "Inter" }}
               >
                 {l}
               </span>
@@ -300,4 +329,3 @@ export function TrustBar() {
     </section>
   );
 }
-
