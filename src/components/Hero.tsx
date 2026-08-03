@@ -75,11 +75,11 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
             loop
             muted
             playsInline
-            className="absolute inset-0 h-full w-full object-cover scale-[1.03]"
+            className="absolute inset-0 h-full w-full object-cover object-center scale-[1.15]"
             style={{
               transform: prefersReducedMotion
                 ? "none"
-                : `translateY(${scrollY * 0.12}px) scale(1.03)`,
+                : `translateY(${Math.min(scrollY * 0.12, 40)}px) scale(1.15)`,
             }}
           />
           {/* Cinematic dark gradients and glass overlay overlay */}
