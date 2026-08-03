@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 import { NAV, type Page } from '../nav';
+import { AuthModal, type AuthMode } from './AuthModal';
 
 export function NavBar({
   page,
@@ -12,6 +13,12 @@ export function NavBar({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<AuthMode | null>(null);
+
+  const openAuth = (m: AuthMode) => {
+    setOpen(false);
+    setAuthMode(m);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -64,10 +71,23 @@ export function NavBar({
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <button className={`text-sm font-medium transition-colors ${
-              isDarkHeader ? 'text-white/70 hover:text-white' : 'text-forest-950/70 hover:text-forest-950'
-            }`}>
+            <button
+              onClick={() => openAuth('signin')}
+              className={`text-sm font-medium transition-colors ${
+                isDarkHeader ? 'text-white/70 hover:text-white' : 'text-forest-950/70 hover:text-forest-950'
+              }`}
+            >
               Sign In
+            </button>
+            <button
+              onClick={() => openAuth('signup')}
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition-all active:scale-[0.98] ${
+                isDarkHeader
+                  ? 'border border-white/25 text-white hover:bg-white/10'
+                  : 'border border-forest-950/15 text-forest-950 hover:bg-forest-950/[0.04]'
+              }`}
+            >
+              Sign Up
             </button>
             <button
               onClick={() => go('demo')}
@@ -109,13 +129,24 @@ export function NavBar({
                   {item.label}
                 </button>
               ))}
-              <div className="flex items-center gap-3 pt-3">
-                <button className="flex-1 rounded-full border border-forest-950/10 px-5 py-2.5 text-sm font-semibold text-forest-950">
-                  Sign In
-                </button>
+              <div className="space-y-2.5 pt-3">
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => openAuth('signin')}
+                    className="flex-1 rounded-full border border-forest-950/10 px-5 py-2.5 text-sm font-semibold text-forest-950"
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    onClick={() => openAuth('signup')}
+                    className="flex-1 rounded-full bg-forest-950 px-5 py-2.5 text-sm font-semibold text-white"
+                  >
+                    Sign Up
+                  </button>
+                </div>
                 <button
                   onClick={() => go('demo')}
-                  className="flex-1 rounded-full bg-forest-950 px-5 py-2.5 text-sm font-semibold text-white"
+                  className="w-full rounded-full border border-forest-950/10 px-5 py-2.5 text-sm font-semibold text-forest-950"
                 >
                   Request Demo
                 </button>
@@ -124,6 +155,10 @@ export function NavBar({
           </div>
         )}
       </div>
+
+      {authMode && (
+        <AuthModal mode={authMode} onClose={() => setAuthMode(null)} onModeChange={setAuthMode} />
+      )}
     </header>
   );
 }

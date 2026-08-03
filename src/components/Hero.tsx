@@ -4,8 +4,8 @@ import { ArrowUpRight, Play, X } from "lucide-react";
 import { DashboardMockup } from "./DashboardMockup";
 import { useReveal } from "../hooks/useReveal";
 import type { Page } from "../nav";
-import heroVideo from "../Video/generate_a_video_related_this.mp4";
-import heroBgVideo from "../Video/Hero_background.mp4";
+import heroVideo from "../assets/videos/generate_a_video_related_this.mp4";
+import heroBgVideo from "../assets/videos/Hero_background.mp4";
 
 export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
   const [showVideo, setShowVideo] = useState(false);

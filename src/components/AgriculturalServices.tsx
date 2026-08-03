@@ -1,6 +1,7 @@
 import { useReveal } from '../hooks/useReveal';
+import type { Page } from '../nav';
 
-export function AgriculturalServices() {
+export function AgriculturalServices({ onNavigate }: { onNavigate: (p: Page) => void }) {
   const { ref, shown } = useReveal();
 
   return (
@@ -30,7 +31,10 @@ export function AgriculturalServices() {
             }`}
           >
             {/* Top pill outline button */}
-            <button className="self-start rounded-full border border-forest-950 px-5 py-2 text-xs font-semibold text-forest-950 hover:bg-forest-950 hover:text-white transition-all duration-300 active:scale-[0.98]">
+            <button
+              onClick={() => onNavigate('about')}
+              className="self-start rounded-full border border-forest-950 px-5 py-2 text-xs font-semibold text-forest-950 hover:bg-forest-950 hover:text-white transition-all duration-300 active:scale-[0.98]"
+            >
               About us
             </button>
 

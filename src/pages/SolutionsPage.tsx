@@ -1,9 +1,9 @@
-import { Wheat, Sprout, Beef, Check, ArrowUpRight, MapPin, Layers, Zap } from 'lucide-react';
+import { Coins, Sprout, Truck, Package, FlaskConical, Settings, Check, ArrowUpRight, Layers, MapPin } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
 const modules: {
-  icon: typeof Wheat;
+  icon: typeof Coins;
   title: string;
   subtitle: string;
   tag: string;
@@ -11,66 +11,105 @@ const modules: {
   stat: { value: string; label: string };
 }[] = [
   {
-    icon: Wheat,
-    title: 'Large Scale Crop Farms',
-    subtitle: 'Broad-acre operations from 500 to 50,000+ hectares.',
-    tag: 'Open Field',
-    stat: { value: '50k ha', label: 'per instance' },
+    icon: Coins,
+    title: 'Financial Management',
+    subtitle: 'Track farm expenses, cashflow, and budgets with per-field cost accounting.',
+    tag: 'Finance',
+    stat: { value: '$1.2M', label: 'capital tracked' },
     features: [
-      'Satellite NDVI & EVI imagery with auto-zoned field maps',
-      'Variable-rate prescription maps for seed, fert, and irrigation',
-      'Soil moisture & EC probes with sub-minute edge streaming',
-      'Automated GDD accumulation and growth-stage modeling',
-      'Harvest scheduling tied to yield-AI and contractor availability',
-      'Multi-block fleet tracking for tractors, combines, and carts',
-      'Per-field P&L with activity-based cost accounting',
-      'Commodity hedging surface linked to live futures feeds',
-      'Batch traceability from planting lot to elevator ticket',
-      'Weather-triggered task automation (frost, heat, rain events)',
-      'Boundary AI auto-detects new fields from parcel geometry',
-      'Offline-first mobile capture for remote field crews',
+      'Activity-based cost accounting per field, crop batch, and employee',
+      'Live cashflow and balance sheet visibility',
+      'Budget vs. actual tracking with variance alerts',
+      'Ledger entries for purchases, payroll, and equipment leases',
+      'Automated market-rate cost estimations',
+      'Board-ready financial projections from operational data',
+      'Multi-site consolidation for enterprise reporting',
+      'Exportable statements for audits and stakeholders',
     ],
   },
   {
     icon: Sprout,
-    title: 'Commercial Greenhouses',
-    subtitle: 'Climate-controlled, high-density indoor cultivation.',
-    tag: 'CEA',
-    stat: { value: '99.2%', label: 'climate accuracy' },
+    title: 'Crop Management',
+    subtitle: 'Plan, monitor, and manage every crop from planting to harvest.',
+    tag: 'Crop',
+    stat: { value: '47', label: 'active cycles' },
     features: [
-      'Sub-zone climate control for humidity, VPD, and CO₂',
-      'Lighting schedules tied to DLI targets and energy tariffs',
-      'Hydroponic nutrient dosing with auto-EC/pH correction',
-      'Vertical rack allocation and crop-rotation planning',
-      'Pest & disease scouting with photo evidence trails',
-      'Energy & water usage attribution per cultivation zone',
-      'Yield prediction by cultivar, rack, and harvest week',
-      'Cold-chain handoff tracking from pack-house to retailer',
-      'Labor productivity scoring per greenhouse crew',
-      'SKU-level batch traceability for retail compliance',
-      'Integrated grow-room camera feeds with anomaly alerts',
-      'Carbon footprint accounting per kilogram produced',
+      'Growth-stage modeling and GDD accumulation per field block',
+      'Automated task scheduling tied to the crop calendar',
+      'Field boundary mapping via automated satellite zoning',
+      'NDVI-based vegetation health monitoring',
+      'Soil moisture and fertilizer input tracking',
+      'Harvest ETA forecasting by batch',
+      'Crop rotation and seasonal planning',
+      'Yield prediction linked to crop health data',
     ],
   },
   {
-    icon: Beef,
-    title: 'Livestock Integrations',
-    subtitle: 'Cattle, dairy, and mixed-operation herd management.',
-    tag: 'Livestock',
-    stat: { value: '120k', label: 'animals tracked' },
+    icon: Truck,
+    title: 'Shipping',
+    subtitle: 'Coordinate dispatch, routes, and cold-chain logistics from field to buyer.',
+    tag: 'Shipping',
+    stat: { value: '96.4%', label: 'on-time rate' },
     features: [
-      'Individual animal registry with RFID & ear-tag linkage',
-      'Weight gain, BCS, and health event timelines per animal',
-      'Pasture rotation and forage budgeting by paddock',
-      'Feed inventory & ration formulation with cost tracking',
-      'Automated milk yield and quality logging (dairy)',
-      'Breeding cycle, gestation, and calving pipeline management',
-      'Vaccination and treatment records with withdrawal windows',
-      'Mortalities, sales, and transfers with full audit trail',
-      'Grazing density alerts tied to NDVI pasture health',
-      'Meat & milk batch traceability from farm to processor',
-      'Integration with weighing scales and race readers',
-      'Herd-level KPIs: ADG, conception rate, mortality %',
+      'Truck dispatch and route optimization',
+      'Scale ticket records and load tracking',
+      'Cold-chain temperature logs in transit',
+      'Live shipment status — in transit, delivered, delayed',
+      'Logistics sync with harvest and silo schedules',
+      'Multi-site to buyer and port routing',
+      'Delivery performance and transit-time analytics',
+      'Exportable manifests for compliance',
+    ],
+  },
+  {
+    icon: Package,
+    title: 'Inventory',
+    subtitle: 'Real-time stock tracking for seed, fertilizer, chemicals, and equipment.',
+    tag: 'Inventory',
+    stat: { value: '1,842', label: 'tracked SKUs' },
+    features: [
+      'Real-time stock levels across silos and stores',
+      'Low-stock alerts and automated reorder triggers',
+      'Supplier integration for purchase orders',
+      'Seed, chemical, and equipment lot tracking',
+      'Silo and bin telemetry for grain volume and moisture',
+      'Purchase-to-usage traceability',
+      'Cost tracking per input category',
+      'Stock-linked application from field operations',
+    ],
+  },
+  {
+    icon: FlaskConical,
+    title: 'Fertilizer',
+    subtitle: 'Plan, apply, and track nutrient inputs — synced to soil health and inventory.',
+    tag: 'Fertilizer',
+    stat: { value: 'N-P-K', label: 'nutrient planning' },
+    features: [
+      'Nutrient (N-P-K) plans generated from soil health and crop stage',
+      'Application scheduling tied to field, plot, and crop calendar',
+      'Dosage and coverage tracking — quantity, location, and personnel',
+      'Stock-linked application — auto-deduct from inventory on use',
+      'Low-stock and reorder alerts synced with supplier catalogs',
+      'Cost-per-hectare tracking by fertilizer type and blend',
+      'Compliance logging for input use and safety data sheets',
+      'AI/ML-adjusted recommendations as conditions change',
+    ],
+  },
+  {
+    icon: Settings,
+    title: 'Operations',
+    subtitle: 'Schedule tasks, deploy crews, and track machinery across every field block.',
+    tag: 'Operations',
+    stat: { value: '34', label: 'active work orders' },
+    features: [
+      'Work order scheduling and crew deployment',
+      'Machinery hours and fuel consumption tracking',
+      'Pesticide and spray application logging',
+      'Weather-triggered task automation',
+      'Labor attendance and productivity scoring',
+      'Task completion tracking by field and crew',
+      'Equipment maintenance and usage logs',
+      'Regulatory compliance logs for labor and safety',
     ],
   },
 ];
@@ -89,22 +128,22 @@ export function SolutionsPage({ onNavigate }: { onNavigate: (p: Page) => void })
               Solutions / Modules
             </span>
             <h1 className="mt-3 text-5xl font-bold leading-[1.05] tracking-tightest text-forest-950 sm:text-6xl">
-              Built for every kind of{' '}
-              <span className="shimmer-text">commercial operation.</span>
+              Every operation.{' '}
+              <span className="shimmer-text">One connected platform.</span>
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-forest-950/60">
-              AgriCore ships preconfigured module packs tuned to your operation type — so deployment is weeks, not
-              quarters. Mix and match as your enterprise diversifies.
+              Finance, crops, shipping, inventory, fertilizer, and field operations — six modules running on one
+              shared picture, so nothing gets left to memory.
             </p>
           </div>
 
           {/* quick stats */}
           <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-forest-950/[0.06] sm:grid-cols-4">
             {[
-              { icon: MapPin, v: '15,000+', l: 'Active farms' },
-              { icon: Layers, v: '32', l: 'Integrated modules' },
-              { icon: Zap, v: '380ms', l: 'Sensor latency' },
-              { icon: Wheat, v: '50k ha', l: 'Max single instance' },
+              { icon: Layers, v: '6', l: 'core modules' },
+              { icon: Package, v: '1,842', l: 'SKUs tracked' },
+              { icon: Truck, v: '96.4%', l: 'on-time shipping' },
+              { icon: MapPin, v: '15,000+', l: 'active farms' },
             ].map((s) => (
               <div key={s.l} className="bg-white p-5">
                 <s.icon className="h-4 w-4 text-emerald-deep" />

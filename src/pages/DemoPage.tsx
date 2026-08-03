@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { Radio, Repeat, Users, ArrowUpRight, Check, Calendar, MapPin, Building2, Phone } from 'lucide-react';
-import { DashboardMockup } from './DashboardMockup';
+import { MapPin, Repeat, Users, ArrowUpRight, Check, Calendar, Building2, Phone } from 'lucide-react';
+import { DashboardMockup } from '../components/DashboardMockup';
 import { useReveal } from '../hooks/useReveal';
 
-type StepKey = 'iot' | 'cycles' | 'labor';
+type StepKey = 'fields' | 'cycles' | 'labor';
 
-const steps: { key: StepKey; n: number; label: string; icon: typeof Radio; blurb: string }[] = [
-  { key: 'iot', n: 1, label: 'Connect your sensors', icon: Radio, blurb: 'Stream telemetry from soil probes, weather stations, and NDVI satellites.' },
+const steps: { key: StepKey; n: number; label: string; icon: typeof MapPin; blurb: string }[] = [
+  { key: 'fields', n: 1, label: 'Map your field boundaries', icon: MapPin, blurb: 'Draw field, estate, and plot boundaries with GIS mapping — the foundation every other module builds on.' },
   { key: 'cycles', n: 2, label: 'Map your crop cycles', icon: Repeat, blurb: 'Model planting-to-harvest stages with GDD accumulation and task automation.' },
   { key: 'labor', n: 3, label: 'Allocate your crews', icon: Users, blurb: 'Assign labor and equipment to field blocks with real-time cost tracking.' },
 ];
 
 export function DemoPage() {
-  const [step, setStep] = useState<StepKey>('iot');
+  const [step, setStep] = useState<StepKey>('fields');
   const [form, setForm] = useState({ name: '', org: '', email: '', size: '' });
   const [submitted, setSubmitted] = useState(false);
   const { ref, shown } = useReveal();
@@ -49,7 +49,7 @@ export function DemoPage() {
                   <button
                     key={s.key}
                     onClick={() => setStep(s.key)}
-                    className={`group flex flex-1 items-center gap-3 rounded-2xl border p-4 text-left transition-all ${
+                    className={`group flex min-w-0 flex-1 items-center gap-3 rounded-2xl border p-4 text-left transition-all ${
                       isActive
                         ? 'border-emerald-accent/40 bg-white shadow-glow-soft'
                         : 'border-forest-950/[0.07] bg-white/60 hover:border-forest-950/15'
@@ -63,7 +63,7 @@ export function DemoPage() {
                       {done ? <Check className="h-4 w-4" strokeWidth={3} /> : s.n}
                     </span>
                     <div className="min-w-0">
-                      <div className={`text-sm font-bold tracking-tight ${isActive ? 'text-forest-950' : 'text-forest-950/70'}`}>
+                      <div className={`truncate text-sm font-bold tracking-tight ${isActive ? 'text-forest-950' : 'text-forest-950/70'}`}>
                         {s.label}
                       </div>
                       <div className="hidden truncate text-xs text-forest-950/45 sm:block">{s.blurb}</div>

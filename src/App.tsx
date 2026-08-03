@@ -6,12 +6,11 @@ import { InteractiveCallout } from "./components/InteractiveCallout";
 import { OrbitSection } from "./components/OrbitSection";
 import { AgriculturalServices } from "./components/AgriculturalServices";
 import { StatsBanner } from "./components/StatsBanner";
-import { SolutionsPage } from "./components/SolutionsPage";
-import { PricingPage } from "./components/PricingPage";
-import { AboutPage } from "./components/AboutPage";
-import { DemoPage } from "./components/DemoPage";
-import { ContactPage } from "./components/ContactPage";
-import { FeaturesPage } from "./components/FeaturesPage";
+import { SolutionsPage } from "./pages/SolutionsPage";
+import { PricingPage } from "./pages/PricingPage";
+import { AboutPage } from "./pages/AboutPage";
+import { DemoPage } from "./pages/DemoPage";
+import { ContactPage } from "./pages/ContactPage";
 import { FAQSection } from "./components/FAQSection";
 import type { Page } from "./nav";
 
@@ -38,7 +37,7 @@ function App() {
         {page === "home" && (
           <>
             <Hero onNavigate={navigate} />
-            <AgriculturalServices />
+            <AgriculturalServices onNavigate={navigate} />
             <StatsBanner />
             <OrbitSection />
             <TrustBar />
@@ -51,7 +50,6 @@ function App() {
         {page === "about" && <AboutPage onNavigate={navigate} />}
         {page === "demo" && <DemoPage />}
         {page === "contact" && <ContactPage />}
-        {page === "features" && <FeaturesPage />}
       </main>
 
       <Footer onNavigate={navigate} />
