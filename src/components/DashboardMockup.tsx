@@ -61,7 +61,7 @@ export function DashboardMockup({ variant = 'light' }: { variant?: 'light' | 'da
             dark ? 'bg-white/10 text-white/60' : 'bg-forest-950/[0.04] text-forest-950/50'
           }`}
         >
-          app.agricore.io / operations
+          app.spatioagri.io / operations
         </div>
         <div className={`h-5 w-5 rounded-full ${dark ? 'bg-white/10' : 'bg-forest-950/[0.06]'}`} />
       </div>

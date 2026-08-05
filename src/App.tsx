@@ -11,7 +11,6 @@ import { PricingPage } from "./pages/PricingPage";
 import { AboutPage } from "./pages/AboutPage";
 import { DemoPage } from "./pages/DemoPage";
 import { ContactPage } from "./pages/ContactPage";
-import { FAQSection } from "./components/FAQSection";
 import type { Page } from "./nav";
 
 function App() {
@@ -25,8 +24,8 @@ function App() {
   useEffect(() => {
     document.title =
       page === "home"
-        ? "AgriCore — The Operating System for Modern Agriculture"
-        : `AgriCore — ${page[0].toUpperCase()}${page.slice(1)}`;
+        ? "SpatioAgri — The Operating System for Modern Agriculture"
+        : `SpatioAgri — ${page[0].toUpperCase()}${page.slice(1)}`;
   }, [page]);
 
   return (
@@ -42,7 +41,6 @@ function App() {
             <OrbitSection />
             <TrustBar />
             <InteractiveCallout />
-            <FAQSection />
           </>
         )}
         {page === "solutions" && <SolutionsPage onNavigate={navigate} />}

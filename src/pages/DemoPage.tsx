@@ -26,7 +26,7 @@ export function DemoPage() {
           <div className="max-w-2xl">
             <span className="font-mono text-xs font-medium uppercase tracking-widest text-emerald-deep">Interactive Demo</span>
             <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-tightest text-forest-950 sm:text-5xl">
-              Take a guided tour of AgriCore.
+              Take a guided tour of SpatioAgri.
             </h1>
             <p className="mt-4 text-lg text-forest-950/60">
               Walk through the three operational loops your farm runs every day. Then request a live enterprise
@@ -146,7 +146,7 @@ export function DemoPage() {
           <div className="text-center">
             <span className="font-mono text-xs font-medium uppercase tracking-widest text-emerald-deep">Request a live walkthrough</span>
             <h2 className="mt-3 text-3xl font-bold tracking-tightest text-forest-950 sm:text-4xl">
-              See AgriCore mapped to your operation.
+              See SpatioAgri mapped to your operation.
             </h2>
             <p className="mt-3 text-forest-950/60">
               A solutions agronomist will build a live demo using your crop mix, acreage, and region.

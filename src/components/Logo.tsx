@@ -10,7 +10,7 @@ export function Logo({ className = '', onDark = false }: { className?: string; o
       <span
         className={`text-[19px] font-bold tracking-tightest ${onDark ? 'text-white' : 'text-forest-950'}`}
       >
-        AgriCore
+        SpatioAgri
       </span>
     </div>
   );

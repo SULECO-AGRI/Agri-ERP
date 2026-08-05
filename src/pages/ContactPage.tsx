@@ -56,7 +56,7 @@ export function ContactPage() {
             Let's build <span className="shimmer-text">precision</span> together
           </h1>
           <p className="mt-5 text-base leading-relaxed text-forest-950/65 max-w-2xl">
-            Have questions about integrating AgriCore into your commercial growing operation? Reach out to our team of agricultural technology coordinators.
+            Have questions about integrating SpatioAgri into your commercial growing operation? Reach out to our team of agricultural technology coordinators.
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export function ContactPage() {
               <div className="space-y-6">
                 {/* Email Channel */}
                 <a 
-                  href="mailto:contact@agricore-erp.com" 
+                  href="mailto:contact@spatioagri-erp.com" 
                   className="group flex items-start gap-4 p-2 -m-2 rounded-2xl hover:bg-forest-950/[0.02] transition-colors"
                 >
                   <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-forest-950/[0.03] text-emerald-deep group-hover:bg-emerald-deep group-hover:text-white transition-all">
@@ -86,7 +86,7 @@ export function ContactPage() {
                     <h3 className="text-sm font-bold text-forest-950">Email Communication</h3>
                     <p className="text-xs text-forest-950/50 mt-0.5">Response within 4 business hours</p>
                     <span className="text-sm font-semibold text-emerald-deep group-hover:underline mt-1.5 block">
-                      contact@agricore-erp.com
+                      contact@spatioagri-erp.com
                     </span>
                   </div>
                 </a>
@@ -134,7 +134,7 @@ export function ContactPage() {
                   <h3 className="text-sm font-bold text-forest-950">Active Sync Windows</h3>
                   <p className="text-xs text-forest-950/50 mt-0.5">Continuous system monitoring uptime</p>
                   <p className="text-sm text-forest-950/70 mt-3 leading-relaxed">
-                    Our platform support engineers monitor AgriCore operations 24/7/365. Integration coordinators are available for live setup syncs from Monday to Friday.
+                    Our platform support engineers monitor SpatioAgri operations 24/7/365. Integration coordinators are available for live setup syncs from Monday to Friday.
                   </p>
                 </div>
               </div>

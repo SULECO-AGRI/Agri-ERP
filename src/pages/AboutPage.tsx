@@ -30,7 +30,7 @@ export function AboutPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
               <span className="shimmer-text">feeds the future.</span>
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-forest-950/60">
-              AgriCore was founded in 2019 by a team of agronomists and distributed-systems engineers who believed
+              SpatioAgri was founded in 2019 by a team of agronomists and distributed-systems engineers who believed
               commercial agriculture deserved the same operational tooling as modern logistics and finance. Today we
               power farms across six continents — from family-owned greenhouses to vertically integrated
               multinationals.
@@ -83,7 +83,7 @@ export function AboutPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
           <div className="mt-16 overflow-hidden rounded-3xl bg-forest-950 p-8 text-white sm:p-12">
             <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
               <div>
-                <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">Want to see AgriCore on your farm?</h3>
+                <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">Want to see SpatioAgri on your farm?</h3>
                 <p className="mt-2 max-w-lg text-white/60">
                   Book a 30-minute walkthrough with a solutions agronomist. We'll map your operation live.
                 </p>

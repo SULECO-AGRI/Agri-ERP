@@ -83,7 +83,7 @@ export function Footer({ onNavigate }: { onNavigate: (p: Page) => void }) {
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center">
           <p className="font-mono text-xs text-white/40">
-            © {new Date().getFullYear()} AgriCore Systems, Inc. · All rights reserved.
+            © {new Date().getFullYear()} SpatioAgri Systems, Inc. · All rights reserved.
           </p>
           <div className="flex items-center gap-6 font-mono text-xs text-white/40">
             <a href="#" className="hover:text-white/70">Privacy</a>

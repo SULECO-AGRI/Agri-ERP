@@ -286,7 +286,7 @@ export function OrbitSection() {
                 Your One-Stop Solution For <span className="shimmer-text">Farm Management</span>
               </h2>
               <p className="mt-5 text-base leading-relaxed text-forest-950/65">
-                AgriCore unifies all aspects of commercial growing into a single operating matrix. By linking crop telemetry with automated supply chain logs and general ledger pipelines, AgriCore streamlines the flow of data across medium to large-scale agriculture enterprises.
+                SpatioAgri unifies all aspects of commercial growing into a single operating matrix. By linking crop telemetry with automated supply chain logs and general ledger pipelines, SpatioAgri streamlines the flow of data across medium to large-scale agriculture enterprises.
               </p>
 
               {/* Dynamic Module Detail Card */}
