@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { MapPin, Repeat, Users, ArrowUpRight, Check, Calendar, Building2, Phone } from 'lucide-react';
+import { MapPin, Repeat, Users, ArrowUpRight, Check, Calendar, Building2, Phone, Globe } from 'lucide-react';
 import { DashboardMockup } from '../components/DashboardMockup';
 import { useReveal } from '../hooks/useReveal';
 
 type StepKey = 'fields' | 'cycles' | 'labor';
 
 const steps: { key: StepKey; n: number; label: string; icon: typeof MapPin; blurb: string }[] = [
-  { key: 'fields', n: 1, label: 'Map your field boundaries', icon: MapPin, blurb: 'Draw field, estate, and plot boundaries with GIS mapping — the foundation every other module builds on.' },
-  { key: 'cycles', n: 2, label: 'Map your crop cycles', icon: Repeat, blurb: 'Model planting-to-harvest stages with GDD accumulation and task automation.' },
-  { key: 'labor', n: 3, label: 'Allocate your crews', icon: Users, blurb: 'Assign labor and equipment to field blocks with real-time cost tracking.' },
+  { key: 'fields', n: 1, label: 'Map estate subdivisions', icon: MapPin, blurb: 'Draw cadastral subdivision boundaries and map individual tree density with GIS overlays.' },
+  { key: 'cycles', n: 2, label: 'Track harvest & processing', icon: Repeat, blurb: 'Record nut collections by block and link to copra drying kilns and oil press mills.' },
+  { key: 'labor', n: 3, label: 'Allocate crews & piece-rate', icon: Users, blurb: 'Assign farm managers, harvesters, and mill workers with piece-rate accountability.' },
 ];
 
 export function DemoPage() {
@@ -26,11 +26,10 @@ export function DemoPage() {
           <div className="max-w-2xl">
             <span className="font-mono text-xs font-medium uppercase tracking-widest text-emerald-deep">Interactive Demo</span>
             <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-tightest text-forest-950 sm:text-5xl">
-              Take a guided tour of SpatioAgri.
+              Take a guided tour of Spatio Agri.
             </h1>
             <p className="mt-4 text-lg text-forest-950/60">
-              Walk through the three operational loops your farm runs every day. Then request a live enterprise
-              walkthrough tailored to your operation.
+              Walk through the core operational loops your plantation runs every day — from GIS subdivision maps to copra processing. Then request a live walkthrough tailored to your farm.
             </p>
           </div>
         </div>
@@ -91,9 +90,9 @@ export function DemoPage() {
 
                 <div className="mt-6 space-y-2">
                   {[
-                    'Configured in minutes with prebuilt templates',
-                    'Edge-cached for sub-second field responsiveness',
-                    'Exports to your BI tool via open API',
+                    'Subdivision-level GIS polygons with cadastral precision',
+                    'Direct linkage between harvest bunches and copra/oil batches',
+                    'Audit-ready exportable reports for management & stakeholders',
                   ].map((t) => (
                     <div key={t} className="flex items-center gap-2.5">
                       <span className="grid h-5 w-5 place-items-center rounded-full bg-emerald-accent/15 text-emerald-deep ring-1 ring-inset ring-emerald-accent/20">
@@ -129,9 +128,9 @@ export function DemoPage() {
                 <DashboardMockup variant="dark" />
               </div>
               <div className="mt-4 flex items-center justify-between rounded-2xl bg-forest-950/[0.03] px-5 py-3 ring-1 ring-inset ring-forest-950/5">
-                <span className="font-mono text-xs text-forest-950/50">Preview updates with each step</span>
+                <span className="font-mono text-xs text-forest-950/50">Preview updates with plantation telemetry</span>
                 <span className="flex items-center gap-1.5 font-mono text-xs text-emerald-deep">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-accent" /> live mock
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-accent" /> live estate mock
                 </span>
               </div>
             </div>
@@ -146,10 +145,10 @@ export function DemoPage() {
           <div className="text-center">
             <span className="font-mono text-xs font-medium uppercase tracking-widest text-emerald-deep">Request a live walkthrough</span>
             <h2 className="mt-3 text-3xl font-bold tracking-tightest text-forest-950 sm:text-4xl">
-              See SpatioAgri mapped to your operation.
+              See Spatio Agri mapped to your plantation.
             </h2>
             <p className="mt-3 text-forest-950/60">
-              A solutions agronomist will build a live demo using your crop mix, acreage, and region.
+              An SDS geospatial coordinator will build a live demo using your estate's acreage, tree density, and processing setup.
             </p>
           </div>
 
@@ -160,7 +159,7 @@ export function DemoPage() {
               </div>
               <h3 className="mt-5 text-2xl font-bold tracking-tight text-forest-950">Request received.</h3>
               <p className="mt-2 text-forest-950/60">
-                Thanks, {form.name || 'there'}. Our agronomist team will reach out within one business day.
+                Thanks, {form.name || 'there'}. Our SDS plantation team will reach out within one business day or call us directly at 077 330 1274.
               </p>
               <button
                 onClick={() => { setSubmitted(false); setForm({ name: '', org: '', email: '', size: '' }); }}
@@ -176,28 +175,34 @@ export function DemoPage() {
             >
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Full name" icon={Users}>
-                  <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Jane Agronomist" className="input" />
+                  <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Estate Manager" className="input" />
                 </Field>
-                <Field label="Organization" icon={Building2}>
-                  <input required value={form.org} onChange={(e) => setForm({ ...form, org: e.target.value })} placeholder="Acme Farms Co." className="input" />
+                <Field label="Organization / Estate" icon={Building2}>
+                  <input required value={form.org} onChange={(e) => setForm({ ...form, org: e.target.value })} placeholder="e.g. Mahaweli Coconut Farm" className="input" />
                 </Field>
                 <Field label="Work email" icon={Calendar}>
-                  <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="jane@acmefarms.com" className="input" />
+                  <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="manager@estate.com" className="input" />
                 </Field>
-                <Field label="Operation size (hectares)" icon={MapPin}>
-                  <input required value={form.size} onChange={(e) => setForm({ ...form, size: e.target.value })} placeholder="e.g. 2,400" className="input" />
+                <Field label="Operation size (hectares / acres)" icon={MapPin}>
+                  <input required value={form.size} onChange={(e) => setForm({ ...form, size: e.target.value })} placeholder="e.g. 500 acres · 18,000 palms" className="input" />
                 </Field>
               </div>
               <button
                 type="submit"
                 className="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-accent px-6 py-3.5 text-sm font-semibold text-white shadow-glow-soft transition-all hover:bg-emerald-deep hover:shadow-glow active:scale-[0.98]"
               >
-                Request Enterprise Demo
+                Schedule Plantation Walkthrough
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
-              <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-xs text-forest-950/45">
-                <Phone className="h-3.5 w-3.5" /> Prefer to talk? Call +1 (415) 555-0142 · Mon–Fri 8am–6pm PT
-              </p>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-center text-xs text-forest-950/60">
+                <a href="tel:0773301274" className="inline-flex items-center gap-1.5 font-semibold text-forest-950 hover:text-emerald-deep">
+                  <Phone className="h-3.5 w-3.5 text-emerald-deep" /> Call: 077 330 1274
+                </a>
+                <span className="text-forest-950/20">·</span>
+                <a href="https://www.spatiosds.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-emerald-deep hover:underline">
+                  <Globe className="h-3.5 w-3.5" /> www.spatiosds.com
+                </a>
+              </div>
             </form>
           )}
         </div>

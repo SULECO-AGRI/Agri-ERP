@@ -1,71 +1,70 @@
-import { Check, ArrowUpRight, Sparkles, Building2 } from 'lucide-react';
+import { Check, ArrowUpRight, Sparkles, Building2, Phone, Globe } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
 const tiers = [
   {
-    name: 'Growth',
-    tagline: 'For emerging commercial farms scaling their first digital operations.',
+    name: 'Estate Growth',
+    tagline: 'For single commercial plantations digitizing subdivision maps & harvest logs.',
     price: '$890',
     period: '/mo',
-    cta: 'Start with Growth',
+    cta: 'Start with Estate Growth',
     highlighted: false,
     features: [
-      'Up to 500 hectares tracked',
-      'IoT sensor integration (up to 200 nodes)',
-      'Core agronomy & field mapping',
-      'Supply chain & inventory basics',
-      'Standard yield forecasting model',
-      '5 user seats included',
-      'Email & chat support (8×5)',
-      'Monthly data exports',
+      'Up to 500 hectares / acres tracked',
+      'GIS subdivision mapping (up to 15 blocks)',
+      'Harvest quantity & batch records',
+      'Basic copra & processing logs',
+      'Workforce & piece-rate labor records',
+      '5 user seats + mobile field login',
+      'Email & phone support (8×5)',
+      'Monthly audit-ready data exports',
     ],
-    excluded: ['Satellite imagery add-on', 'Custom AI yield models', 'API access'],
+    excluded: ['Drone orthomosaic overlays', 'Multi-mill oil extraction tracking', 'Custom API integration'],
   },
   {
-    name: 'Pro Enterprise',
-    tagline: 'The complete platform for multi-site agribusinesses with live operations.',
-    price: '$4,200',
+    name: 'Pro Plantation',
+    tagline: 'The complete GIS & processing platform for medium-to-large agribusiness estates.',
+    price: '$2,400',
     period: '/mo',
-    cta: 'Request Enterprise Demo',
+    cta: 'Schedule Plantation Demo',
     highlighted: true,
     badge: 'Most Popular',
     features: [
-      'Up to 50,000 hectares · multi-site',
-      'Unlimited IoT sensor nodes',
-      'Full agronomy suite + satellite NDVI',
-      'Advanced supply chain & traceability',
-      'AI-driven yield & financial forecasting',
-      'Labor matrix & crew allocation',
-      'Unlimited user seats + RBAC',
-      'Priority support (24×7) + CSM',
-      'Open API + webhooks + data warehouse sync',
-      'Single sign-on (SAML / SCIM)',
-      'Quarterly agronomist review calls',
+      'Up to 10,000 hectares · multi-subdivision',
+      'Precision GIS mapping + tree density counts',
+      'Full harvest tracking & yield forecasting',
+      'Copra, coconut oil, husk & shell processing logs',
+      'Sales contract tracking & dispatch manifests',
+      'Farm manager oversight & employee accountability',
+      'Weather station telemetry & market price alerts',
+      'Unlimited user seats + role-based permissions',
+      'Priority hotline support (24×7) + dedicated coordinator',
+      'Open API + ERP data warehouse sync',
       '99.99% uptime SLA',
     ],
     excluded: [],
   },
   {
-    name: 'Custom Agribusiness',
-    tagline: 'Tailored deployments for vertically integrated global enterprises.',
+    name: 'Enterprise Agribusiness',
+    tagline: 'Custom spatial architecture for vertically integrated global plantation groups.',
     price: 'Custom',
     period: '',
-    cta: 'Talk to Sales',
+    cta: 'Talk to SDS Coordinators',
     highlighted: false,
     features: [
-      'Unlimited hectares & entities',
-      'Dedicated edge compute cluster',
-      'Custom AI models trained on your data',
-      'On-prem / private-cloud deployment',
-      'White-label dashboards & branding',
-      'Custom integrations (ERP, ERP, futures)',
-      'Dedicated solutions architect',
-      'Premium 24×7 support + 15-min SLA',
-      'Annual security & compliance audits',
-      'Custom data residency & sovereign cloud',
-      'Executive business reviews',
-      'Custom MSA & DPA',
+      'Unlimited hectares, estates & mills',
+      'Dedicated SDS geospatial engineering cluster',
+      'Custom spatial analytics & drone photogrammetry',
+      'Private cloud / on-premise deployment option',
+      'White-label management dashboards',
+      'Custom ERP, commodity futures & weighbridge integrations',
+      'Dedicated geospatial solutions architect',
+      '15-minute SLA on-call emergency support',
+      'Annual cadastral & security compliance audits',
+      'Custom data sovereignty & regional cloud residency',
+      'Executive board performance reviews',
+      'Custom enterprise MSA',
     ],
     excluded: [],
   },
@@ -81,14 +80,14 @@ export function PricingPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
         <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-2xl text-center">
             <span className="font-mono text-xs font-medium uppercase tracking-widest text-emerald-deep">
-              Pricing
+              Spatio Agri · Transparent Plans
             </span>
             <h1 className="mt-3 text-5xl font-bold leading-[1.05] tracking-tightest text-forest-950 sm:text-6xl">
               Pricing that scales with{' '}
-              <span className="shimmer-text">your acreage.</span>
+              <span className="shimmer-text">your acreage &amp; mills.</span>
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-forest-950/60">
-              Transparent per-platform pricing. No per-sensor fees, no per-hectare surprises. Switch tiers anytime.
+              Clear plantation pricing. No hidden fees for trees or harvest batches. Switch or scale tiers anytime.
             </p>
           </div>
         </div>
@@ -121,7 +120,7 @@ export function PricingPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
                   <h3 className={`text-xl font-bold tracking-tight ${t.highlighted ? 'text-white' : 'text-forest-950'}`}>
                     {t.name}
                   </h3>
-                  {t.name === 'Custom Agribusiness' && (
+                  {t.name === 'Enterprise Agribusiness' && (
                     <Building2 className={`h-5 w-5 ${t.highlighted ? 'text-emerald-accent' : 'text-forest-950/40'}`} />
                   )}
                 </div>
@@ -136,11 +135,11 @@ export function PricingPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
                   <span className={`text-sm ${t.highlighted ? 'text-white/50' : 'text-forest-950/50'}`}>{t.period}</span>
                 </div>
                 <p className={`mt-1 font-mono text-[11px] ${t.highlighted ? 'text-white/40' : 'text-forest-950/40'}`}>
-                  {t.highlighted ? 'billed annually' : t.price === 'Custom' ? 'usage-based contracts' : 'billed annually'}
+                  {t.highlighted ? 'billed annually' : t.price === 'Custom' ? 'tailored enterprise contract' : 'billed annually'}
                 </p>
 
                 <button
-                  onClick={() => onNavigate(t.highlighted ? 'demo' : 'demo')}
+                  onClick={() => onNavigate('demo')}
                   className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all active:scale-[0.98] ${
                     t.highlighted
                       ? 'bg-emerald-accent text-white shadow-glow-soft hover:bg-emerald-deep hover:shadow-glow'
@@ -189,32 +188,30 @@ export function PricingPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
           {/* feature matrix */}
           <div className={`mt-16 overflow-hidden rounded-3xl border border-forest-950/[0.07] transition-all duration-700 ${shown ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '400ms' }}>
             <div className="border-b border-forest-950/[0.06] bg-cream px-6 py-4">
-              <h3 className="text-sm font-bold tracking-tight text-forest-950">Full feature comparison</h3>
+              <h3 className="text-sm font-bold tracking-tight text-forest-950">Full capability comparison</h3>
             </div>
             <div className="overflow-x-auto scrollbar-hide">
               <table className="w-full min-w-[640px] text-sm">
                 <thead>
                   <tr className="border-b border-forest-950/[0.06] text-left">
                     <th className="px-6 py-4 font-semibold text-forest-950/50">Capability</th>
-                    <th className="px-6 py-4 text-center font-semibold text-forest-950/70">Growth</th>
-                    <th className="bg-forest-950/[0.03] px-6 py-4 text-center font-semibold text-emerald-deep">Pro Enterprise</th>
-                    <th className="px-6 py-4 text-center font-semibold text-forest-950/70">Custom</th>
+                    <th className="px-6 py-4 text-center font-semibold text-forest-950/70">Estate Growth</th>
+                    <th className="bg-forest-950/[0.03] px-6 py-4 text-center font-semibold text-emerald-deep">Pro Plantation</th>
+                    <th className="px-6 py-4 text-center font-semibold text-forest-950/70">Enterprise</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-forest-950/[0.05]">
                   {[
-                    ['Hectare coverage', '500 ha', '50,000 ha', 'Unlimited'],
-                    ['IoT sensor nodes', '200', 'Unlimited', 'Unlimited'],
-                    ['Satellite NDVI imagery', 'Add-on', 'Included', 'Included + custom'],
-                    ['AI yield forecasting', 'Standard', 'Advanced', 'Custom-trained'],
-                    ['Supply chain traceability', 'Basic', 'Full', 'Full + custom'],
-                    ['Labor & crew matrix', '—', 'Included', 'Included'],
-                    ['Open API & webhooks', '—', 'Included', 'Included'],
-                    ['SSO (SAML / SCIM)', '—', 'Included', 'Included'],
-                    ['Dedicated CSM', '—', 'Included', 'Architect'],
-                    ['Uptime SLA', '99.9%', '99.99%', '99.99% + custom'],
-                    ['Support coverage', '8×5', '24×7', '24×7 + 15-min'],
-                    ['Deployment', 'SaaS', 'SaaS', 'SaaS / private / on-prem'],
+                    ['Acreage / Hectare coverage', 'Up to 500 ha', 'Up to 10,000 ha', 'Unlimited'],
+                    ['GIS subdivision mapping', '15 blocks', 'Unlimited blocks', 'Unlimited + drone orthos'],
+                    ['Harvest records & batch logging', 'Standard', 'Advanced + yield AI', 'Custom models'],
+                    ['Processing (Copra, Oil, Husk, Shell)', 'Basic copra', 'Full multi-mill', 'Full + custom IoT scales'],
+                    ['Sales tracking & dispatch manifests', 'Basic', 'Full buyer integration', 'Full + EDI / API'],
+                    ['Workforce oversight & piece-rate', 'Basic logs', 'Included', 'Included + biometric/RFID'],
+                    ['Weather & market price feeds', 'Daily index', 'Live telemetry', 'Custom station sync'],
+                    ['User access & audit-ready reports', '5 seats', 'Unlimited RBAC', 'Unlimited + custom audits'],
+                    ['Support coverage', '8×5', '24×7 Hotline', '24×7 + 15-min SLA'],
+                    ['Deployment options', 'Cloud SaaS', 'Cloud SaaS', 'SaaS / Private / On-prem'],
                   ].map((row, ri) => (
                     <tr key={ri} className="transition-colors hover:bg-cream/60">
                       <td className="px-6 py-3.5 font-medium text-forest-950/80">{row[0]}</td>
@@ -227,6 +224,19 @@ export function PricingPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
               </table>
             </div>
           </div>
+
+          {/* Quick hotline note */}
+          <div className="mt-12 text-center text-xs text-forest-950/60 flex items-center justify-center gap-4">
+            <span>Questions on custom estate sizing?</span>
+            <a href="tel:0773301274" className="inline-flex items-center gap-1 font-bold text-forest-950 hover:text-emerald-deep">
+              <Phone className="h-3.5 w-3.5 text-emerald-deep" /> Call: 077 330 1274
+            </a>
+            <span>·</span>
+            <a href="https://www.spatiosds.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-emerald-deep hover:underline">
+              <Globe className="h-3.5 w-3.5" /> www.spatiosds.com
+            </a>
+          </div>
+
         </div>
       </section>
     </div>

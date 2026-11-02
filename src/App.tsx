@@ -5,7 +5,8 @@ import { Hero, TrustBar } from "./components/Hero";
 import { InteractiveCallout } from "./components/InteractiveCallout";
 import { OrbitSection } from "./components/OrbitSection";
 import { AgriculturalServices } from "./components/AgriculturalServices";
-import { StatsBanner } from "./components/StatsBanner";
+import { PlatformWorkflow } from "./components/PlatformWorkflow";
+import { ValueAndWhySpatio } from "./components/ValueAndWhySpatio";
 import { SolutionsPage } from "./pages/SolutionsPage";
 import { PricingPage } from "./pages/PricingPage";
 import { AboutPage } from "./pages/AboutPage";
@@ -24,8 +25,8 @@ function App() {
   useEffect(() => {
     document.title =
       page === "home"
-        ? "SpatioAgri — The Operating System for Modern Agriculture"
-        : `SpatioAgri — ${page[0].toUpperCase()}${page.slice(1)}`;
+        ? "Spatio Agri — Smart Plantation & Agriculture Operating System"
+        : `Spatio Agri — ${page[0].toUpperCase()}${page.slice(1)}`;
   }, [page]);
 
   return (
@@ -37,10 +38,11 @@ function App() {
           <>
             <Hero onNavigate={navigate} />
             <AgriculturalServices onNavigate={navigate} />
-            <StatsBanner />
             <OrbitSection />
+            <PlatformWorkflow onNavigate={navigate} />
             <TrustBar />
             <InteractiveCallout />
+            <ValueAndWhySpatio onNavigate={navigate} />
           </>
         )}
         {page === "solutions" && <SolutionsPage onNavigate={navigate} />}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle2, MessageSquare, Building2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle2, MessageSquare, Building2, Globe } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 
 export function ContactPage() {
@@ -8,7 +8,7 @@ export function ContactPage() {
     name: '',
     email: '',
     company: '',
-    topic: 'sales',
+    topic: 'demo',
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -25,10 +25,10 @@ export function ContactPage() {
         name: '',
         email: '',
         company: '',
-        topic: 'sales',
+        topic: 'demo',
         message: '',
       });
-    }, 1200);
+    }, 1000);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -50,20 +50,20 @@ export function ContactPage() {
           }`}
         >
           <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
-            Connect with us
+            Connect with Spatio Agri
           </span>
           <h1 className="mt-3 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl md:text-6xl leading-[1.05]">
-            Let's build <span className="shimmer-text">precision</span> together
+            Turn your plantation into a <span className="shimmer-text">smart operation</span>
           </h1>
           <p className="mt-5 text-base leading-relaxed text-forest-950/65 max-w-2xl">
-            Have questions about integrating SpatioAgri into your commercial growing operation? Reach out to our team of agricultural technology coordinators.
+            Have questions about integrating Spatio Agri GIS mapping, harvest tracking, or mill processing records into your coconut farm? Reach out directly to our geospatial deployment coordinators.
           </p>
         </div>
 
         {/* 2-Column Grid Layout */}
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:items-start">
           
-          {/* Column 1: Office Locations & Contact HQ Info */}
+          {/* Column 1: Direct Channels & Coordination Info */}
           <div 
             className={`lg:col-span-5 space-y-8 transition-all duration-1000 delay-100 ${
               shown ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'
@@ -74,9 +74,45 @@ export function ContactPage() {
               <h2 className="text-xl font-bold text-forest-950 mb-6">Contact Channels</h2>
               
               <div className="space-y-6">
+                {/* Phone Channel */}
+                <a 
+                  href="tel:0773301274" 
+                  className="group flex items-start gap-4 p-2 -m-2 rounded-2xl hover:bg-forest-950/[0.02] transition-colors"
+                >
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-forest-950/[0.03] text-emerald-deep group-hover:bg-emerald-deep group-hover:text-white transition-all">
+                    <Phone className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-forest-950">Direct Hotline</h3>
+                    <p className="text-xs text-forest-950/50 mt-0.5">Mon - Sat · 8 AM - 6 PM</p>
+                    <span className="text-base font-bold text-emerald-deep group-hover:underline mt-1 block">
+                      077 330 1274
+                    </span>
+                  </div>
+                </a>
+
+                {/* Web Portal */}
+                <a 
+                  href="https://www.spatiosds.com" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="group flex items-start gap-4 p-2 -m-2 rounded-2xl hover:bg-forest-950/[0.02] transition-colors"
+                >
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-forest-950/[0.03] text-emerald-deep group-hover:bg-emerald-deep group-hover:text-white transition-all">
+                    <Globe className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-forest-950">Official Web Portal</h3>
+                    <p className="text-xs text-forest-950/50 mt-0.5">Spatio Data Solutions (SDS)</p>
+                    <span className="text-sm font-semibold text-emerald-deep group-hover:underline mt-1 block">
+                      www.spatiosds.com
+                    </span>
+                  </div>
+                </a>
+
                 {/* Email Channel */}
                 <a 
-                  href="mailto:contact@spatioagri-erp.com" 
+                  href="mailto:contact@spatiosds.com" 
                   className="group flex items-start gap-4 p-2 -m-2 rounded-2xl hover:bg-forest-950/[0.02] transition-colors"
                 >
                   <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-forest-950/[0.03] text-emerald-deep group-hover:bg-emerald-deep group-hover:text-white transition-all">
@@ -84,40 +120,22 @@ export function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-forest-950">Email Communication</h3>
-                    <p className="text-xs text-forest-950/50 mt-0.5">Response within 4 business hours</p>
-                    <span className="text-sm font-semibold text-emerald-deep group-hover:underline mt-1.5 block">
-                      contact@spatioagri-erp.com
+                    <p className="text-xs text-forest-950/50 mt-0.5">Direct inquiry to agronomy coordinators</p>
+                    <span className="text-sm font-semibold text-emerald-deep group-hover:underline mt-1 block">
+                      contact@spatiosds.com
                     </span>
                   </div>
                 </a>
 
-                {/* Phone Channel */}
-                <a 
-                  href="tel:+18005552474" 
-                  className="group flex items-start gap-4 p-2 -m-2 rounded-2xl hover:bg-forest-950/[0.02] transition-colors"
-                >
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-forest-950/[0.03] text-emerald-deep group-hover:bg-emerald-deep group-hover:text-white transition-all">
-                    <Phone className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-forest-950">Toll-Free Support</h3>
-                    <p className="text-xs text-forest-950/50 mt-0.5">Mon - Fri · 8 AM - 6 PM EST</p>
-                    <span className="text-sm font-semibold text-emerald-deep group-hover:underline mt-1.5 block">
-                      +1 (800) 555-AGRI
-                    </span>
-                  </div>
-                </a>
-
-                {/* HQ Address Channel */}
+                {/* Geospatial Services Channel */}
                 <div className="flex items-start gap-4 p-2 -m-2">
                   <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-forest-950/[0.03] text-emerald-deep">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-forest-950">HQ Operations Office</h3>
-                    <p className="text-sm text-forest-950/70 mt-1.5 leading-relaxed">
-                      120 Precision Parkway, Suite 400<br />
-                      Research Triangle Park, NC 27709
+                    <h3 className="text-sm font-bold text-forest-950">SDS Geospatial Center</h3>
+                    <p className="text-sm text-forest-950/70 mt-1 leading-relaxed">
+                      Spatio Data Solutions · Precision Plantation Division
                     </p>
                   </div>
                 </div>
@@ -132,30 +150,12 @@ export function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-forest-950">Active Sync Windows</h3>
-                  <p className="text-xs text-forest-950/50 mt-0.5">Continuous system monitoring uptime</p>
+                  <p className="text-xs text-forest-950/50 mt-0.5">Estate GIS &amp; telemetry monitoring</p>
                   <p className="text-sm text-forest-950/70 mt-3 leading-relaxed">
-                    Our platform support engineers monitor SpatioAgri operations 24/7/365. Integration coordinators are available for live setup syncs from Monday to Friday.
+                    Our geospatial specialists support plantation deployments with on-site GPS boundary verification and custom copra/oil processing workflow mapping.
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Stylized Visual Coordinates Map concept */}
-            <div className="relative rounded-3xl border border-forest-950/5 bg-forest-950 p-6 text-white overflow-hidden min-h-[160px] flex flex-col justify-between shadow-md">
-              <div className="absolute inset-0 bg-grid-dark opacity-15 pointer-events-none" />
-              <div className="relative z-10 flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-emerald-accent animate-ping" />
-                <span className="font-mono text-[9px] text-emerald-accent font-bold uppercase tracking-wider">
-                  Live Operations Node
-                </span>
-              </div>
-              
-              <div className="relative z-10">
-                <span className="font-mono text-xl font-bold tracking-tight text-white block">RTP Node Coordinate</span>
-                <span className="font-mono text-xs text-white/50 block mt-1">35.9132° N · 78.7811° W</span>
-              </div>
-
-              <div className="absolute right-4 bottom-4 h-24 w-24 rounded-full bg-emerald-accent/[0.05] border border-white/5 blur-sm pointer-events-none" />
             </div>
 
           </div>
@@ -168,12 +168,11 @@ export function ContactPage() {
           >
             <div className="rounded-3xl border border-forest-950/5 bg-white p-8 sm:p-10 shadow-xl relative overflow-hidden">
               
-              {/* Form Content Toggle */}
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <h2 className="text-xl font-bold text-forest-950">Send a Message</h2>
-                    <p className="text-sm text-forest-950/50 mt-1">Fill out the coordinates below to coordinate a sync.</p>
+                    <h2 className="text-xl font-bold text-forest-950">Request Plantation Walkthrough</h2>
+                    <p className="text-sm text-forest-950/50 mt-1">Provide your farm specifications and our coordinators will reach out.</p>
                   </div>
 
                   <div className="grid gap-6 sm:grid-cols-2">
@@ -182,45 +181,41 @@ export function ContactPage() {
                       <label htmlFor="name" className="text-xs font-bold text-forest-950/60 uppercase tracking-wide">
                         Full Name
                       </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          required
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          className="w-full rounded-xl border border-forest-950/10 bg-cream/30 px-4 py-3 text-sm text-forest-950 placeholder-forest-950/30 focus:border-emerald-deep focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-deep/10 transition-all"
-                          placeholder="Jane Doe"
-                        />
-                      </div>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full rounded-xl border border-forest-950/10 bg-cream/30 px-4 py-3 text-sm text-forest-950 placeholder-forest-950/30 focus:border-emerald-deep focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-deep/10 transition-all"
+                        placeholder="Estate Manager Name"
+                      />
                     </div>
 
                     {/* Work Email input */}
                     <div className="space-y-1.5">
                       <label htmlFor="email" className="text-xs font-bold text-forest-950/60 uppercase tracking-wide">
-                        Work Email
+                        Contact Email
                       </label>
-                      <div className="relative">
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="w-full rounded-xl border border-forest-950/10 bg-cream/30 px-4 py-3 text-sm text-forest-950 placeholder-forest-950/30 focus:border-emerald-deep focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-deep/10 transition-all"
-                          placeholder="jane@company.com"
-                        />
-                      </div>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full rounded-xl border border-forest-950/10 bg-cream/30 px-4 py-3 text-sm text-forest-950 placeholder-forest-950/30 focus:border-emerald-deep focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-deep/10 transition-all"
+                        placeholder="manager@estate.com"
+                      />
                     </div>
                   </div>
 
                   <div className="grid gap-6 sm:grid-cols-2">
-                    {/* Company input */}
+                    {/* Plantation / Company input */}
                     <div className="space-y-1.5">
                       <label htmlFor="company" className="text-xs font-bold text-forest-950/60 uppercase tracking-wide">
-                        Company / Farm Name
+                        Estate / Farm Name
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-forest-950/30">
@@ -234,7 +229,7 @@ export function ContactPage() {
                           value={formData.company}
                           onChange={handleInputChange}
                           className="w-full rounded-xl border border-forest-950/10 bg-cream/30 pl-10 pr-4 py-3 text-sm text-forest-950 placeholder-forest-950/30 focus:border-emerald-deep focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-deep/10 transition-all"
-                          placeholder="Apex Farms LLC"
+                          placeholder="e.g. Mahaweli Coconut Estate"
                         />
                       </div>
                     </div>
@@ -242,7 +237,7 @@ export function ContactPage() {
                     {/* Topic Select */}
                     <div className="space-y-1.5">
                       <label htmlFor="topic" className="text-xs font-bold text-forest-950/60 uppercase tracking-wide">
-                        Topic of Inquiry
+                        Primary Requirement
                       </label>
                       <select
                         id="topic"
@@ -251,10 +246,10 @@ export function ContactPage() {
                         onChange={handleInputChange}
                         className="w-full rounded-xl border border-forest-950/10 bg-cream/30 px-4 py-3 text-sm text-forest-950 focus:border-emerald-deep focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-deep/10 transition-all"
                       >
-                        <option value="sales">Sales & License Pricing</option>
-                        <option value="integration">ERP Hardware Integrations</option>
-                        <option value="demo">Custom Pilot Demonstration</option>
-                        <option value="support">Active Platform Support</option>
+                        <option value="demo">Coconut Farm Modernization Demo</option>
+                        <option value="gis">GIS Subdivision & Cadastral Mapping</option>
+                        <option value="processing">Harvest & Copra/Oil Processing Records</option>
+                        <option value="sales">Sales Tracking & Market Intelligence</option>
                       </select>
                     </div>
                   </div>
@@ -262,7 +257,7 @@ export function ContactPage() {
                   {/* Message input */}
                   <div className="space-y-1.5">
                     <label htmlFor="message" className="text-xs font-bold text-forest-950/60 uppercase tracking-wide">
-                      Message Details
+                      Operation Details (Hectares / Trees / Mills)
                     </label>
                     <div className="relative">
                       <div className="absolute top-3.5 left-3.5 flex items-center pointer-events-none text-forest-950/30">
@@ -272,11 +267,11 @@ export function ContactPage() {
                         id="message"
                         name="message"
                         required
-                        rows={5}
+                        rows={4}
                         value={formData.message}
                         onChange={handleInputChange}
                         className="w-full rounded-xl border border-forest-950/10 bg-cream/30 pl-10 pr-4 py-3 text-sm text-forest-950 placeholder-forest-950/30 focus:border-emerald-deep focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-deep/10 transition-all resize-none"
-                        placeholder="Tell us about your operations size, crops, and what systems you currently run..."
+                        placeholder="Tell us about your plantation size, number of subdivisions or trees, and whether you run on-site copra kilns or oil extraction mills..."
                       />
                     </div>
                   </div>
@@ -287,7 +282,7 @@ export function ContactPage() {
                     disabled={isSubmitting}
                     className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-forest-950 py-4 text-sm font-semibold text-white shadow-md hover:bg-forest-900 transition-all active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'Synchronizing message...' : 'Coordinate Sync'}
+                    {isSubmitting ? 'Submitting request...' : 'Schedule Plantation Demo'}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </button>
                 </form>
@@ -299,9 +294,9 @@ export function ContactPage() {
                   </div>
                   
                   <div className="space-y-2">
-                    <h2 className="text-2xl font-bold text-forest-950">Message Sent Successfully</h2>
+                    <h2 className="text-2xl font-bold text-forest-950">Walkthrough Request Received</h2>
                     <p className="text-sm leading-relaxed text-forest-950/60 max-w-md mx-auto">
-                      Our system integration coordinators have received your operational specifications and will reach out to you within the next 4 business hours.
+                      Our SDS plantation technology coordinators have received your inquiry. You can also reach us immediately at <strong className="text-forest-950">077 330 1274</strong>.
                     </p>
                   </div>
 
@@ -309,7 +304,7 @@ export function ContactPage() {
                     onClick={() => setIsSubmitted(false)}
                     className="rounded-full border border-forest-950 px-6 py-2.5 text-xs font-semibold text-forest-950 hover:bg-forest-950 hover:text-white transition-colors duration-300 active:scale-[0.98]"
                   >
-                    Send Another Message
+                    Submit Another Request
                   </button>
                 </div>
               )}

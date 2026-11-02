@@ -1,34 +1,34 @@
 import { Logo } from './Logo';
 import { type Page } from '../nav';
-import { ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowUpRight, Github, Linkedin, Twitter, Phone, Globe } from 'lucide-react';
 
 export function Footer({ onNavigate }: { onNavigate: (p: Page) => void }) {
   const cols: { title: string; links: { label: string; page?: Page }[] }[] = [
     {
-      title: 'Product',
+      title: 'Platform Modules',
       links: [
-        { label: 'Features', page: 'home' },
-        { label: 'Solutions', page: 'solutions' },
-        { label: 'Pricing', page: 'pricing' },
-        { label: 'Interactive Demo', page: 'demo' },
+        { label: 'GIS & Monitoring', page: 'solutions' },
+        { label: 'Harvest Records', page: 'solutions' },
+        { label: 'Processing Records', page: 'solutions' },
+        { label: 'Sales Tracking', page: 'solutions' },
+      ],
+    },
+    {
+      title: 'Workforce & Intel',
+      links: [
+        { label: 'Farm Managers', page: 'solutions' },
+        { label: 'Farm Employees', page: 'solutions' },
+        { label: 'Weather & Markets', page: 'solutions' },
+        { label: 'Audit & Reports', page: 'solutions' },
       ],
     },
     {
       title: 'Company',
       links: [
-        { label: 'About Us', page: 'about' },
-        { label: 'Careers' },
-        { label: 'Press' },
-        { label: 'Contact' },
-      ],
-    },
-    {
-      title: 'Resources',
-      links: [
-        { label: 'Documentation' },
-        { label: 'API Reference' },
-        { label: 'Agronomy Guides' },
-        { label: 'Status' },
+        { label: 'About Spatio / SDS', page: 'about' },
+        { label: 'Pricing Plans', page: 'pricing' },
+        { label: 'Interactive Demo', page: 'demo' },
+        { label: 'Contact Coordinators', page: 'contact' },
       ],
     },
   ];
@@ -43,9 +43,20 @@ export function Footer({ onNavigate }: { onNavigate: (p: Page) => void }) {
           <div className="col-span-2">
             <Logo onDark />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
-              The operating system for modern agriculture. Real-time telemetry, automated supply chains, and
-              AI-driven yield forecasting — built to scale from local fields to global enterprises.
+              The operating system for modern plantations and agriculture. Turn your coconut farm into a smart, accessible, and efficient operation with precision GIS, harvest tracking, and mill processing.
             </p>
+            
+            <div className="mt-6 flex flex-col gap-2.5 font-mono text-xs text-white/80">
+              <a href="https://www.spatiosds.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-emerald-accent transition-colors">
+                <Globe className="h-3.5 w-3.5 text-emerald-accent" />
+                www.spatiosds.com
+              </a>
+              <a href="tel:0773301274" className="flex items-center gap-2 hover:text-emerald-accent transition-colors">
+                <Phone className="h-3.5 w-3.5 text-emerald-accent" />
+                077 330 1274
+              </a>
+            </div>
+
             <div className="mt-6 flex items-center gap-3">
               {[Twitter, Linkedin, Github].map((Icon, i) => (
                 <a
@@ -83,7 +94,7 @@ export function Footer({ onNavigate }: { onNavigate: (p: Page) => void }) {
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center">
           <p className="font-mono text-xs text-white/40">
-            © {new Date().getFullYear()} SpatioAgri Systems, Inc. · All rights reserved.
+            © {new Date().getFullYear()} Spatio Agri · Spatio Data Solutions (SDS). All rights reserved.
           </p>
           <div className="flex items-center gap-6 font-mono text-xs text-white/40">
             <a href="#" className="hover:text-white/70">Privacy</a>

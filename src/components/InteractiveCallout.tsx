@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import {
-  Settings,
-  Repeat,
-  Package,
-  Coins,
-  TrendingUp,
-  Truck,
+  Monitor,
+  Sprout,
+  Factory,
+  ShoppingCart,
+  Users,
+  CloudSun,
   ArrowUpRight,
   Activity,
-  Users,
-  Leaf,
+  Layers,
+  FileSpreadsheet,
   type LucideIcon,
 } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 
-type TabKey = 'financial' | 'sales' | 'operations' | 'shipping' | 'cycles' | 'inventory';
+type TabKey = 'gis' | 'harvest' | 'processing' | 'sales' | 'workforce' | 'intelligence';
 
 const tabs: {
   key: TabKey;
@@ -27,123 +27,123 @@ const tabs: {
   rows: [string, string, string, string][];
 }[] = [
   {
-    key: 'financial',
-    label: 'Financial',
-    icon: Coins,
-    desc: 'Activity-based cost accounting per field, crop batch, and employee — live cashflow and balance sheet visibility.',
+    key: 'gis',
+    label: 'Dashboard & GIS',
+    icon: Monitor,
+    desc: 'Live overview of subdivisions, cadastral GIS maps, tree statistics, and performance indicators across the estate.',
     live: 'synced',
-    footerIcons: [Coins, Activity, TrendingUp],
+    footerIcons: [Monitor, Layers, Activity],
     metrics: [
-      { label: 'Capital Accrual', value: '$1.2M', sub: 'this quarter', green: true },
-      { label: 'Monthly Spend', value: '$186K', sub: 'on budget' },
-      { label: 'Budget Variance', value: '-3.2%', sub: 'under plan', green: true },
+      { label: 'Active Subdivisions', value: '18 Blocks', sub: 'under GIS map', green: true },
+      { label: 'Mapped Palms', value: '24,580', sub: 'tree inventory' },
+      { label: 'Canopy Health Index', value: '0.82 NDVI', sub: 'optimal condition', green: true },
     ],
     rows: [
-      ['LEDGER-4471', 'Fertilizer Purchase', '$12,400', 'posted'],
-      ['LEDGER-4472', 'Fuel & Machinery', '$8,150', 'posted'],
-      ['LEDGER-4473', 'Payroll', '$42,900', 'pending'],
-      ['LEDGER-4474', 'Equipment Lease', '$6,300', 'posted'],
+      ['BLOCK-N01', 'North Ridge Plantation', '4,200 palms', 'healthy'],
+      ['BLOCK-N02', 'River Bend Subdivision', '3,850 palms', 'healthy'],
+      ['BLOCK-S04', 'Valley Block Estate', '5,100 palms', 'high yield'],
+      ['BLOCK-E07', 'East Slope Plot', '2,900 palms', 'pruned'],
+    ],
+  },
+  {
+    key: 'harvest',
+    label: 'Harvest Records',
+    icon: Sprout,
+    desc: 'Track harvest quantities by date, subdivision, and crop batch with historical yield comparisons.',
+    live: 'updated',
+    footerIcons: [Sprout, Activity, FileSpreadsheet],
+    metrics: [
+      { label: 'Harvest This Cycle', value: '84,200', sub: 'total nuts', green: true },
+      { label: 'Avg Tree Yield', value: '74 nuts/yr', sub: '+12% vs prior' },
+      { label: 'Quality Grading', value: 'Grade A 92%', sub: 'export class', green: true },
+    ],
+    rows: [
+      ['HRV-2041', 'Block N01 · Batch 14', '18,400 nuts', 'logged'],
+      ['HRV-2042', 'Block S04 · Batch 14', '22,600 nuts', 'logged'],
+      ['HRV-2043', 'Block E07 · Batch 15', '14,200 nuts', 'grading'],
+      ['HRV-2044', 'Block N02 · Batch 15', '16,800 nuts', 'scheduled'],
+    ],
+  },
+  {
+    key: 'processing',
+    label: 'Processing Records',
+    icon: Factory,
+    desc: 'Record processed outputs such as copra drying, virgin and industrial coconut oil, husk fiber, and shell carbon.',
+    live: 'live mill',
+    footerIcons: [Factory, Activity, Layers],
+    metrics: [
+      { label: 'Copra Output', value: '14.2 tons', sub: 'kiln dried', green: true },
+      { label: 'Oil Extraction', value: '4,850 L', sub: 'cold pressed' },
+      { label: 'Byproduct Utilization', value: '98.4%', sub: 'husk & shell recycled', green: true },
+    ],
+    rows: [
+      ['PROC-881', 'Copra Kiln #1 Output', '4.2t dry', 'completed'],
+      ['PROC-882', 'Virgin Oil Press Unit', '1,250 L', 'bottled'],
+      ['PROC-883', 'Husk Defibering Mill', '8.4t coir', 'baled'],
+      ['PROC-884', 'Shell Charcoal Unit', '2.1t carbon', 'processed'],
     ],
   },
   {
     key: 'sales',
-    label: 'Sales & Contracts',
-    icon: TrendingUp,
-    desc: 'Manage crop trade contracts, wholesale agreements, and futures pricing — synced with live harvest projections.',
-    live: 'updated',
-    footerIcons: [TrendingUp, Activity, Coins],
-    metrics: [
-      { label: 'Active Contracts', value: '42', sub: 'this season', green: true },
-      { label: 'Contracted Volume', value: '3,240t', sub: 'booked' },
-      { label: 'Avg Price', value: '$312/t', sub: 'market-synced' },
-    ],
-    rows: [
-      ['CNT-1082', 'Wheat Forward', '480t', 'signed'],
-      ['CNT-1083', 'Maize Spot', '620t', 'pending'],
-      ['CNT-1084', 'Soybean Forward', '310t', 'signed'],
-      ['CNT-1085', 'Barley Contract', '150t', 'signed'],
-    ],
-  },
-  {
-    key: 'operations',
-    label: 'Field Operations',
-    icon: Settings,
-    desc: 'Schedule tasks, deploy crews, and track machinery and pesticide application across every field block — in one live plan.',
+    label: 'Sales Tracking',
+    icon: ShoppingCart,
+    desc: 'Monitor sales records, customer orders, buyer contract quantities, and transaction performance.',
     live: 'synced',
-    footerIcons: [Settings, Users, Activity],
+    footerIcons: [ShoppingCart, Activity, FileSpreadsheet],
     metrics: [
-      { label: 'Work Orders', value: '34', sub: 'in progress', green: true },
-      { label: 'Crews Deployed', value: '23', sub: 'across 4 sites' },
-      { label: 'Tasks Completed', value: '128', sub: 'this week' },
+      { label: 'Active Contracts', value: '$148.2K', sub: 'this quarter', green: true },
+      { label: 'Shipped Copra', value: '28.0 tons', sub: 'fulfilled' },
+      { label: 'Average Price', value: '$342/ton', sub: 'market aligned', green: true },
     ],
     rows: [
-      ['FIELD-A12', 'Spraying', 'Crew N1', 'active'],
-      ['FIELD-B07', 'Irrigation', 'Crew S4', 'active'],
-      ['FIELD-C03', 'Harvesting', 'Crew G2', 'scheduled'],
-      ['FIELD-E7', 'Fertilizing', 'Crew E7', 'active'],
+      ['SLS-1092', 'Wholesale Copra Export', '14.0t', 'paid'],
+      ['SLS-1093', 'Virgin Coconut Oil Bulk', '3,000 L', 'dispatched'],
+      ['SLS-1094', 'Coir Fiber Bale Order', '24 bales', 'delivered'],
+      ['SLS-1095', 'Coconut Shell Carbon', '5.0t', 'contracted'],
     ],
   },
   {
-    key: 'shipping',
-    label: 'Shipping',
-    icon: Truck,
-    desc: 'Coordinate dispatch, route optimization, and cold-chain logs from harvest cart to silo elevators and beyond.',
-    live: '380ms',
-    footerIcons: [Truck, Activity, TrendingUp],
-    metrics: [
-      { label: 'Loads In Transit', value: '18', sub: 'live tracking', green: true },
-      { label: 'On-Time Rate', value: '96.4%', sub: 'last 30 days' },
-      { label: 'Avg Transit', value: '6.2h', sub: 'dock to dock' },
-    ],
-    rows: [
-      ['SHIP-2291', 'Grain Truck', 'North → Silo B', 'in transit'],
-      ['SHIP-2292', 'Reefer Unit', 'Pack House → Port', 'in transit'],
-      ['SHIP-2293', 'Flatbed', 'Field C → Yard', 'delivered'],
-      ['SHIP-2294', 'Grain Truck', 'South → Silo A', 'delivered'],
-    ],
-  },
-  {
-    key: 'cycles',
-    label: 'Crop Lifecycle',
-    icon: Repeat,
-    desc: 'Track every crop from planting to harvest. Growth-stage modeling, GDD accumulation, and automated task scheduling per field block.',
-    live: 'updated',
-    footerIcons: [Leaf, Repeat, TrendingUp],
-    metrics: [
-      { label: 'Active Cycles', value: '47', sub: 'across 6 crops', green: true },
-      { label: 'Avg GDD', value: '1,842', sub: 'on schedule' },
-      { label: 'Harvest ETA', value: '14d', sub: 'next batch' },
-    ],
-    rows: [
-      ['CYCLE-2041', 'Wheat · Grain', 'Maturity', 'ready'],
-      ['CYCLE-2038', 'Maize · Silage', 'Flowering', 'on-track'],
-      ['CYCLE-2052', 'Soybean', 'V6 stage', 'on-track'],
-      ['CYCLE-2060', 'Barley', 'Tillering', 'monitor'],
-    ],
-  },
-  {
-    key: 'inventory',
-    label: 'Inventory',
-    icon: Package,
-    desc: 'Real-time stock levels for seed, fertilizer, and equipment — with low-stock alerts and supplier orders synced automatically.',
+    key: 'workforce',
+    label: 'Farm Workforce',
+    icon: Users,
+    desc: 'Structure workforce records, farm manager subdivision assignments, piece-rate labor, and field accountability.',
     live: 'synced',
-    footerIcons: [Package, Activity, TrendingUp],
+    footerIcons: [Users, Activity, Monitor],
     metrics: [
-      { label: 'Stock Items', value: '1,842', sub: 'tracked SKUs', green: true },
-      { label: 'Low-Stock Alerts', value: '6', sub: 'this week' },
-      { label: 'Supplier Orders', value: '12', sub: 'in transit' },
+      { label: 'Field Crews', value: '14 Teams', sub: 'deployed today', green: true },
+      { label: 'Harvesters / Climbers', value: '32 Staff', sub: 'piece-rate tracked' },
+      { label: 'Subdivision Oversight', value: '100%', sub: 'managers assigned', green: true },
     ],
     rows: [
-      ['SEED-WHT4', 'Wheat Seed', '2.4t', 'in stock'],
-      ['FERT-N32', 'Nitrogen Fert.', '480kg', 'low stock'],
-      ['CHEM-PST1', 'Pesticide', '96L', 'in stock'],
-      ['TOOL-IRR2', 'Irrigation Kit', '18 units', 'in stock'],
+      ['MGR-01', 'Subdivision N Lead', 'Blocks N01-N04', 'on duty'],
+      ['CREW-A', 'Harvester Team Alpha', 'Harvest & Pile', 'active'],
+      ['CREW-B', 'Husk Shuckers Unit', 'Processing Mill', 'active'],
+      ['CREW-C', 'Maintenance & Spraying', 'Block S04', 'scheduled'],
+    ],
+  },
+  {
+    key: 'intelligence',
+    label: 'Weather & Market',
+    icon: CloudSun,
+    desc: 'Connect weather forecasts, micro-climate rain gauges, and market commodity prices for better operational timing.',
+    live: 'updated',
+    footerIcons: [CloudSun, Activity, Monitor],
+    metrics: [
+      { label: 'Copra Market Spot', value: '$342/t', sub: '+4.2% this week', green: true },
+      { label: 'Soil Moisture Level', value: '64.8%', sub: 'optimal hydration' },
+      { label: 'Rain Warning', value: '18mm (Wed)', sub: 'plan kiln schedules', green: true },
+    ],
+    rows: [
+      ['WTH-01', 'Estate Weather Station', '28.4°C · 72% RH', 'optimal'],
+      ['WTH-02', 'Subdivision Rain Gauge', '14mm / 48h', 'logged'],
+      ['MKT-01', 'Coconut National Auction', '$342/t copra', 'bullish'],
+      ['MKT-02', 'Global Coconut Oil Index', '$1,820/t FOB', 'stable'],
     ],
   },
 ];
 
 export function InteractiveCallout() {
-  const [active, setActive] = useState<TabKey>('operations');
+  const [active, setActive] = useState<TabKey>('gis');
   const { ref, shown } = useReveal();
   const tab = tabs.find((t) => t.key === active)!;
 
@@ -153,14 +153,13 @@ export function InteractiveCallout() {
       <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
         <div className={`max-w-2xl transition-all duration-700 ${shown ? 'opacity-100' : 'opacity-0'}`}>
           <span className="font-mono text-xs font-medium uppercase tracking-widest text-emerald-deep">
-            Live Operations
+            Live Plantation Telemetry
           </span>
           <h2 className="mt-3 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl">
-            See your farm, in real time.
+            See your estate in real time.
           </h2>
           <p className="mt-4 text-lg text-forest-950/60">
-            Six live dashboards — financial, sales, field operations, shipping, crop lifecycle, and inventory. This is
-            a snapshot of what your control center could look like.
+            Six synchronized operational views — GIS subdivision maps, harvest batches, mill processing, sales contracts, labor oversight, and market intelligence.
           </p>
         </div>
 
@@ -236,7 +235,7 @@ export function InteractiveCallout() {
               {/* data table */}
               <div className="mt-5">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-wide text-white/40">Recent records</span>
+                  <span className="font-mono text-[10px] uppercase tracking-wide text-white/40">Recent subdivision logs</span>
                   <span className="font-mono text-[10px] text-white/30">{tab.rows.length} entries</span>
                 </div>
                 <div className="divide-y divide-white/5 rounded-2xl bg-white/[0.02] ring-1 ring-inset ring-white/10">
@@ -260,7 +259,7 @@ export function InteractiveCallout() {
                     <Icon key={i} className="h-4 w-4" />
                   ))}
                 </div>
-                <span className="font-mono text-[10px] text-white/30">exportable · API-ready</span>
+                <span className="font-mono text-[10px] text-white/30">exportable · GIS-linked</span>
               </div>
             </div>
           </div>

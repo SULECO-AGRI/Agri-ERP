@@ -1,115 +1,126 @@
-import { Coins, Sprout, Truck, Package, FlaskConical, Settings, Check, ArrowUpRight, Layers, MapPin } from 'lucide-react';
+import { Monitor, Sprout, Factory, ShoppingCart, UserCheck, Users, CloudSun, FileCheck, Check, ArrowUpRight, Layers, MapPin, Trees, Shield } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
-const modules: {
-  icon: typeof Coins;
-  title: string;
-  subtitle: string;
-  tag: string;
-  features: string[];
-  stat: { value: string; label: string };
-}[] = [
+const modules = [
   {
-    icon: Coins,
-    title: 'Financial Management',
-    subtitle: 'Track farm expenses, cashflow, and budgets with per-field cost accounting.',
-    tag: 'Finance',
-    stat: { value: '$1.2M', label: 'capital tracked' },
+    icon: Monitor,
+    title: 'Dashboard & GIS Monitoring',
+    subtitle: 'Live overview of subdivisions, maps, tree statistics, and performance indicators.',
+    tag: 'GIS & Maps',
+    stat: { value: '18 Blocks', label: 'cadastral subdivisions' },
     features: [
-      'Activity-based cost accounting per field, crop batch, and employee',
-      'Live cashflow and balance sheet visibility',
-      'Budget vs. actual tracking with variance alerts',
-      'Ledger entries for purchases, payroll, and equipment leases',
-      'Automated market-rate cost estimations',
-      'Board-ready financial projections from operational data',
-      'Multi-site consolidation for enterprise reporting',
-      'Exportable statements for audits and stakeholders',
+      'Cadastral subdivision polygon boundaries & interactive maps',
+      'Individual palm and tree density statistics by block',
+      'NDVI satellite vegetation & canopy health monitoring',
+      'Subdivision performance KPIs and yield heatmaps',
+      'Elevation, drainage, and terrain contour overlays',
+      'Drone orthomosaic imagery upload and layer alignment',
     ],
   },
   {
     icon: Sprout,
-    title: 'Crop Management',
-    subtitle: 'Plan, monitor, and manage every crop from planting to harvest.',
-    tag: 'Crop',
-    stat: { value: '47', label: 'active cycles' },
+    title: 'Harvest Records',
+    subtitle: 'Track harvest quantities by date, subdivision, and crop batch.',
+    tag: 'Harvest',
+    stat: { value: '84,200', label: 'nuts logged this cycle' },
     features: [
-      'Growth-stage modeling and GDD accumulation per field block',
-      'Automated task scheduling tied to the crop calendar',
-      'Field boundary mapping via automated satellite zoning',
-      'NDVI-based vegetation health monitoring',
-      'Soil moisture and fertilizer input tracking',
-      'Harvest ETA forecasting by batch',
-      'Crop rotation and seasonal planning',
-      'Yield prediction linked to crop health data',
+      'Daily and cyclical harvest logging per subdivision block',
+      'Nut count, fresh weight, and quality grading by batch',
+      'Tree productivity tracking and aging cycle history',
+      'Seasonal yield comparison against historical baselines',
+      'Harvester allocation and piece-rate collection records',
+      'Batch grading and rejection rate analytics',
     ],
   },
   {
-    icon: Truck,
-    title: 'Shipping',
-    subtitle: 'Coordinate dispatch, routes, and cold-chain logistics from field to buyer.',
-    tag: 'Shipping',
-    stat: { value: '96.4%', label: 'on-time rate' },
+    icon: Factory,
+    title: 'Processing Records',
+    subtitle: 'Record processed outputs such as copra, coconut oil, husk, and shell.',
+    tag: 'Processing',
+    stat: { value: '98.4%', label: 'byproduct utilization' },
     features: [
-      'Truck dispatch and route optimization',
-      'Scale ticket records and load tracking',
-      'Cold-chain temperature logs in transit',
-      'Live shipment status — in transit, delivered, delayed',
-      'Logistics sync with harvest and silo schedules',
-      'Multi-site to buyer and port routing',
-      'Delivery performance and transit-time analytics',
-      'Exportable manifests for compliance',
+      'Copra kiln drying intake, moisture reduction & dry weight outputs',
+      'Virgin and commercial coconut oil extraction yields',
+      'Coir fiber and husk defibering batch tracking',
+      'Coconut shell carbonization and charcoal output logs',
+      'Input-to-output conversion efficiency ratio metrics',
+      'Processing facility maintenance and kiln run schedules',
     ],
   },
   {
-    icon: Package,
-    title: 'Inventory',
-    subtitle: 'Real-time stock tracking for seed, fertilizer, chemicals, and equipment.',
-    tag: 'Inventory',
-    stat: { value: '1,842', label: 'tracked SKUs' },
+    icon: ShoppingCart,
+    title: 'Sales Tracking',
+    subtitle: 'Monitor sales records, quantities, and transaction performance.',
+    tag: 'Sales',
+    stat: { value: '$148.2K', label: 'quarterly contracts' },
     features: [
-      'Real-time stock levels across silos and stores',
-      'Low-stock alerts and automated reorder triggers',
-      'Supplier integration for purchase orders',
-      'Seed, chemical, and equipment lot tracking',
-      'Silo and bin telemetry for grain volume and moisture',
-      'Purchase-to-usage traceability',
-      'Cost tracking per input category',
-      'Stock-linked application from field operations',
+      'Wholesale buyer contract management & fulfillment tracking',
+      'Copra, coconut oil, fiber, and shell dispatch manifests',
+      'Transaction history, invoicing, and accounts receivable sync',
+      'Market price alignment and price variance alerts',
+      'Delivery schedules and weighbridge scale ticket records',
+      'Customer order status and dispatch confirmations',
     ],
   },
   {
-    icon: FlaskConical,
-    title: 'Fertilizer',
-    subtitle: 'Plan, apply, and track nutrient inputs — synced to soil health and inventory.',
-    tag: 'Fertilizer',
-    stat: { value: 'N-P-K', label: 'nutrient planning' },
+    icon: UserCheck,
+    title: 'Farm Managers',
+    subtitle: 'Organize managerial oversight and subdivision responsibility.',
+    tag: 'Management',
+    stat: { value: '100%', label: 'subdivision coverage' },
     features: [
-      'Nutrient (N-P-K) plans generated from soil health and crop stage',
-      'Application scheduling tied to field, plot, and crop calendar',
-      'Dosage and coverage tracking — quantity, location, and personnel',
-      'Stock-linked application — auto-deduct from inventory on use',
-      'Low-stock and reorder alerts synced with supplier catalogs',
-      'Cost-per-hectare tracking by fertilizer type and blend',
-      'Compliance logging for input use and safety data sheets',
-      'AI/ML-adjusted recommendations as conditions change',
+      'Block-level supervisor and estate manager assignments',
+      'Daily operational task approval and workflow tracking',
+      'Subdivision budget allocation and input authorization',
+      'Managerial KPI tracking across hectares and yield milestones',
+      'Exception alerts for harvest delays or equipment issues',
+      'Cross-subdivision performance benchmarking',
     ],
   },
   {
-    icon: Settings,
-    title: 'Operations',
-    subtitle: 'Schedule tasks, deploy crews, and track machinery across every field block.',
-    tag: 'Operations',
-    stat: { value: '34', label: 'active work orders' },
+    icon: Users,
+    title: 'Farm Employees',
+    subtitle: 'Structure workforce records and field-level accountability.',
+    tag: 'Workforce',
+    stat: { value: '14 Crews', label: 'active in field' },
     features: [
-      'Work order scheduling and crew deployment',
-      'Machinery hours and fuel consumption tracking',
-      'Pesticide and spray application logging',
-      'Weather-triggered task automation',
-      'Labor attendance and productivity scoring',
-      'Task completion tracking by field and crew',
-      'Equipment maintenance and usage logs',
-      'Regulatory compliance logs for labor and safety',
+      'Tree climber, harvester, and laborer registry & attendance',
+      'Field-level task completion verification and daily logs',
+      'Piece-rate compensation calculation linked to harvest counts',
+      'Training, equipment handling, and safety compliance records',
+      'Mobile field check-in with offline capability',
+      'Work crew allocation by subdivision and task urgency',
+    ],
+  },
+  {
+    icon: CloudSun,
+    title: 'Weather & Market Intelligence',
+    subtitle: 'Connect weather awareness and market signals for better timing.',
+    tag: 'Intelligence',
+    stat: { value: '$342/t', label: 'copra spot index' },
+    features: [
+      'Micro-climate estate weather station telemetry & rain gauges',
+      '10-day rainfall forecasting to optimize harvest & drying cycles',
+      'Coconut national auction and global FOB market price feeds',
+      'Copra and oil spot price variance trackers',
+      'Drought stress and humidity index monitoring',
+      'Optimal fertilization and spraying window recommendations',
+    ],
+  },
+  {
+    icon: FileCheck,
+    title: 'User Management & Reports',
+    subtitle: 'Role-based access, filtered views, exportable records, and audit-ready reporting.',
+    tag: 'Audit & Reports',
+    stat: { value: 'Audit-Ready', label: 'exportable records' },
+    features: [
+      'Role-based access control (Admin, Estate Manager, Agronomist, Auditor)',
+      'Filtered subdivision views tailored to user responsibilities',
+      'Instant PDF and Excel exportable records for boards & banks',
+      'Complete audit trail of all data entries and modifications',
+      'Multi-estate consolidation for large agribusiness corporations',
+      'Compliance logging for organic certifications & standards',
     ],
   },
 ];
@@ -125,25 +136,24 @@ export function SolutionsPage({ onNavigate }: { onNavigate: (p: Page) => void })
         <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
           <div className="max-w-3xl">
             <span className="font-mono text-xs font-medium uppercase tracking-widest text-emerald-deep">
-              Solutions / Modules
+              Spatio Agri · Plantation Modules
             </span>
             <h1 className="mt-3 text-5xl font-bold leading-[1.05] tracking-tightest text-forest-950 sm:text-6xl">
-              Every operation.{' '}
-              <span className="shimmer-text">One connected platform.</span>
+              Eight dedicated modules.{' '}
+              <span className="shimmer-text">One connected plantation.</span>
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-forest-950/60">
-              Finance, crops, shipping, inventory, fertilizer, and field operations — six modules running on one
-              shared picture, so nothing gets left to memory.
+              From GIS subdivision mapping to harvest counts, copra processing, and market sales — Spatio Agri replaces paper ledgers with an integrated operational operating system.
             </p>
           </div>
 
           {/* quick stats */}
           <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-forest-950/[0.06] sm:grid-cols-4">
             {[
-              { icon: Layers, v: '6', l: 'core modules' },
-              { icon: Package, v: '1,842', l: 'SKUs tracked' },
-              { icon: Truck, v: '96.4%', l: 'on-time shipping' },
-              { icon: MapPin, v: '15,000+', l: 'active farms' },
+              { icon: Layers, v: '8', l: 'core modules' },
+              { icon: Trees, v: '24,500+', l: 'mapped palms' },
+              { icon: MapPin, v: '18 Blocks', l: 'cadastral subdivisions' },
+              { icon: Shield, v: '100%', l: 'traceable yield' },
             ].map((s) => (
               <div key={s.l} className="bg-white p-5">
                 <s.icon className="h-4 w-4 text-emerald-deep" />
@@ -162,7 +172,7 @@ export function SolutionsPage({ onNavigate }: { onNavigate: (p: Page) => void })
             <div
               key={m.title}
               className={`group relative overflow-hidden rounded-3xl border border-forest-950/[0.07] bg-white transition-all duration-700 ${shown ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
-              style={{ transitionDelay: `${idx * 120}ms` }}
+              style={{ transitionDelay: `${idx * 80}ms` }}
             >
               <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-emerald-accent/[0.05] blur-3xl transition-opacity duration-500 group-hover:opacity-150 opacity-100" />
               <div className="grid lg:grid-cols-12">
@@ -185,7 +195,7 @@ export function SolutionsPage({ onNavigate }: { onNavigate: (p: Page) => void })
                 </div>
 
                 {/* right: capabilities */}
-                <div className="p-8 lg:col-span-8">
+                <div className="p-8 lg:col-span-8 flex flex-col justify-between">
                   <div className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
                     {m.features.map((f) => (
                       <div key={f} className="flex items-start gap-3 py-1">
@@ -196,12 +206,12 @@ export function SolutionsPage({ onNavigate }: { onNavigate: (p: Page) => void })
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 flex items-center gap-2 border-t border-forest-950/[0.06] pt-5">
+                  <div className="mt-8 flex items-center gap-2 border-t border-forest-950/[0.06] pt-5">
                     <button
                       onClick={() => onNavigate('demo')}
                       className="group/btn inline-flex items-center gap-1.5 text-sm font-semibold text-forest-950 transition-colors hover:text-emerald-deep"
                     >
-                      Explore this module
+                      Schedule a walkthrough for this module
                       <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                     </button>
                   </div>

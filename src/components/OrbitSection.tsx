@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Coins, TrendingUp, Settings, Truck, Sprout, Package, ArrowUpRight, Sprout as LogoIcon } from 'lucide-react';
+import { Monitor, Sprout, Factory, ShoppingCart, Users, CloudSun, ArrowUpRight } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 
 interface ModuleItem {
@@ -17,72 +17,72 @@ interface ModuleItem {
 
 const modules: ModuleItem[] = [
   {
-    id: 'financial',
-    title: 'Financial Management',
-    short: 'Financial',
-    desc: 'Activity-based cost accounting per field block, crop batch, and employee. Track farm expenses, live cashflows, and balance sheets in real time with integrated ledger structures.',
-    metric: 'Capital Accrual: $1.2M',
-    icon: Coins,
+    id: 'gis',
+    title: 'Dashboard & GIS Monitoring',
+    short: 'GIS & Maps',
+    desc: 'Live overview of estate subdivisions, interactive cadastral maps, tree density statistics, and real-time plantation performance indicators.',
+    metric: 'Subdivisions: 18 Blocks',
+    icon: Monitor,
     colorClass: 'text-blue-500',
     activeBgClass: 'bg-blue-600',
     activeRingClass: 'ring-blue-500/25',
     activeShadowClass: 'shadow-[0_0_25px_rgba(59,130,246,0.45)]',
   },
   {
-    id: 'sales',
-    title: 'Sales & Contract',
-    short: 'Sales',
-    desc: 'Manage crop trade contracts, wholesale purchase agreements, futures pricing, and live market hedging. Fully synchronized with your harvest projections.',
-    metric: 'Active Contracts: 42',
-    icon: TrendingUp,
+    id: 'harvest',
+    title: 'Harvest Records',
+    short: 'Harvest Records',
+    desc: 'Track harvest quantities by date, subdivision, and crop batch. Monitor tree yield history, collection cycles, and batch-level forecasts.',
+    metric: 'Harvest: 84,200 Nuts',
+    icon: Sprout,
     colorClass: 'text-emerald-500',
     activeBgClass: 'bg-emerald-600',
     activeRingClass: 'ring-emerald-500/25',
     activeShadowClass: 'shadow-[0_0_25px_rgba(16,185,129,0.45)]',
   },
   {
-    id: 'operations',
-    title: 'Operations Management',
-    short: 'Operations',
-    desc: 'Schedule work orders, track machinery hours, fuel consumption, and operational workflow steps. Integrates weather forecast data to automate spray alerts.',
-    metric: 'Active Operators: 8',
-    icon: Settings,
+    id: 'processing',
+    title: 'Processing Records',
+    short: 'Processing',
+    desc: 'Record processed outputs such as copra drying, virgin and bulk coconut oil extraction, husk sorting, and shell carbonization with input-to-output conversion ratios.',
+    metric: 'Copra Output: 4.8t',
+    icon: Factory,
     colorClass: 'text-amber-500',
     activeBgClass: 'bg-amber-600',
     activeRingClass: 'ring-amber-500/25',
     activeShadowClass: 'shadow-[0_0_25px_rgba(245,158,11,0.45)]',
   },
   {
-    id: 'shipping',
-    title: 'Shipping & Planning',
-    short: 'Shipping & Planning',
-    desc: 'Streamline logistics from harvest cart to silo elevators. Coordinates truck dispatch, route optimization, scale ticket records, and cold-chain temperature logs.',
-    metric: 'Logistics Sync: 380ms',
-    icon: Truck,
+    id: 'sales',
+    title: 'Sales Tracking',
+    short: 'Sales Tracking',
+    desc: 'Monitor sales records, buyer dispatch orders, contract fulfillment quantities, and real-time transaction performance from warehouse to buyer.',
+    metric: 'Contract: $48,200',
+    icon: ShoppingCart,
     colorClass: 'text-cyan-500',
     activeBgClass: 'bg-cyan-600',
     activeRingClass: 'ring-cyan-500/25',
     activeShadowClass: 'shadow-[0_0_25px_rgba(6,182,212,0.45)]',
   },
   {
-    id: 'crop',
-    title: 'Crop Management',
-    short: 'Crop',
-    desc: 'Track growth progress, growing degree days (GDD), soil moisture inputs, fertilizer recipes, and field boundaries mapped via automated satellite zoning.',
-    metric: 'NDVI Index: 0.78',
-    icon: Sprout,
+    id: 'workforce',
+    title: 'Farm Managers & Employees',
+    short: 'Workforce',
+    desc: 'Organize managerial oversight and subdivision responsibility, while structuring workforce field records, piece-rate labor, and field-level accountability.',
+    metric: 'Active Crews: 14 Teams',
+    icon: Users,
     colorClass: 'text-green-500',
     activeBgClass: 'bg-green-600',
     activeRingClass: 'ring-green-500/25',
     activeShadowClass: 'shadow-[0_0_25px_rgba(34,197,94,0.45)]',
   },
   {
-    id: 'inventory',
-    title: 'Inventory Management',
-    short: 'Inventory',
-    desc: 'Automated bin telemetry monitors grain volume and moisture inside silos. Manage seed lots, chemicals, fertilizer stocks, and purchase triggers.',
-    metric: 'Silo Level: 94.2%',
-    icon: Package,
+    id: 'weather',
+    title: 'Weather & Market Intelligence',
+    short: 'Weather & Market',
+    desc: 'Connect hyper-local weather forecasts and live commodity market price signals for optimal harvest timing, drying schedules, and sales execution.',
+    metric: 'Signals: Rain Delay Alert',
+    icon: CloudSun,
     colorClass: 'text-purple-500',
     activeBgClass: 'bg-purple-600',
     activeRingClass: 'ring-purple-500/25',
@@ -147,10 +147,10 @@ export function OrbitSection() {
 
   const activeModule = modules[activeIndex];
 
-  // Mathematical positioning for 6 nodes (scaled up for large display)
-  const radius = 185; // px (increased for spacing out larger w-20 nodes)
+  // Mathematical positioning for 6 nodes
+  const radius = 185; // px
   const angleStep = (2 * Math.PI) / 6;
-  const startAngle = -Math.PI / 2; // start exactly at top
+  const startAngle = -Math.PI / 2; // start at top
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-white py-24 sm:py-32 border-t border-forest-950/[0.06]">
@@ -200,7 +200,7 @@ export function OrbitSection() {
                 />
               </svg>
 
-              {/* Glowing active indicator dot rotating around the orbit ring (0 lag GPU transform) */}
+              {/* Glowing active indicator dot rotating around the orbit ring */}
               <div 
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -214,9 +214,11 @@ export function OrbitSection() {
                 <div className="absolute top-[2px] left-1/2 -translate-x-1/2 h-3.5 w-3.5 rounded-full bg-emerald-accent shadow-[0_0_15px_#10b981] animate-pulse" />
               </div>
 
-              {/* Central Logo Node */}
-              <div className="relative z-10 grid h-28 w-28 place-items-center rounded-3xl bg-forest-950 text-emerald-accent ring-4 ring-emerald-accent/20 shadow-[0_0_40px_-5px_rgba(16,185,129,0.45)]">
-                <LogoIcon className="h-14 w-14 text-emerald-accent" strokeWidth={2.5} />
+              {/* Central Spatio Agri Node */}
+              <div className="relative z-10 flex flex-col items-center justify-center h-28 w-28 rounded-3xl bg-forest-950 text-white ring-4 ring-emerald-accent/20 shadow-[0_0_40px_-5px_rgba(16,185,129,0.45)] p-3 text-center">
+                <span className="text-emerald-accent font-mono text-[9px] uppercase tracking-widest font-bold">SPATIO</span>
+                <span className="text-white font-bold text-base tracking-tight leading-tight">AGRI</span>
+                <span className="text-white/40 text-[8px] font-mono mt-0.5">ESTATE GIS</span>
                 <span className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10" />
               </div>
 
@@ -234,8 +236,8 @@ export function OrbitSection() {
                     className="absolute flex flex-col items-center gap-2.5"
                     style={{
                       transform: `translate(${x}px, ${y}px)`,
-                      left: 'calc(50% - 40px)', // Half of button width (w-20 is 80px)
-                      top: 'calc(50% - 40px)',  // Half of button height
+                      left: 'calc(50% - 40px)',
+                      top: 'calc(50% - 40px)',
                       transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                     }}
                   >
@@ -252,7 +254,7 @@ export function OrbitSection() {
                         transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                       }}
                     >
-                      <ActiveIcon className="h-9 w-9 transition-transform duration-300 group-hover/btn:scale-110" strokeWidth={2} />
+                      <ActiveIcon className="h-8 w-8 transition-transform duration-300 group-hover/btn:scale-110" strokeWidth={2} />
                       <span className={`absolute -inset-1.5 rounded-full border border-dashed border-emerald-accent/40 scale-75 opacity-0 transition-all duration-300 ${isActive ? 'scale-100 opacity-100 animate-[spin_8s_linear_infinite]' : ''}`} />
                     </button>
                     
@@ -283,10 +285,10 @@ export function OrbitSection() {
                 Unified Ecosystem
               </span>
               <h2 className="mt-3 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.05]">
-                Your One-Stop Solution For <span className="shimmer-text">Farm Management</span>
+                Your One-Stop Solution For <span className="shimmer-text">Plantation Management</span>
               </h2>
               <p className="mt-5 text-base leading-relaxed text-forest-950/65">
-                SpatioAgri unifies all aspects of commercial growing into a single operating matrix. By linking crop telemetry with automated supply chain logs and general ledger pipelines, SpatioAgri streamlines the flow of data across medium to large-scale agriculture enterprises.
+                Spatio Agri unifies all aspects of coconut plantations and commercial growing into a single operating matrix. By linking GIS subdivision mapping, harvest logs, and copra/oil processing with sales records, Spatio Agri streamlines data across medium to large-scale estates.
               </p>
 
               {/* Dynamic Module Detail Card */}

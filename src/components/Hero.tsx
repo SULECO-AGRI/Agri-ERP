@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUpRight, Play, X } from "lucide-react";
-import { DashboardMockup } from "./DashboardMockup";
-import { useReveal } from "../hooks/useReveal";
 import type { Page } from "../nav";
+import { useReveal } from "../hooks/useReveal";
 import heroVideo from "../assets/videos/generate_a_video_related_this.mp4";
 import heroBgVideo from "../assets/videos/Hero_background.mp4";
 
@@ -106,9 +105,7 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
             className="animate-fadeUp mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-white/70"
             style={{ animationDelay: "120ms" }}
           >
-            Thousands of hectares. Dozens of crops. Hundreds of daily decisions.
-            SPATIO AGRI pulls field operations, crop lifecycle management, and
-            inventory tracking into a single platform.
+            Turn your coconut farm and commercial plantations into smart, accessible, and efficient operations. Spatio Agri pulls GIS subdivision mapping, harvest batches, processing records, and sales tracking into a single unified platform.
           </p>
 
           <div
@@ -116,10 +113,10 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
             style={{ animationDelay: "180ms" }}
           >
             <button
-              onClick={() => onNavigate("pricing")}
+              onClick={() => onNavigate("demo")}
               className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-7 py-3.5 text-base font-semibold text-white shadow-glow hover:bg-emerald-deep hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
             >
-              Get Started Today
+              Schedule Plantation Demo
               <ArrowUpRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
             <button
@@ -199,7 +196,7 @@ export function TrustBar() {
           <p
             className={`mt-3 text-sm font-medium text-forest-950/55 transition-all duration-700 delay-100 ${shown ? "opacity-100" : "opacity-0"}`}
           >
-            Trusted by over 15,000+ commercial growers and agronomists globally.
+            Trusted by commercial growers and plantation managers globally.
           </p>
         </div>
 
