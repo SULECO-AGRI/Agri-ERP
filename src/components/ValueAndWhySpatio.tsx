@@ -1,4 +1,4 @@
-import { Eye, ShieldCheck, AlertTriangle, Users, TrendingDown, TrendingUp, FileCheck2, Cpu, Satellite, Map, Layers, Compass, Phone, Globe, ArrowUpRight, Trees } from 'lucide-react';
+import { Eye, ShieldCheck, AlertTriangle, Users, TrendingDown, TrendingUp, FileCheck2, Cpu, Satellite, Map, Layers, Compass, Phone, Globe, ArrowUpRight } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
@@ -167,11 +167,8 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
             <div className="absolute inset-0 bg-grid-dark opacity-15 pointer-events-none" />
             <div className="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-emerald-accent/[0.1] blur-3xl" />
 
-            {/* Left Tagline & Palm Icon */}
-            <div className="relative z-10 flex items-center gap-5 max-w-xl">
-              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white/10 text-emerald-accent ring-1 ring-white/20 shadow-inner">
-                <Trees className="h-8 w-8 text-emerald-accent" strokeWidth={2} />
-              </div>
+            {/* Left Tagline */}
+            <div className="relative z-10 max-w-xl">
               <div>
                 <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-emerald-accent">
                   Estate &amp; Plantation Excellence
