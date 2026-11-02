@@ -96,10 +96,10 @@ export function AboutPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
       {/* ================= HERO HEADER ================= */}
       <section className="relative overflow-hidden bg-white pt-32 pb-10 sm:pt-40 sm:pb-16 border-b border-forest-950/[0.05]">
         <div className="pointer-events-none absolute inset-0 bg-grid grid-fade opacity-60" />
-        <div className="pointer-events-none absolute -left-20 top-10 h-96 w-96 rounded-full bg-emerald-accent/[0.06] blur-3xl" />
+        <div className="pointer-events-none absolute -left-20 top-10 h-96 w-96 rounded-full bg-blue-500/[0.05] blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 text-center sm:text-left">
           <div className="max-w-3xl">
-            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
+            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[#2563eb]">
               About Spatio &amp; SDS
             </span>
             <h1 className="mt-3 text-4xl font-bold leading-[1.08] tracking-tightest text-forest-950 sm:text-5xl lg:text-6xl">
@@ -192,27 +192,27 @@ export function AboutPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
       {/* ================= SECTION 3: CONTACT & CTA ================= */}
       <section ref={ref} className="relative py-16 sm:py-20 bg-white">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <div className="rounded-3xl bg-forest-950 p-8 sm:p-10 text-white shadow-xl">
+          <div className="rounded-3xl bg-[#0f172a] border border-slate-800/80 p-8 sm:p-10 text-white shadow-xl">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
                   Want to see Spatio Agri on your plantation?
                 </h3>
-                <p className="mt-1.5 text-xs sm:text-sm text-white/60">
+                <p className="mt-1.5 text-xs sm:text-sm text-slate-300">
                   Book a walkthrough with an SDS &amp; SULECO geospatial coordinator.
                 </p>
-                <div className="mt-4 flex flex-wrap items-center gap-4 text-xs font-medium text-white/80">
-                  <a href="tel:0773301274" className="inline-flex items-center gap-1.5 hover:text-emerald-accent transition-colors">
-                    <Phone className="h-3.5 w-3.5 text-emerald-accent" /> 077 330 1274
+                <div className="mt-4 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-200">
+                  <a href="tel:0773301274" className="inline-flex items-center gap-1.5 hover:text-[#00d2ff] transition-colors">
+                    <Phone className="h-3.5 w-3.5 text-[#00d2ff]" /> 077 330 1274
                   </a>
-                  <a href="https://www.spatiosds.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-emerald-accent transition-colors">
-                    <Globe className="h-3.5 w-3.5 text-emerald-accent" /> www.spatiosds.com
+                  <a href="https://www.spatiosds.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-[#00d2ff] transition-colors">
+                    <Globe className="h-3.5 w-3.5 text-[#00d2ff]" /> www.spatiosds.com
                   </a>
                 </div>
               </div>
               <button
                 onClick={() => onNavigate('demo')}
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-emerald-accent px-6 py-3 text-xs font-semibold text-white shadow-glow-soft hover:bg-emerald-deep hover:shadow-glow transition-all active:scale-[0.98]"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#2563eb] px-6 py-3 text-xs font-semibold text-white shadow-md hover:bg-[#1d4ed8] transition-all active:scale-[0.98]"
               >
                 Schedule Plantation Demo
                 <ArrowUpRight className="h-3.5 w-3.5" />
