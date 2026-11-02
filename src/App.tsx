@@ -38,8 +38,8 @@ function App() {
           <>
             <Hero onNavigate={navigate} />
             <AgriculturalServices onNavigate={navigate} />
-            <OrbitSection />
             <PlatformWorkflow onNavigate={navigate} />
+            <OrbitSection />
             <TrustBar />
             <InteractiveCallout />
             <ValueAndWhySpatio onNavigate={navigate} />
