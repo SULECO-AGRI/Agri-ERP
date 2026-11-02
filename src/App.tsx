@@ -13,13 +13,38 @@ import { DemoPage } from "./pages/DemoPage";
 import { ContactPage } from "./pages/ContactPage";
 import type { Page } from "./nav";
 
-function App() {
-  const [page, setPage] = useState<Page>("home");
+const VALID_PAGES: Page[] = ["home", "products", "solutions", "about", "demo", "contact", "pricing"];
 
-  const navigate = (p: Page) => {
+function getPageFromPath(): Page {
+  const clean = window.location.pathname.replace(/^\/|\/$/g, "").toLowerCase();
+  if (!clean || clean === "home") return "home";
+  if (VALID_PAGES.includes(clean as Page)) return clean as Page;
+  return "home";
+}
+
+function App() {
+  const [page, setPage] = useState<Page>(getPageFromPath);
+
+  const navigate = (p: Page, replace = false) => {
     setPage(p);
+    const targetPath = p === "home" ? "/" : `/${p}`;
+    if (window.location.pathname !== targetPath) {
+      if (replace) {
+        window.history.replaceState({ page: p }, "", targetPath);
+      } else {
+        window.history.pushState({ page: p }, "", targetPath);
+      }
+    }
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setPage(getPageFromPath());
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   useEffect(() => {
     document.title =
