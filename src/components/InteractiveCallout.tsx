@@ -158,9 +158,6 @@ export function InteractiveCallout() {
           <h2 className="mt-3 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl">
             See your estate in real time.
           </h2>
-          <p className="mt-4 text-lg text-forest-950/60">
-            Six synchronized operational views — GIS subdivision maps, harvest batches, mill processing, sales contracts, labor oversight, and market intelligence.
-          </p>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-10">

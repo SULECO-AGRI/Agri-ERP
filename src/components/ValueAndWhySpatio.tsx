@@ -1,4 +1,4 @@
-import { Eye, ShieldCheck, AlertTriangle, Users, TrendingDown, TrendingUp, FileCheck2, Cpu, CheckCircle2, Phone, Globe, ArrowUpRight, Trees } from 'lucide-react';
+import { Eye, ShieldCheck, AlertTriangle, Users, TrendingDown, TrendingUp, FileCheck2, Cpu, Satellite, Map, Layers, Compass, Phone, Globe, ArrowUpRight, Trees } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
@@ -47,22 +47,22 @@ const roiItems = [
 
 const whySpatioPillars = [
   {
-    number: '01',
+    icon: Satellite,
     title: 'Built on GIS, remote sensing, and smart agriculture expertise',
     detail: 'Decades of combined agronomic science and satellite GIS engineering embedded into every screen.',
   },
   {
-    number: '02',
+    icon: Map,
     title: 'Precision plantation mapping and spatial analytics capability',
     detail: 'Accurate cadastral subdivision mapping, tree canopy counting, and micro-climate spatial intelligence.',
   },
   {
-    number: '03',
+    icon: Layers,
     title: 'Modular and scalable architecture for future-ready deployment',
     detail: 'Start with harvest logs today and scale into processing mills, financial ledgers, and sensor telemetry tomorrow.',
   },
   {
-    number: '04',
+    icon: Compass,
     title: 'Delivered by a geospatial technology team focused on real operational outcomes',
     detail: 'Hands-on deployment engineers who understand the practical realities of plantation management in the field.',
   },
@@ -87,9 +87,6 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
             <h2 className="mt-4 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.08]">
               Measurable impact across <span className="shimmer-text">every hectare.</span>
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-forest-950/65 max-w-2xl">
-              From reducing field labor friction to auditing copra and oil yields, Spatio Agri delivers quantifiable returns for progressive commercial growers.
-            </p>
           </div>
 
           {/* 8-Card ROI Grid */}
@@ -104,7 +101,7 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
                   }`}
                   style={{ transitionDelay: `${i * 60}ms` }}
                 >
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-forest-950 text-emerald-accent transition-all duration-300 group-hover:bg-emerald-accent group-hover:text-white">
+                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-accent/10 text-emerald-deep transition-all duration-300 group-hover:bg-emerald-accent/20 group-hover:scale-105">
                     <Icon className="h-6 w-6" strokeWidth={2} />
                   </div>
                   <h3 className="mt-5 text-lg font-bold tracking-tight text-forest-950">
@@ -121,63 +118,42 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
 
         {/* ---------------- WHY SPATIO / SDS ---------------- */}
         <div className="mt-28 lg:mt-36 pt-16 border-t border-forest-950/[0.07]">
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-            {/* Left title & context */}
-            <div
-              className={`lg:col-span-5 space-y-6 transition-all duration-1000 ${
-                shown ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-              }`}
-            >
-              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
-                Why Spatio / SDS
-              </span>
-              <h2 className="text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.06]">
-                Geospatial precision built for <span className="shimmer-text">real field operations.</span>
-              </h2>
-              <p className="text-base leading-relaxed text-forest-950/65">
-                We combine GIS mapping, remote sensing, and farm management systems into a coherent operating environment that agronomy teams love to use every day.
-              </p>
+          {/* Centered Header */}
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
+              Why Spatio / SDS
+            </span>
+            <h2 className="mt-3 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.08]">
+              Geospatial precision built for <span className="shimmer-text">real field operations.</span>
+            </h2>
+          </div>
 
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <div className="inline-flex items-center gap-2 rounded-2xl bg-cream px-4 py-2.5 border border-forest-950/10 text-xs font-bold text-forest-950">
-                  <span className="h-2 w-2 rounded-full bg-emerald-accent animate-pulse" />
-                  GIS &amp; Remote Sensing
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-2xl bg-cream px-4 py-2.5 border border-forest-950/10 text-xs font-bold text-forest-950">
-                  <span className="h-2 w-2 rounded-full bg-emerald-accent animate-pulse" />
-                  Smart Ag Analytics
-                </div>
-              </div>
-            </div>
-
-            {/* Right: 4 Pillars List */}
-            <div
-              className={`lg:col-span-7 space-y-4 transition-all duration-1000 delay-150 ${
-                shown ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-              }`}
-            >
-              {whySpatioPillars.map((p) => (
+          {/* 4 Pillars Balanced Grid */}
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {whySpatioPillars.map((p, idx) => {
+              const Icon = p.icon;
+              return (
                 <div
-                  key={p.number}
-                  className="group relative flex items-start gap-4 rounded-3xl border border-forest-950/[0.07] bg-white p-6 shadow-sm transition-all duration-300 hover:border-forest-950/20 hover:shadow-md"
+                  key={p.title}
+                  className={`group relative flex flex-col justify-between rounded-3xl border border-forest-950/[0.07] bg-white p-7 shadow-sm transition-all duration-700 hover:border-emerald-accent/40 hover:shadow-glow-soft hover:-translate-y-1 ${
+                    shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
+                  style={{ transitionDelay: `${idx * 80}ms` }}
                 >
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-forest-950 text-emerald-accent group-hover:scale-105 transition-transform">
-                    <CheckCircle2 className="h-6 w-6 text-emerald-accent" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-base font-bold text-forest-950 leading-snug">
+                  <div>
+                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-accent/10 text-emerald-deep transition-all duration-300 group-hover:bg-emerald-accent/20 group-hover:scale-105">
+                      <Icon className="h-6 w-6" strokeWidth={1.75} />
+                    </div>
+                    <h3 className="mt-5 text-base font-bold text-forest-950 leading-snug">
                       {p.title}
                     </h3>
-                    <p className="mt-1.5 text-xs text-forest-950/55 leading-relaxed">
+                    <p className="mt-2.5 text-xs text-forest-950/60 leading-relaxed">
                       {p.detail}
                     </p>
                   </div>
-                  <span className="font-mono text-xs font-bold text-forest-950/25">
-                    {p.number}
-                  </span>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
 

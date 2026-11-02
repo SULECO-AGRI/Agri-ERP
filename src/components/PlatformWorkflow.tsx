@@ -5,39 +5,33 @@ import type { Page } from '../nav';
 const steps = [
   {
     title: 'Collect',
-    desc: 'Capture field, harvest, processing, labor, and environmental data directly at the block level.',
     icon: Smartphone,
-    detail: 'Mobile GIS & field logging',
+    detail: 'Mobile GIS & Field Logging',
   },
   {
     title: 'Centralize',
-    desc: 'Store information in one farm database to eliminate fragmented paper books and siloed spreadsheets.',
     icon: Database,
-    detail: 'Unified estate database',
+    detail: 'Unified Estate Database',
   },
   {
     title: 'Monitor',
-    desc: 'View dashboards, tree statistics, and subdivision-level conditions with GIS map overlays.',
     icon: Monitor,
-    detail: 'Real-time spatial monitoring',
+    detail: 'Real-Time Spatial Monitoring',
   },
   {
     title: 'Trace',
-    desc: 'Connect field activity to harvest, processing (copra, oil, husk, shell), and sales records.',
     icon: Link2,
-    detail: 'End-to-end batch traceability',
+    detail: 'End-to-End Batch Traceability',
   },
   {
     title: 'Analyze',
-    desc: 'Use interactive charts, custom filters, and map-based insights to evaluate plantation performance.',
     icon: BarChart3,
-    detail: 'Spatial & financial analytics',
+    detail: 'Spatial & Financial Analytics',
   },
   {
     title: 'Improve',
-    desc: 'Support faster decisions, better cost control, and future yield and market prediction.',
     icon: TrendingUp,
-    detail: 'Data-driven growth & ROI',
+    detail: 'Data-Driven Growth & ROI',
   },
 ];
 
@@ -56,9 +50,6 @@ export function PlatformWorkflow({ onNavigate }: { onNavigate?: (p: Page) => voi
             One connected loop from <br className="hidden sm:inline" />
             <span className="shimmer-text">field data to smart decisions</span>
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-forest-950/65 max-w-2xl mx-auto">
-            Spatio Agri transforms everyday plantation operations into a structured digital pipeline — ensuring every tree, harvest batch, and processing stage is tracked, audited, and optimized.
-          </p>
         </div>
 
         {/* 6-Step Visual Process Timeline */}
@@ -75,19 +66,16 @@ export function PlatformWorkflow({ onNavigate }: { onNavigate?: (p: Page) => voi
                   style={{ transitionDelay: `${idx * 80}ms` }}
                 >
                   {/* Icon Circle */}
-                  <div className="inline-grid h-14 w-14 place-items-center rounded-2xl bg-forest-950/[0.04] text-forest-950 group-hover:bg-forest-950 group-hover:text-emerald-accent transition-all duration-300">
-                    <Icon className="h-7 w-7" strokeWidth={1.75} />
+                  <div className="inline-grid h-12 w-12 place-items-center rounded-2xl bg-emerald-accent/10 text-emerald-deep group-hover:bg-emerald-accent/20 group-hover:scale-105 transition-all duration-300">
+                    <Icon className="h-6 w-6" strokeWidth={1.75} />
                   </div>
 
                   {/* Text Details */}
-                  <h3 className="mt-5 text-xl font-bold tracking-tight text-forest-950">
+                  <h3 className="mt-4 text-lg font-bold tracking-tight text-forest-950 group-hover:text-emerald-deep transition-colors">
                     {step.title}
                   </h3>
-                  <span className="mt-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-deep">
+                  <p className="mt-1 text-sm font-medium leading-relaxed text-forest-950/60">
                     {step.detail}
-                  </span>
-                  <p className="mt-3 text-sm leading-relaxed text-forest-950/60 flex-1">
-                    {step.desc}
                   </p>
                 </div>
               );
