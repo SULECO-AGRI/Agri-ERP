@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
 import { Hero, TrustBar } from "./components/Hero";
-import { InteractiveCallout } from "./components/InteractiveCallout";
 import { OrbitSection } from "./components/OrbitSection";
 import { AgriculturalServices } from "./components/AgriculturalServices";
 import { PlatformWorkflow } from "./components/PlatformWorkflow";
@@ -39,9 +38,8 @@ function App() {
             <Hero onNavigate={navigate} />
             <AgriculturalServices onNavigate={navigate} />
             <PlatformWorkflow onNavigate={navigate} />
-            <OrbitSection />
+            <OrbitSection onNavigate={navigate} />
             <TrustBar />
-            <InteractiveCallout />
             <ValueAndWhySpatio onNavigate={navigate} />
           </>
         )}

@@ -60,7 +60,7 @@ export function PlatformWorkflow({ onNavigate }: { onNavigate?: (p: Page) => voi
               return (
                 <div
                   key={step.title}
-                  className={`group relative flex flex-col rounded-3xl border border-forest-950/[0.07] bg-white p-6 shadow-sm transition-all duration-700 hover:border-emerald-accent/40 hover:shadow-glow-soft hover:-translate-y-1 ${
+                  className={`group relative flex flex-col rounded-3xl border border-forest-950/[0.07] bg-white p-6 shadow-sm cursor-pointer transition-all duration-700 hover:border-emerald-accent/40 hover:shadow-glow-soft hover:-translate-y-1 ${
                     shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                   style={{ transitionDelay: `${idx * 80}ms` }}

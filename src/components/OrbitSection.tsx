@@ -1,335 +1,144 @@
-import { useState, useRef, useEffect } from 'react';
-import { Monitor, Sprout, Factory, ShoppingCart, Users, CloudSun, ArrowUpRight } from 'lucide-react';
+import { Monitor, Sprout, Factory, ShoppingCart, UserCheck, Users, CloudSun, FileCheck, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
+import type { Page } from '../nav';
 
 interface ModuleItem {
-  id: string;
+  icon: typeof Monitor;
+  tag: string;
   title: string;
-  short: string;
   desc: string;
-  metric: string;
-  icon: any;
-  colorClass: string;
-  activeBgClass: string;
-  activeRingClass: string;
-  activeShadowClass: string;
 }
 
-const modules: ModuleItem[] = [
+const systemModules: ModuleItem[] = [
   {
-    id: 'gis',
-    title: 'Dashboard & GIS Monitoring',
-    short: 'GIS & Maps',
-    desc: 'Live overview of estate subdivisions, interactive cadastral maps, tree density statistics, and real-time plantation performance indicators.',
-    metric: 'Subdivisions: 18 Blocks',
     icon: Monitor,
-    colorClass: 'text-blue-500',
-    activeBgClass: 'bg-blue-600',
-    activeRingClass: 'ring-blue-500/25',
-    activeShadowClass: 'shadow-[0_0_25px_rgba(59,130,246,0.45)]',
+    tag: 'GIS & Maps',
+    title: 'Dashboard & GIS Monitoring',
+    desc: 'Live overview of subdivisions, maps, tree statistics, and performance indicators.',
   },
   {
-    id: 'harvest',
-    title: 'Harvest Records',
-    short: 'Harvest Records',
-    desc: 'Track harvest quantities by date, subdivision, and crop batch. Monitor tree yield history, collection cycles, and batch-level forecasts.',
-    metric: 'Harvest: 84,200 Nuts',
     icon: Sprout,
-    colorClass: 'text-emerald-500',
-    activeBgClass: 'bg-emerald-600',
-    activeRingClass: 'ring-emerald-500/25',
-    activeShadowClass: 'shadow-[0_0_25px_rgba(16,185,129,0.45)]',
+    tag: 'Harvesting',
+    title: 'Harvest Records',
+    desc: 'Track harvest quantities by date, subdivision, and crop batch.',
   },
   {
-    id: 'processing',
-    title: 'Processing Records',
-    short: 'Processing',
-    desc: 'Record processed outputs such as copra drying, virgin and bulk coconut oil extraction, husk sorting, and shell carbonization with input-to-output conversion ratios.',
-    metric: 'Copra Output: 4.8t',
     icon: Factory,
-    colorClass: 'text-amber-500',
-    activeBgClass: 'bg-amber-600',
-    activeRingClass: 'ring-amber-500/25',
-    activeShadowClass: 'shadow-[0_0_25px_rgba(245,158,11,0.45)]',
+    tag: 'Processing Mill',
+    title: 'Processing Records',
+    desc: 'Record processed outputs such as copra, coconut oil, husk, and shell.',
   },
   {
-    id: 'sales',
-    title: 'Sales Tracking',
-    short: 'Sales Tracking',
-    desc: 'Monitor sales records, buyer dispatch orders, contract fulfillment quantities, and real-time transaction performance from warehouse to buyer.',
-    metric: 'Contract: $48,200',
     icon: ShoppingCart,
-    colorClass: 'text-cyan-500',
-    activeBgClass: 'bg-cyan-600',
-    activeRingClass: 'ring-cyan-500/25',
-    activeShadowClass: 'shadow-[0_0_25px_rgba(6,182,212,0.45)]',
+    tag: 'Commercial',
+    title: 'Sales Tracking',
+    desc: 'Monitor sales records, quantities, and transaction performance.',
   },
   {
-    id: 'workforce',
-    title: 'Farm Managers & Employees',
-    short: 'Workforce',
-    desc: 'Organize managerial oversight and subdivision responsibility, while structuring workforce field records, piece-rate labor, and field-level accountability.',
-    metric: 'Active Crews: 14 Teams',
+    icon: UserCheck,
+    tag: 'Management',
+    title: 'Farm Managers',
+    desc: 'Organize managerial oversight and subdivision responsibility.',
+  },
+  {
     icon: Users,
-    colorClass: 'text-green-500',
-    activeBgClass: 'bg-green-600',
-    activeRingClass: 'ring-green-500/25',
-    activeShadowClass: 'shadow-[0_0_25px_rgba(34,197,94,0.45)]',
+    tag: 'Workforce',
+    title: 'Farm Employees',
+    desc: 'Structure workforce records and field-level accountability.',
   },
   {
-    id: 'weather',
-    title: 'Weather & Market Intelligence',
-    short: 'Weather & Market',
-    desc: 'Connect hyper-local weather forecasts and live commodity market price signals for optimal harvest timing, drying schedules, and sales execution.',
-    metric: 'Signals: Rain Delay Alert',
     icon: CloudSun,
-    colorClass: 'text-purple-500',
-    activeBgClass: 'bg-purple-600',
-    activeRingClass: 'ring-purple-500/25',
-    activeShadowClass: 'shadow-[0_0_25px_rgba(168,85,247,0.45)]',
+    tag: 'Intelligence',
+    title: 'Weather & Market Intelligence',
+    desc: 'Connect weather awareness and market signals for better timing.',
+  },
+  {
+    icon: FileCheck,
+    tag: 'Compliance',
+    title: 'User Management & Reports',
+    desc: 'Role-based access, filtered views, exportable records, and audit-ready reporting.',
   },
 ];
 
-export function OrbitSection() {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void }) {
   const { ref, shown } = useReveal();
-  
-  // Interactive 3D Card Tilt via CSS variables directly (high performance, no re-renders)
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [scale, setScale] = useState(1);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-    const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener('change', listener);
-
-    const handleResize = () => {
-      const w = window.innerWidth;
-      if (w < 380) {
-        setScale(0.68);
-      } else if (w < 480) {
-        setScale(0.78);
-      } else if (w < 640) {
-        setScale(0.85);
-      } else if (w < 1024) {
-        setScale(0.9);
-      } else {
-        setScale(1);
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize, { passive: true });
-
-    return () => {
-      mediaQuery.removeEventListener('change', listener);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const container = containerRef.current;
-    if (!container || prefersReducedMotion) return;
-    const rect = container.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) - 0.5;
-    const y = ((e.clientY - rect.top) / rect.height) - 0.5;
-    container.style.setProperty('--mouse-x', `${x}`);
-    container.style.setProperty('--mouse-y', `${y}`);
-  };
-
-  const handleMouseLeave = () => {
-    const container = containerRef.current;
-    if (!container) return;
-    container.style.setProperty('--mouse-x', '0');
-    container.style.setProperty('--mouse-y', '0');
-  };
-
-  const activeModule = modules[activeIndex];
-
-  // Mathematical positioning for 6 nodes
-  const radius = 185; // px
-  const angleStep = (2 * Math.PI) / 6;
-  const startAngle = -Math.PI / 2; // start at top
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-white py-24 sm:py-32 border-t border-forest-950/[0.06]">
+    <section ref={ref} className="relative overflow-hidden bg-white py-24 sm:py-32 border-b border-forest-950/[0.06]">
       {/* Background aesthetics */}
-      <div className="pointer-events-none absolute inset-0 z-0 select-none">
-        <img 
-          src="/images/orbit_bg.png" 
-          alt="Agricultural background texture" 
-          className="w-full h-full object-cover opacity-[0.09]"
-          draggable={false}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-transparent to-white/95" />
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-grid grid-fade opacity-20 z-0" />
-      <div className="pointer-events-none absolute left-1/3 top-1/4 h-96 w-96 rounded-full bg-emerald-accent/[0.02] blur-3xl z-0" />
+      <div className="pointer-events-none absolute inset-0 bg-grid grid-fade opacity-20" />
+      <div className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-emerald-accent/[0.04] blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-emerald-accent/[0.03] blur-3xl" />
 
-      <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-          
-          {/* Left Column: Orbital Interactive Circle Showcase */}
-          <div 
-            className={`lg:col-span-6 flex items-center justify-center transition-all duration-1000 ${
-              shown ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
-            }`}
-          >
-            <div
-              ref={containerRef}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              className="relative w-full max-w-[500px] aspect-square flex items-center justify-center overflow-visible select-none"
-              style={{
-                transform: `perspective(1000px) rotateY(calc(var(--mouse-x, 0) * 16deg)) rotateX(calc(var(--mouse-y, 0) * -16deg)) scale(${scale})`,
-                transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                willChange: 'transform',
-              }}
-            >
-              {/* Rotating Orbit Dotted Ring */}
-              <svg className="absolute w-[372px] h-[372px] pointer-events-none animate-[spin_100s_linear_infinite]" viewBox="0 0 200 200">
-                <circle
-                  cx="100"
-                  cy="100"
-                  r="98"
-                  fill="none"
-                  stroke="rgba(16, 185, 129, 0.22)"
-                  strokeWidth="1"
-                  strokeDasharray="6 5"
-                />
-              </svg>
+      <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
+        {/* Section Header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
+            What the System Offers
+          </span>
+          <h2 className="mt-3 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.08]">
+            Complete digital infrastructure for <span className="shimmer-text">modern plantations</span>
+          </h2>
+        </div>
 
-              {/* Glowing active indicator dot rotating around the orbit ring */}
-              <div 
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  width: '372px',
-                  height: '372px',
-                  transform: `rotate(${activeIndex * 60}deg)`,
-                  transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
-                  willChange: 'transform',
-                }}
+        {/* 8-Card Capabilities Grid */}
+        <div className="mt-16 sm:mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {systemModules.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.title}
+                onClick={() => onNavigate?.('solutions')}
+                className={`group relative flex flex-col justify-between rounded-3xl border border-forest-950/[0.07] bg-white p-7 shadow-sm cursor-pointer transition-all duration-700 hover:border-emerald-accent/40 hover:shadow-glow-soft hover:-translate-y-1 ${
+                  shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ transitionDelay: `${idx * 60}ms` }}
               >
-                <div className="absolute top-[2px] left-1/2 -translate-x-1/2 h-3.5 w-3.5 rounded-full bg-emerald-accent shadow-[0_0_15px_#10b981] animate-pulse" />
-              </div>
-
-              {/* Central Spatio Agri Node */}
-              <div className="relative z-10 flex flex-col items-center justify-center h-28 w-28 rounded-3xl bg-forest-950 text-white ring-4 ring-emerald-accent/20 shadow-[0_0_40px_-5px_rgba(16,185,129,0.45)] p-3 text-center">
-                <span className="text-emerald-accent font-mono text-[9px] uppercase tracking-widest font-bold">SPATIO</span>
-                <span className="text-white font-bold text-base tracking-tight leading-tight">AGRI</span>
-                <span className="text-white/40 text-[8px] font-mono mt-0.5">ESTATE GIS</span>
-                <span className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10" />
-              </div>
-
-              {/* Orbital Nodes Mapping */}
-              {modules.map((m, index) => {
-                const angle = startAngle + index * angleStep;
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
-                const isActive = index === activeIndex;
-                const ActiveIcon = m.icon;
-
-                return (
-                  <div
-                    key={m.id}
-                    className="absolute flex flex-col items-center gap-2.5"
-                    style={{
-                      transform: `translate(${x}px, ${y}px)`,
-                      left: 'calc(50% - 40px)',
-                      top: 'calc(50% - 40px)',
-                      transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                    }}
-                  >
-                    <button
-                      onClick={() => setActiveIndex(index)}
-                      onMouseEnter={() => setActiveIndex(index)}
-                      className={`group/btn relative grid h-20 w-20 place-items-center rounded-full transition-all duration-300 shadow-sm hover:scale-110 active:scale-95 ${
-                        isActive
-                          ? `${m.activeBgClass} text-white ring-4 ${m.activeRingClass} scale-110 ${m.activeShadowClass} z-20`
-                          : `bg-white ${m.colorClass} hover:border-forest-950/20 border border-forest-950/10 z-10`
-                      }`}
-                      aria-label={m.title}
-                      style={{
-                        transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                      }}
-                    >
-                      <ActiveIcon className="h-8 w-8 transition-transform duration-300 group-hover/btn:scale-110" strokeWidth={2} />
-                      <span className={`absolute -inset-1.5 rounded-full border border-dashed border-emerald-accent/40 scale-75 opacity-0 transition-all duration-300 ${isActive ? 'scale-100 opacity-100 animate-[spin_8s_linear_infinite]' : ''}`} />
-                    </button>
-                    
-                    {/* Node label */}
-                    <span 
-                      className={`whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold shadow-sm border transition-all duration-300 select-none ${
-                        isActive 
-                          ? 'bg-forest-950 text-white scale-105 border-forest-950 shadow-[0_4px_12px_rgba(11,37,38,0.15)]' 
-                          : 'bg-white text-forest-950/60 hover:text-forest-950 border-forest-950/5'
-                      }`}
-                    >
-                      {m.short}
+                <div>
+                  {/* Top row: Icon and Tag */}
+                  <div className="flex items-center justify-between">
+                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-accent/10 text-emerald-deep transition-all duration-300 group-hover:bg-emerald-accent/20 group-hover:scale-105">
+                      <Icon className="h-6 w-6" strokeWidth={1.75} />
+                    </div>
+                    <span className="rounded-full bg-forest-950/[0.04] px-3 py-1 font-mono text-[10px] font-semibold text-forest-950/60 group-hover:bg-emerald-accent/15 group-hover:text-emerald-deep transition-colors">
+                      {item.tag}
                     </span>
                   </div>
-                );
-              })}
-            </div>
-          </div>
 
-          {/* Right Column: Copy & Interactive Details Card */}
-          <div 
-            className={`lg:col-span-6 transition-all duration-1000 delay-150 ${
-              shown ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
-            }`}
-          >
-            <div>
-              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
-                Unified Ecosystem
-              </span>
-              <h2 className="mt-3 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.05]">
-                Your One-Stop Solution For <span className="shimmer-text">Plantation Management</span>
-              </h2>
-              <p className="mt-5 text-base leading-relaxed text-forest-950/65">
-                Spatio Agri unifies all aspects of coconut plantations and commercial growing into a single operating matrix. By linking GIS subdivision mapping, harvest logs, and copra/oil processing with sales records, Spatio Agri streamlines data across medium to large-scale estates.
-              </p>
-
-              {/* Dynamic Module Detail Card */}
-              <div 
-                key={activeIndex} 
-                className="mt-8 animate-fadeUp overflow-hidden rounded-3xl bg-forest-950 p-6 text-white shadow-float border border-white/10"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 text-emerald-accent ring-1 ring-white/10">
-                      <activeModule.icon className="h-5.5 w-5.5" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold tracking-tight text-white">{activeModule.title}</h3>
-                      <span className="text-[10px] font-mono text-emerald-accent/80 tracking-wide uppercase">Core Module</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1.5 rounded-full bg-white/5 px-2.5 py-1 font-mono text-[10px] text-emerald-accent ring-1 ring-inset ring-white/10">
-                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-accent" />
-                    {activeModule.metric}
-                  </div>
+                  {/* Title & Description */}
+                  <h3 className="mt-5 text-lg font-bold tracking-tight text-forest-950 group-hover:text-emerald-deep transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-forest-950/60">
+                    {item.desc}
+                  </p>
                 </div>
 
-                <p className="mt-4 text-sm leading-relaxed text-white/70">
-                  {activeModule.desc}
-                </p>
-
-                <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
-                  <span className="font-mono text-[10px] text-white/40">Enterprise Ready · Hot Sync</span>
-                  <button className="group/btn text-xs font-semibold text-white flex items-center gap-1 hover:text-emerald-accent transition-colors">
-                    Explore capabilities
-                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                  </button>
+                {/* Footer link */}
+                <div className="mt-6 flex items-center gap-1.5 text-xs font-semibold text-emerald-deep group-hover:text-forest-950 transition-colors pt-4 border-t border-forest-950/[0.05]">
+                  <span>Explore module</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
-
-            </div>
-          </div>
-
+            );
+          })}
         </div>
+
+        {/* Bottom CTA bridge */}
+        {onNavigate && (
+          <div className="mt-14 text-center">
+            <button
+              onClick={() => onNavigate('solutions')}
+              className="inline-flex items-center gap-2 rounded-full bg-forest-950 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-forest-900 transition-all active:scale-[0.98]"
+            >
+              View detailed module specifications
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
 }
+
+export { OrbitSection as WhatSystemOffers };
