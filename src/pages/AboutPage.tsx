@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ArrowUpRight, Phone, Globe } from 'lucide-react';
+import { Phone, Globe } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
@@ -192,31 +192,30 @@ export function AboutPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
       {/* ================= SECTION 3: CONTACT & CTA ================= */}
       <section ref={ref} className="relative py-16 sm:py-20 bg-white">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <div className="rounded-3xl bg-[#0f172a] border border-slate-800/80 p-8 sm:p-10 text-white shadow-xl">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-                  Want to see Spatio Agri on your plantation?
-                </h3>
-                <p className="mt-1.5 text-xs sm:text-sm text-slate-300">
-                  Book a walkthrough with an SDS &amp; SULECO geospatial coordinator.
-                </p>
-                <div className="mt-4 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-200">
-                  <a href="tel:0773301274" className="inline-flex items-center gap-1.5 hover:text-[#00d2ff] transition-colors">
-                    <Phone className="h-3.5 w-3.5 text-[#00d2ff]" /> 077 330 1274
-                  </a>
-                  <a href="https://www.spatiosds.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-[#00d2ff] transition-colors">
-                    <Globe className="h-3.5 w-3.5 text-[#00d2ff]" /> www.spatiosds.com
-                  </a>
-                </div>
+          <div className="rounded-3xl bg-white border-2 border-emerald-500/40 p-8 sm:p-10 shadow-sm">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-forest-950">
+                Want to see Spatio Agri on your plantation?
+              </h3>
+              <p className="mt-2 text-xs sm:text-sm text-forest-950/70">
+                Book a walkthrough with an SDS &amp; SULECO geospatial coordinator.
+              </p>
+              <div className="mt-5 flex flex-wrap items-center gap-6 text-sm font-semibold text-forest-950">
+                <a
+                  href="tel:0773301274"
+                  className="inline-flex items-center gap-2 text-forest-950 hover:text-emerald-deep transition-colors"
+                >
+                  <Phone className="h-4 w-4 text-emerald-deep" /> 077 330 1274
+                </a>
+                <a
+                  href="https://www.spatiosds.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-emerald-deep hover:underline transition-colors"
+                >
+                  <Globe className="h-4 w-4" /> www.spatiosds.com
+                </a>
               </div>
-              <button
-                onClick={() => onNavigate('demo')}
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#2563eb] px-6 py-3 text-xs font-semibold text-white shadow-md hover:bg-[#1d4ed8] transition-all active:scale-[0.98]"
-              >
-                Schedule Plantation Demo
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </button>
             </div>
           </div>
         </div>
