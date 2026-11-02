@@ -4,29 +4,24 @@ import type { Page } from '../nav';
 
 interface ModuleCard {
   title: string;
-  description: string;
   image: string;
 }
 
 const modulesGroup1: ModuleCard[] = [
   {
     title: 'Dashboard & GIS Monitoring',
-    description: 'Live overview of subdivisions, cadastral maps, tree statistics, and performance indicators across the estate.',
     image: '/images/modules/gis_monitoring.jpg',
   },
   {
     title: 'Harvest Records',
-    description: 'Track harvest quantities by date, subdivision, and crop batch with field-level precision.',
     image: '/images/modules/harvest_records.jpg',
   },
   {
     title: 'Processing Records',
-    description: 'Record processed outputs such as copra, coconut oil, husk, and shell production batches.',
     image: '/images/modules/processing_records.jpg',
   },
   {
     title: 'Sales Tracking',
-    description: 'Monitor commercial sales, buyer orders, fulfillment quantities, and real-time revenue performance.',
     image: '/images/modules/sales_logistics.jpg',
   },
 ];
@@ -34,22 +29,18 @@ const modulesGroup1: ModuleCard[] = [
 const modulesGroup2: ModuleCard[] = [
   {
     title: 'Farm Managers',
-    description: 'Organize managerial oversight, division assignments, and estate leadership responsibilities.',
     image: '/images/modules/farm_managers.jpg',
   },
   {
     title: 'Farm Employees',
-    description: 'Structure workforce records, daily attendance, harvest allocation, and field accountability.',
     image: '/images/modules/farm_workforce.jpg',
   },
   {
     title: 'Weather & Market Intelligence',
-    description: 'Connect microclimate weather monitoring and commodity market signals for optimal operational timing.',
     image: '/images/modules/weather_market.jpg',
   },
   {
     title: 'User Management & Reports',
-    description: 'Role-based access, filtered views, exportable audit records, and executive reporting.',
     image: '/images/modules/reports_compliance.jpg',
   },
 ];
@@ -95,7 +86,7 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
             {/* Card 1: Dashboard & GIS Monitoring (Wide Showcase) */}
             <div
               onClick={handleCardClick}
-              className="group relative h-[320px] sm:h-[380px] lg:h-[480px] lg:col-span-5 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+              className="group relative h-[320px] sm:h-[380px] lg:h-[460px] lg:col-span-5 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
             >
               <img
                 src={modulesGroup1[0].image}
@@ -103,24 +94,21 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/25 to-transparent transition-colors duration-500 group-hover:from-forest-950/95" />
               <div className="pointer-events-none absolute inset-0 rounded-[28px] sm:rounded-[32px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
               <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-1">
                   {modulesGroup1[0].title}
                 </h3>
-                <p className="mt-2 text-sm sm:text-base text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-3">
-                  {modulesGroup1[0].description}
-                </p>
               </div>
             </div>
 
             {/* Stacked Center: Harvest Records & Processing Records */}
-            <div className="flex flex-col gap-5 sm:gap-6 lg:col-span-3 lg:h-[480px]">
+            <div className="flex flex-col gap-5 sm:gap-6 lg:col-span-3 lg:h-[460px]">
               {/* Card 2: Harvest Records */}
               <div
                 onClick={handleCardClick}
-                className="group relative h-[240px] sm:h-[260px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                className="group relative h-[220px] sm:h-[240px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
               >
                 <img
                   src={modulesGroup1[1].image}
@@ -128,22 +116,19 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/25 to-transparent transition-colors duration-500 group-hover:from-forest-950/95" />
                 <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
                 <div className="relative z-10 flex h-full flex-col justify-end p-5 sm:p-6">
                   <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-0.5">
                     {modulesGroup1[1].title}
                   </h3>
-                  <p className="mt-1.5 text-xs sm:text-sm text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-2">
-                    {modulesGroup1[1].description}
-                  </p>
                 </div>
               </div>
 
               {/* Card 3: Processing Records */}
               <div
                 onClick={handleCardClick}
-                className="group relative h-[240px] sm:h-[260px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                className="group relative h-[220px] sm:h-[240px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
               >
                 <img
                   src={modulesGroup1[2].image}
@@ -151,15 +136,12 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/25 to-transparent transition-colors duration-500 group-hover:from-forest-950/95" />
                 <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
                 <div className="relative z-10 flex h-full flex-col justify-end p-5 sm:p-6">
                   <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-0.5">
                     {modulesGroup1[2].title}
                   </h3>
-                  <p className="mt-1.5 text-xs sm:text-sm text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-2">
-                    {modulesGroup1[2].description}
-                  </p>
                 </div>
               </div>
             </div>
@@ -167,7 +149,7 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
             {/* Card 4: Sales Tracking (Tall Portrait) */}
             <div
               onClick={handleCardClick}
-              className="group relative h-[320px] sm:h-[380px] lg:h-[480px] lg:col-span-4 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+              className="group relative h-[320px] sm:h-[380px] lg:h-[460px] lg:col-span-4 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
             >
               <img
                 src={modulesGroup1[3].image}
@@ -175,15 +157,12 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/25 to-transparent transition-colors duration-500 group-hover:from-forest-950/95" />
               <div className="pointer-events-none absolute inset-0 rounded-[28px] sm:rounded-[32px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
               <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-1">
                   {modulesGroup1[3].title}
                 </h3>
-                <p className="mt-2 text-sm sm:text-base text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-3">
-                  {modulesGroup1[3].description}
-                </p>
               </div>
             </div>
           </div>
@@ -193,7 +172,7 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
             {/* Card 5: Farm Managers (Tall Portrait) */}
             <div
               onClick={handleCardClick}
-              className="group relative h-[320px] sm:h-[380px] lg:h-[480px] lg:col-span-4 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+              className="group relative h-[320px] sm:h-[380px] lg:h-[460px] lg:col-span-4 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
             >
               <img
                 src={modulesGroup2[0].image}
@@ -201,24 +180,21 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/25 to-transparent transition-colors duration-500 group-hover:from-forest-950/95" />
               <div className="pointer-events-none absolute inset-0 rounded-[28px] sm:rounded-[32px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
               <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-1">
                   {modulesGroup2[0].title}
                 </h3>
-                <p className="mt-2 text-sm sm:text-base text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-3">
-                  {modulesGroup2[0].description}
-                </p>
               </div>
             </div>
 
             {/* Stacked Center: Farm Employees & Weather & Market Intelligence */}
-            <div className="flex flex-col gap-5 sm:gap-6 lg:col-span-3 lg:h-[480px]">
+            <div className="flex flex-col gap-5 sm:gap-6 lg:col-span-3 lg:h-[460px]">
               {/* Card 6: Farm Employees */}
               <div
                 onClick={handleCardClick}
-                className="group relative h-[240px] sm:h-[260px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                className="group relative h-[220px] sm:h-[240px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
               >
                 <img
                   src={modulesGroup2[1].image}
@@ -226,22 +202,19 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/25 to-transparent transition-colors duration-500 group-hover:from-forest-950/95" />
                 <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
                 <div className="relative z-10 flex h-full flex-col justify-end p-5 sm:p-6">
                   <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-0.5">
                     {modulesGroup2[1].title}
                   </h3>
-                  <p className="mt-1.5 text-xs sm:text-sm text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-2">
-                    {modulesGroup2[1].description}
-                  </p>
                 </div>
               </div>
 
               {/* Card 7: Weather & Market Intelligence */}
               <div
                 onClick={handleCardClick}
-                className="group relative h-[240px] sm:h-[260px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                className="group relative h-[220px] sm:h-[240px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
               >
                 <img
                   src={modulesGroup2[2].image}
@@ -249,15 +222,12 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/25 to-transparent transition-colors duration-500 group-hover:from-forest-950/95" />
                 <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
                 <div className="relative z-10 flex h-full flex-col justify-end p-5 sm:p-6">
                   <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-0.5">
                     {modulesGroup2[2].title}
                   </h3>
-                  <p className="mt-1.5 text-xs sm:text-sm text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-2">
-                    {modulesGroup2[2].description}
-                  </p>
                 </div>
               </div>
             </div>
@@ -265,7 +235,7 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
             {/* Card 8: User Management & Reports (Wide Showcase) */}
             <div
               onClick={handleCardClick}
-              className="group relative h-[320px] sm:h-[380px] lg:h-[480px] lg:col-span-5 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+              className="group relative h-[320px] sm:h-[380px] lg:h-[460px] lg:col-span-5 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
             >
               <img
                 src={modulesGroup2[3].image}
@@ -273,15 +243,12 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/25 to-transparent transition-colors duration-500 group-hover:from-forest-950/95" />
               <div className="pointer-events-none absolute inset-0 rounded-[28px] sm:rounded-[32px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
               <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-1">
                   {modulesGroup2[3].title}
                 </h3>
-                <p className="mt-2 text-sm sm:text-base text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-3">
-                  {modulesGroup2[3].description}
-                </p>
               </div>
             </div>
           </div>
