@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, ArrowUpRight, Lock, X } from 'lucide-react';
+import { Lock, X } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
@@ -276,70 +276,6 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
             </div>
           </div>
         )}
-
-        {/* ================= HOW THEY WORK TOGETHER ================= */}
-        <div className="mt-20 sm:mt-28 rounded-3xl bg-forest-950 p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl max-w-4xl mx-auto">
-          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-emerald-accent/10 blur-3xl" />
-          <div className="pointer-events-none absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-emerald-accent/10 blur-3xl" />
-
-          <div className="relative z-10 max-w-2xl">
-            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-accent">
-              Connected Architecture
-            </span>
-            <h3 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl leading-snug">
-              How Fertilizer Manager &amp; Plantation Management connect
-            </h3>
-            <p className="mt-3 text-xs sm:text-sm text-white/70 leading-relaxed">
-              When deployed together, Spatio Agri forms a closed-loop operating system where spatial diagnostics guide drone spray flights and track harvest yields.
-            </p>
-          </div>
-
-          <div className="relative z-10 mt-8 grid grid-cols-1 md:grid-cols-3 gap-5 border-t border-white/10 pt-8">
-            <div>
-              <span className="font-mono text-xs font-bold text-emerald-accent">STEP 01</span>
-              <h4 className="mt-1 text-sm font-bold text-white">Spatial Diagnostics</h4>
-              <p className="mt-1.5 text-xs text-white/60 leading-relaxed">
-                Plantation Management detects low-vigor palms and maps exact block boundaries.
-              </p>
-            </div>
-
-            <div>
-              <span className="font-mono text-xs font-bold text-emerald-accent">STEP 02</span>
-              <h4 className="mt-1 text-sm font-bold text-white">Precision Nutrition</h4>
-              <p className="mt-1.5 text-xs text-white/60 leading-relaxed">
-                Fertilizer Manager generates prescription maps and dispatches DJI Agras drone sprayers.
-              </p>
-            </div>
-
-            <div>
-              <span className="font-mono text-xs font-bold text-emerald-accent">STEP 03</span>
-              <h4 className="mt-1 text-sm font-bold text-white">Harvest Verification</h4>
-              <p className="mt-1.5 text-xs text-white/60 leading-relaxed">
-                Yield increases are recorded by division in Plantation Management, closing the loop.
-              </p>
-            </div>
-          </div>
-
-          {/* Action Button */}
-          {onNavigate && (
-            <div className="relative z-10 mt-8 flex flex-col sm:flex-row items-center gap-3">
-              <button
-                onClick={() => onNavigate('demo')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-emerald-accent px-6 py-3.5 text-xs font-semibold text-white shadow-glow hover:bg-emerald-deep transition-all active:scale-[0.98]"
-              >
-                Schedule Live Product Demo
-                <ArrowRight className="h-3.5 w-3.5" />
-              </button>
-              <button
-                onClick={() => onNavigate('contact')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-xs font-semibold text-white hover:bg-white/10 transition-all active:scale-[0.98]"
-              >
-                Contact Solutions Team
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </button>
-            </div>
-          )}
-        </div>
       </div>
 
       {/* ================= LIGHTBOX MODAL ================= */}
