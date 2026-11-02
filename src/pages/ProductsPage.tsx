@@ -75,8 +75,8 @@ const PRODUCTS: ProductItem[] = [
         desc: 'Count and monitor every tree across your plantation.',
       },
       {
-        title: 'Labor & Harvest Logs',
-        desc: 'Simple daily worker attendance and crop harvest records.',
+        title: 'Employee Management',
+        desc: 'Simple daily worker attendance and harvest records.',
       },
     ],
   },
@@ -150,7 +150,7 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
           {visibleProducts.map((product) => (
             <div
               key={product.id}
-              className="group relative flex flex-col justify-between rounded-[28px] border border-forest-950/[0.08] bg-white p-6 sm:p-8 shadow-sm transition-all duration-300 hover:border-emerald-accent/40 hover:shadow-[0_20px_50px_-15px_rgba(11,37,26,0.1)] hover:-translate-y-1"
+              className="group relative flex flex-col justify-between rounded-[28px] border border-forest-950/[0.08] bg-white p-6 sm:p-8 shadow-sm transition-all duration-300 hover:border-forest-950/20 hover:shadow-[0_20px_50px_-15px_rgba(11,37,26,0.08)] hover:-translate-y-1"
             >
               <div>
                 {/* Title & Description */}
@@ -174,7 +174,7 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
                       href={product.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 rounded-full bg-white/[0.08] px-3 py-0.5 text-[10px] font-mono text-emerald-accent border border-white/10 max-w-[190px] sm:max-w-xs truncate shadow-inner hover:bg-white/[0.15] hover:border-emerald-accent/40 transition-colors"
+                      className="flex items-center gap-1.5 rounded-full bg-white/[0.08] px-3 py-0.5 text-[10px] font-mono text-emerald-accent border border-white/10 max-w-[190px] sm:max-w-xs truncate shadow-inner hover:bg-white/[0.15] hover:border-white/20 transition-colors"
                       title="Open live demo in new tab"
                     >
                       <Lock className="h-2.5 w-2.5 text-emerald-accent shrink-0" />
@@ -195,12 +195,12 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
                       src={product.image}
                       alt={product.title}
                       loading="lazy"
-                      className="h-full w-full object-contain transition-transform duration-500 group-hover/img:scale-[1.02]"
+                      className="h-full w-full object-contain transition-transform duration-500 group-hover/img:scale-[1.01]"
                     />
-                    {/* Hover Zoom Hint Overlay */}
-                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-forest-950/20 opacity-0 backdrop-blur-[1px] transition-opacity duration-200 group-hover/img:opacity-100">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-forest-950/90 px-3.5 py-1.5 text-[11px] font-medium text-white shadow-lg border border-white/20">
-                        <Maximize2 className="h-3 w-3 text-emerald-accent" />
+                    {/* Hover Zoom Hint Overlay (Neutral, no green tint over image) */}
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover/img:opacity-100">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-black/85 px-3.5 py-1.5 text-[11px] font-medium text-white shadow-xl border border-white/20">
+                        <Maximize2 className="h-3 w-3 text-white" />
                         Click to expand
                       </span>
                     </div>
@@ -230,7 +230,7 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
                     <div key={feat.title} className="flex items-start gap-2.5 text-xs">
                       <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-deep mt-0.5" />
                       <p className="leading-relaxed text-forest-950/70">
-                        <strong className="font-semibold text-forest-950">{feat.title}</strong> — {feat.desc}
+                        <strong className="font-semibold text-forest-950">{feat.title}: </strong>{feat.desc}
                       </p>
                     </div>
                   ))}
@@ -243,7 +243,7 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
                   href={product.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-forest-950 px-4 py-3 text-xs font-semibold text-white shadow-sm transition-all hover:bg-emerald-deep hover:shadow-md active:scale-[0.98]"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-forest-950 px-4 py-3 text-xs font-semibold text-white shadow-sm transition-all hover:bg-black hover:shadow-md active:scale-[0.98]"
                 >
                   Open Live Demo
                   <ExternalLink className="h-3.5 w-3.5" />
