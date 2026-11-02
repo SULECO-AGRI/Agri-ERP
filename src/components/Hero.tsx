@@ -101,16 +101,9 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
             <span className="shimmer-text-dark">Nothing Left to Memory.</span>
           </h1>
 
-          <p
-            className="animate-fadeUp mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-white/70"
-            style={{ animationDelay: "120ms" }}
-          >
-            Turn your coconut farm and commercial plantations into smart, accessible, and efficient operations. Spatio Agri pulls GIS subdivision mapping, harvest batches, processing records, and sales tracking into a single unified platform.
-          </p>
-
           <div
-            className="animate-fadeUp mt-8 flex flex-col items-center gap-3.5 sm:flex-row sm:justify-center"
-            style={{ animationDelay: "180ms" }}
+            className="animate-fadeUp mt-10 sm:mt-12 flex flex-col items-center gap-3.5 sm:flex-row sm:justify-center"
+            style={{ animationDelay: "120ms" }}
           >
             <button
               onClick={() => onNavigate("demo")}
