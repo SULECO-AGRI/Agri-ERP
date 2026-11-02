@@ -71,7 +71,7 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
             Complete digital infrastructure for <span className="shimmer-text">modern plantations</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-forest-950/70 max-w-2xl mx-auto">
-            Explore the core modules powering precision coconut agriculture, from cadastral GIS mapping to harvest records and market intelligence.
+            Explore the core modules powering precision plantation agriculture, from cadastral GIS mapping to harvest records and market intelligence.
           </p>
         </div>
 

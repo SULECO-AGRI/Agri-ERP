@@ -26,7 +26,7 @@ export function Footer({ onNavigate }: { onNavigate: (p: Page) => void }) {
     {
       title: 'Resources',
       links: [
-        { label: 'Pricing Plans', page: 'pricing' },
+        { label: 'Products & Platforms', page: 'products' },
         { label: 'Interactive Demo', page: 'demo' },
         { label: 'GIS & Field Specs', page: 'solutions' },
         { label: 'Estate Case Studies', page: 'about' },
@@ -58,7 +58,7 @@ export function Footer({ onNavigate }: { onNavigate: (p: Page) => void }) {
               <Logo />
             </button>
             <p className="mt-4 max-w-xs text-xs text-forest-950/60 leading-relaxed">
-              Unified digital operating platform for commercial coconut plantations and smart estates.
+              Unified digital operating platform for commercial agricultural plantations and smart estates.
             </p>
           </div>
 

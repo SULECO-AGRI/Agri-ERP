@@ -1,5 +1,6 @@
 export type Page =
   | "home"
+  | "products"
   | "solutions"
   | "pricing"
   | "about"
@@ -8,8 +9,8 @@ export type Page =
   | "features";
 
 export const NAV: { label: string; page: Page }[] = [
+  { label: "Products", page: "products" },
   { label: "Solutions", page: "solutions" },
-  { label: "Pricing", page: "pricing" },
   { label: "About Us", page: "about" },
   { label: "Interactive Demo", page: "demo" },
   { label: "Contact", page: "contact" },

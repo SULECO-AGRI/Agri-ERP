@@ -13,51 +13,51 @@ const techPartners: Partner[] = [
   {
     name: 'DJI Agriculture',
     categoryBadge: 'Technology & Equipment',
-    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200/60',
+    badgeColor: 'text-blue-600',
     logo: '/images/partners/x3.jpg',
     subLogoText: 'Agriculture',
   },
   {
     name: 'DJI Enterprise',
     categoryBadge: 'Technology & Equipment',
-    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200/60',
+    badgeColor: 'text-blue-600',
     logo: '/images/partners/x3.jpg',
     subLogoText: 'Enterprise',
   },
   {
     name: 'Stonex',
     categoryBadge: 'Technology & Equipment',
-    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200/60',
+    badgeColor: 'text-blue-600',
     logo: '/images/partners/x6.jpg',
   },
   {
     name: 'Hexagon',
     categoryBadge: 'Technology & Equipment',
-    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200/60',
+    badgeColor: 'text-blue-600',
     logo: '/images/partners/x7.jpg',
   },
   {
     name: 'Leica Geosystems',
     categoryBadge: 'Technology & Equipment',
-    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200/60',
+    badgeColor: 'text-blue-600',
     logo: '/images/partners/x1.jpg',
   },
   {
     name: 'Topcon Positioning',
     categoryBadge: 'Technology & Equipment',
-    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200/60',
+    badgeColor: 'text-blue-600',
     logo: '/images/partners/x2.jpg',
   },
   {
     name: 'Carlson Software',
     categoryBadge: 'Technology & Equipment',
-    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200/60',
+    badgeColor: 'text-blue-600',
     logo: '/images/partners/x8.jpg',
   },
   {
     name: 'CONTROLS Group',
     categoryBadge: 'Technology & Equipment',
-    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200/60',
+    badgeColor: 'text-blue-600',
     logo: '/images/partners/x4.jpg',
   },
 ];
@@ -67,25 +67,25 @@ const govPartners: Partner[] = [
   {
     name: 'Ministry of Agriculture',
     categoryBadge: 'Ministry & Institute',
-    badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200/60',
+    badgeColor: 'text-emerald-700',
     logo: '/images/partners/07-2.webp',
   },
   {
     name: 'Survey Department of Sri Lanka',
     categoryBadge: 'Ministry & Institute',
-    badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200/60',
+    badgeColor: 'text-emerald-700',
     logo: '/images/partners/01-4.webp',
   },
   {
     name: 'Civil Aviation Authority',
     categoryBadge: 'Ministry & Institute',
-    badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200/60',
+    badgeColor: 'text-emerald-700',
     logo: '/images/partners/04-2.webp',
   },
   {
     name: 'Access Engineering',
     categoryBadge: 'Ministry & Institute',
-    badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200/60',
+    badgeColor: 'text-emerald-700',
     logo: '/images/partners/09-2.webp',
   },
 ];
@@ -95,49 +95,49 @@ const academicPartners: Partner[] = [
   {
     name: 'University of Peradeniya',
     categoryBadge: 'Academic Collaboration',
-    badgeColor: 'bg-purple-50 text-purple-800 border-purple-200/60',
+    badgeColor: 'text-purple-700',
     logo: '/images/partners/10-3.webp',
   },
   {
     name: 'University of Moratuwa',
     categoryBadge: 'Academic Collaboration',
-    badgeColor: 'bg-purple-50 text-purple-800 border-purple-200/60',
+    badgeColor: 'text-purple-700',
     logo: '/images/partners/02-5.webp',
   },
   {
     name: 'UCSC Colombo',
     categoryBadge: 'Academic Collaboration',
-    badgeColor: 'bg-purple-50 text-purple-800 border-purple-200/60',
+    badgeColor: 'text-purple-700',
     logo: '/images/partners/09-3.webp',
   },
   {
     name: 'Sabaragamuwa University',
     categoryBadge: 'Academic Collaboration',
-    badgeColor: 'bg-purple-50 text-purple-800 border-purple-200/60',
+    badgeColor: 'text-purple-700',
     logo: '/images/partners/08-4.webp',
   },
   {
     name: 'KDU Defence University',
     categoryBadge: 'Academic Collaboration',
-    badgeColor: 'bg-purple-50 text-purple-800 border-purple-200/60',
+    badgeColor: 'text-purple-700',
     logo: '/images/partners/05-3.webp',
   },
   {
     name: 'University of Ruhuna',
     categoryBadge: 'Academic Collaboration',
-    badgeColor: 'bg-purple-50 text-purple-800 border-purple-200/60',
+    badgeColor: 'text-purple-700',
     logo: '/images/partners/06-3.webp',
   },
   {
     name: 'University of Jaffna',
     categoryBadge: 'Academic Collaboration',
-    badgeColor: 'bg-purple-50 text-purple-800 border-purple-200/60',
+    badgeColor: 'text-purple-700',
     logo: '/images/partners/04-3.webp',
   },
   {
     name: 'University of Vavuniya',
     categoryBadge: 'Academic Collaboration',
-    badgeColor: 'bg-purple-50 text-purple-800 border-purple-200/60',
+    badgeColor: 'text-purple-700',
     logo: '/images/partners/01-6.webp',
   },
 ];
@@ -155,7 +155,7 @@ export function PartnersSection() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden bg-cream py-16 sm:py-20 border-b border-forest-950/[0.06]"
+      className="relative overflow-hidden bg-white py-16 sm:py-20 border-b border-forest-950/[0.06]"
     >
       <div className="pointer-events-none absolute inset-0 bg-grid grid-fade opacity-30" />
       <div className="pointer-events-none absolute -left-40 top-1/2 h-80 w-80 rounded-full bg-emerald-accent/[0.04] blur-3xl" />
@@ -204,7 +204,7 @@ export function PartnersSection() {
                     )}
                   </div>
                   <span
-                    className={`mt-0.5 inline-block self-start rounded-full border px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase whitespace-nowrap ${p.badgeColor}`}
+                    className={`mt-0.5 inline-block self-start text-[9px] font-semibold tracking-wider uppercase whitespace-nowrap ${p.badgeColor}`}
                   >
                     {p.categoryBadge}
                   </span>
@@ -235,7 +235,7 @@ export function PartnersSection() {
                     {p.name}
                   </span>
                   <span
-                    className={`mt-0.5 inline-block self-start rounded-full border px-2 py-0.5 text-[9px] font-semibold tracking-wide uppercase whitespace-nowrap ${p.badgeColor}`}
+                    className={`mt-0.5 inline-block self-start text-[9px] font-semibold tracking-wider uppercase whitespace-nowrap ${p.badgeColor}`}
                   >
                     {p.categoryBadge}
                   </span>

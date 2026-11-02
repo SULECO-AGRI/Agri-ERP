@@ -7,7 +7,7 @@ import { AgriculturalServices } from "./components/AgriculturalServices";
 import { PlatformWorkflow } from "./components/PlatformWorkflow";
 import { ValueAndWhySpatio } from "./components/ValueAndWhySpatio";
 import { SolutionsPage } from "./pages/SolutionsPage";
-import { PricingPage } from "./pages/PricingPage";
+import { ProductsPage } from "./pages/ProductsPage";
 import { AboutPage } from "./pages/AboutPage";
 import { DemoPage } from "./pages/DemoPage";
 import { ContactPage } from "./pages/ContactPage";
@@ -44,7 +44,7 @@ function App() {
           </>
         )}
         {page === "solutions" && <SolutionsPage onNavigate={navigate} />}
-        {page === "pricing" && <PricingPage onNavigate={navigate} />}
+        {(page === "products" || page === "pricing") && <ProductsPage onNavigate={navigate} />}
         {page === "about" && <AboutPage onNavigate={navigate} />}
         {page === "demo" && <DemoPage />}
         {page === "contact" && <ContactPage />}
