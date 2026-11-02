@@ -78,13 +78,12 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
       <div className="pointer-events-none absolute left-1/4 top-1/3 h-96 w-96 rounded-full bg-emerald-accent/[0.04] blur-3xl" />
 
       <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
-        {/* ---------------- SECTION 6: VALUE DELIVERED / ROI ---------------- */}
+        {/* ---------------- VALUE DELIVERED / ROI ---------------- */}
         <div>
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-accent/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-deep ring-1 ring-inset ring-emerald-accent/25">
-              <span className="grid h-4 w-4 place-items-center rounded-full bg-emerald-accent text-[10px] font-bold text-white">6</span>
-              Value Delivered / ROI
-            </div>
+            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
+              Value Delivered &amp; ROI
+            </span>
             <h2 className="mt-4 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.08]">
               Measurable impact across <span className="shimmer-text">every hectare.</span>
             </h2>
@@ -120,7 +119,7 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
           </div>
         </div>
 
-        {/* ---------------- SECTION 7: WHY SPATIO / SDS ---------------- */}
+        {/* ---------------- WHY SPATIO / SDS ---------------- */}
         <div className="mt-28 lg:mt-36 pt-16 border-t border-forest-950/[0.07]">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             {/* Left title & context */}
@@ -129,10 +128,9 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
                 shown ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
               }`}
             >
-              <div className="inline-flex items-center gap-2 rounded-full bg-forest-950/[0.04] px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-deep ring-1 ring-inset ring-forest-950/10">
-                <span className="grid h-4 w-4 place-items-center rounded-full bg-forest-950 text-[10px] font-bold text-emerald-accent">7</span>
+              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
                 Why Spatio / SDS
-              </div>
+              </span>
               <h2 className="text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.06]">
                 Geospatial precision built for <span className="shimmer-text">real field operations.</span>
               </h2>
@@ -183,7 +181,7 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
           </div>
         </div>
 
-        {/* ---------------- IMAGE 5: COCONUT FARM CALLOUT BANNER ---------------- */}
+        {/* ---------------- COCONUT FARM CALLOUT BANNER ---------------- */}
         <div
           className={`mt-20 overflow-hidden rounded-[32px] bg-gradient-to-r from-forest-950 via-forest-900 to-forest-950 text-white shadow-2xl ring-1 ring-white/10 transition-all duration-1000 delay-300 ${
             shown ? 'opacity-100 scale-100' : 'opacity-0 scale-[0.98]'
@@ -251,4 +249,3 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
     </section>
   );
 }
-
