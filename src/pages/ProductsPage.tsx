@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, ArrowUpRight, Lock } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Lock, X } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
@@ -7,6 +7,7 @@ type ProductTab = 'all' | 'fertilizer' | 'plantation';
 
 export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void }) {
   const [activeTab, setActiveTab] = useState<ProductTab>('all');
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
   const { ref, shown } = useReveal();
 
   return (
@@ -71,95 +72,96 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-forest-950 sm:text-4xl leading-tight">
                 Fertilizer Manager
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-forest-950/70 max-w-2xl mx-auto leading-relaxed">
-                Generate variable-rate field prescriptions from drone and satellite telemetry in minutes. Targeted nutrition with centimetre precision.
-              </p>
             </div>
 
-            {/* Centered Browser Window Mockup (Matches Reference Layout) */}
-            <div className="mt-8 sm:mt-10 max-w-5xl mx-auto overflow-hidden rounded-[22px] sm:rounded-[28px] border border-forest-950/15 bg-forest-950 shadow-2xl transition-all duration-500 hover:shadow-3xl hover:-translate-y-1">
+            {/* Compact Browser Window Showcase (Small & Displays 100% of Image) */}
+            <div className="mt-8 max-w-3xl mx-auto overflow-hidden rounded-[20px] sm:rounded-[24px] border border-forest-950/15 bg-forest-950 shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-0.5">
               {/* Window Header Chrome Bar */}
-              <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 bg-[#0b251a] border-b border-white/10 select-none">
+              <div className="flex items-center justify-between px-4 sm:px-5 py-2 sm:py-2.5 bg-[#0b251a] border-b border-white/10 select-none">
                 {/* Traffic Light Dots */}
-                <div className="flex items-center gap-2 shrink-0">
-                  <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-                  <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-                  <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
                 </div>
 
                 {/* Centered Address Bar Pill */}
-                <div className="flex items-center gap-2 rounded-full bg-white/[0.08] px-4 py-1 text-xs font-mono text-emerald-accent border border-white/10 max-w-[240px] sm:max-w-md truncate shadow-inner">
-                  <Lock className="h-3.5 w-3.5 text-emerald-accent shrink-0" />
+                <div className="flex items-center gap-1.5 rounded-full bg-white/[0.08] px-3.5 py-1 text-[11px] font-mono text-emerald-accent border border-white/10 max-w-[240px] sm:max-w-sm truncate shadow-inner">
+                  <Lock className="h-3 w-3 text-emerald-accent shrink-0" />
                   <span className="truncate">https://agri.spatiosds.com/app/fertilizer-manager</span>
                 </div>
 
                 {/* Live App Indicator */}
-                <div className="flex items-center gap-2 text-xs font-medium text-emerald-accent shrink-0">
-                  <span className="h-2 w-2 rounded-full bg-emerald-accent animate-pulse" />
+                <div className="flex items-center gap-1.5 text-[11px] font-medium text-emerald-accent shrink-0">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-accent animate-pulse" />
                   <span className="hidden sm:inline">Live App</span>
                 </div>
               </div>
 
-              {/* High-Resolution Screenshot Image */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-forest-950">
+              {/* Complete Uncropped Screenshot Image */}
+              <div
+                onClick={() => setZoomedImage('/images/products/fertilizer_manager_hires.png')}
+                className="relative aspect-[16/9] w-full cursor-zoom-in overflow-hidden bg-forest-950 group"
+                title="Click to view full size"
+              >
                 <img
                   src="/images/products/fertilizer_manager_hires.png"
                   alt="Fertilizer Manager - Precision Drone Spraying"
                   loading="lazy"
-                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-out hover:scale-[1.01]"
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.01]"
                 />
               </div>
             </div>
 
-            {/* Inline Key Metrics */}
-            <div className="mt-8 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-5 text-center">
-                <span className="text-2xl sm:text-3xl font-extrabold text-forest-950">32%</span>
+            {/* Inline Key Metrics (Compact max-w-3xl) */}
+            <div className="mt-6 max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-4 text-center">
+                <span className="text-2xl font-extrabold text-forest-950">32%</span>
                 <h4 className="mt-1 text-xs font-bold text-forest-950">Input Cost Reduction</h4>
                 <p className="text-[11px] text-forest-950/60 mt-0.5">Targeted variable-rate prescription zones</p>
               </div>
 
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-5 text-center">
-                <span className="text-2xl sm:text-3xl font-extrabold text-forest-950">100%</span>
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-4 text-center">
+                <span className="text-2xl font-extrabold text-forest-950">100%</span>
                 <h4 className="mt-1 text-xs font-bold text-forest-950">DJI Agras Integration</h4>
                 <p className="text-[11px] text-forest-950/60 mt-0.5">Direct mission flight plan export</p>
               </div>
 
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-5 text-center">
-                <span className="text-2xl sm:text-3xl font-extrabold text-forest-950">15 min</span>
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-4 text-center">
+                <span className="text-2xl font-extrabold text-forest-950">15 min</span>
                 <h4 className="mt-1 text-xs font-bold text-forest-950">Prescription Turnaround</h4>
                 <p className="text-[11px] text-forest-950/60 mt-0.5">From drone scan to spray mission</p>
               </div>
             </div>
 
             {/* Core Feature Highlights */}
-            <div className="mt-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-6 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
+            <div className="mt-5 max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-5 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
                 <span className="font-mono text-xs font-bold text-emerald-deep">01</span>
-                <h3 className="mt-2 text-base font-bold text-forest-950">
+                <h3 className="mt-1.5 text-sm font-bold text-forest-950">
                   Variable-Rate Nutrition (VRA)
                 </h3>
-                <p className="mt-1.5 text-xs text-forest-950/60 leading-relaxed">
+                <p className="mt-1 text-xs text-forest-950/60 leading-relaxed">
                   Computes precise N-P-K nutrient dosage zones based on multispectral vegetation indices (NDVI/NDRE), matching exact tree canopy requirements.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-6 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-5 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
                 <span className="font-mono text-xs font-bold text-emerald-deep">02</span>
-                <h3 className="mt-2 text-base font-bold text-forest-950">
+                <h3 className="mt-1.5 text-sm font-bold text-forest-950">
                   Automated 3D Flight Plans
                 </h3>
-                <p className="mt-1.5 text-xs text-forest-950/60 leading-relaxed">
+                <p className="mt-1 text-xs text-forest-950/60 leading-relaxed">
                   Generates centimetre-accurate 3D terrain-following flight lines, obstacle buffers, and turnarounds ready for pilot upload.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-6 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-5 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
                 <span className="font-mono text-xs font-bold text-emerald-deep">03</span>
-                <h3 className="mt-2 text-base font-bold text-forest-950">
+                <h3 className="mt-1.5 text-sm font-bold text-forest-950">
                   Canopy Health Telemetry
                 </h3>
-                <p className="mt-1.5 text-xs text-forest-950/60 leading-relaxed">
+                <p className="mt-1 text-xs text-forest-950/60 leading-relaxed">
                   Identifies micro-nutrient deficiencies, moisture stress, and early pest activity before visual canopy symptoms appear in the field.
                 </p>
               </div>
@@ -178,95 +180,96 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-forest-950 sm:text-4xl leading-tight">
                 Plantation Management
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-forest-950/70 max-w-2xl mx-auto leading-relaxed">
-                Unify estate division boundaries, cadastral field blocks, workforce allocation, and copra/oil processing logs into a single interactive digital twin.
-              </p>
             </div>
 
-            {/* Centered Browser Window Mockup (Matches Reference Layout) */}
-            <div className="mt-8 sm:mt-10 max-w-5xl mx-auto overflow-hidden rounded-[22px] sm:rounded-[28px] border border-forest-950/15 bg-forest-950 shadow-2xl transition-all duration-500 hover:shadow-3xl hover:-translate-y-1">
+            {/* Compact Browser Window Showcase (Small & Displays 100% of Image) */}
+            <div className="mt-8 max-w-3xl mx-auto overflow-hidden rounded-[20px] sm:rounded-[24px] border border-forest-950/15 bg-forest-950 shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-0.5">
               {/* Window Header Chrome Bar */}
-              <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 bg-[#0b251a] border-b border-white/10 select-none">
+              <div className="flex items-center justify-between px-4 sm:px-5 py-2 sm:py-2.5 bg-[#0b251a] border-b border-white/10 select-none">
                 {/* Traffic Light Dots */}
-                <div className="flex items-center gap-2 shrink-0">
-                  <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-                  <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-                  <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
                 </div>
 
                 {/* Centered Address Bar Pill */}
-                <div className="flex items-center gap-2 rounded-full bg-white/[0.08] px-4 py-1 text-xs font-mono text-emerald-accent border border-white/10 max-w-[240px] sm:max-w-md truncate shadow-inner">
-                  <Lock className="h-3.5 w-3.5 text-emerald-accent shrink-0" />
+                <div className="flex items-center gap-1.5 rounded-full bg-white/[0.08] px-3.5 py-1 text-[11px] font-mono text-emerald-accent border border-white/10 max-w-[240px] sm:max-w-sm truncate shadow-inner">
+                  <Lock className="h-3 w-3 text-emerald-accent shrink-0" />
                   <span className="truncate">https://agri.spatiosds.com/app/weddamulla-estate</span>
                 </div>
 
                 {/* Live App Indicator */}
-                <div className="flex items-center gap-2 text-xs font-medium text-emerald-accent shrink-0">
-                  <span className="h-2 w-2 rounded-full bg-emerald-accent animate-pulse" />
+                <div className="flex items-center gap-1.5 text-[11px] font-medium text-emerald-accent shrink-0">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-accent animate-pulse" />
                   <span className="hidden sm:inline">Live App</span>
                 </div>
               </div>
 
-              {/* High-Resolution Screenshot Image */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-forest-950">
+              {/* Complete Uncropped Screenshot Image */}
+              <div
+                onClick={() => setZoomedImage('/images/products/plantation_management_hires.png')}
+                className="relative aspect-[16/9] w-full cursor-zoom-in overflow-hidden bg-forest-950 group"
+                title="Click to view full size"
+              >
                 <img
                   src="/images/products/plantation_management_hires.png"
                   alt="Plantation Management - Weddamulla Estate GIS Dashboard"
                   loading="lazy"
-                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-out hover:scale-[1.01]"
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.01]"
                 />
               </div>
             </div>
 
-            {/* Inline Key Metrics */}
-            <div className="mt-8 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-5 text-center">
-                <span className="text-2xl sm:text-3xl font-extrabold text-forest-950">24,500+</span>
+            {/* Inline Key Metrics (Compact max-w-3xl) */}
+            <div className="mt-6 max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-4 text-center">
+                <span className="text-2xl font-extrabold text-forest-950">24,500+</span>
                 <h4 className="mt-1 text-xs font-bold text-forest-950">Mapped Palms &amp; Trees</h4>
                 <p className="text-[11px] text-forest-950/60 mt-0.5">Cadastral tree census &amp; boundaries</p>
               </div>
 
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-5 text-center">
-                <span className="text-2xl sm:text-3xl font-extrabold text-forest-950">4 Divisions</span>
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-4 text-center">
+                <span className="text-2xl font-extrabold text-forest-950">4 Divisions</span>
                 <h4 className="mt-1 text-xs font-bold text-forest-950">Weddamulla Estate Grid</h4>
                 <p className="text-[11px] text-forest-950/60 mt-0.5">Synchronized field operations</p>
               </div>
 
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-5 text-center">
-                <span className="text-2xl sm:text-3xl font-extrabold text-forest-950">100%</span>
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-cream/30 p-4 text-center">
+                <span className="text-2xl font-extrabold text-forest-950">100%</span>
                 <h4 className="mt-1 text-xs font-bold text-forest-950">Field Traceability</h4>
                 <p className="text-[11px] text-forest-950/60 mt-0.5">From tree harvest to mill processing</p>
               </div>
             </div>
 
             {/* Core Feature Highlights */}
-            <div className="mt-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-6 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
+            <div className="mt-5 max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-5 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
                 <span className="font-mono text-xs font-bold text-emerald-deep">01</span>
-                <h3 className="mt-2 text-base font-bold text-forest-950">
+                <h3 className="mt-1.5 text-sm font-bold text-forest-950">
                   Cadastral GIS Layers
                 </h3>
-                <p className="mt-1.5 text-xs text-forest-950/60 leading-relaxed">
+                <p className="mt-1 text-xs text-forest-950/60 leading-relaxed">
                   Interactive GIS layers for infrastructure, roads, stream hydrology, division perimeters, and agricultural field blocks with geo-coordinate inspection.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-6 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-5 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
                 <span className="font-mono text-xs font-bold text-emerald-deep">02</span>
-                <h3 className="mt-2 text-base font-bold text-forest-950">
+                <h3 className="mt-1.5 text-sm font-bold text-forest-950">
                   Workforce &amp; Supervision
                 </h3>
-                <p className="mt-1.5 text-xs text-forest-950/60 leading-relaxed">
+                <p className="mt-1 text-xs text-forest-950/60 leading-relaxed">
                   Assign supervisors, female harvesters, and sundry field crews with direct field-level attendance and piece-rate harvest accounting.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-6 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
+              <div className="rounded-2xl border border-forest-950/[0.08] bg-white p-5 shadow-sm transition-all hover:border-emerald-deep/40 hover:-translate-y-0.5">
                 <span className="font-mono text-xs font-bold text-emerald-deep">03</span>
-                <h3 className="mt-2 text-base font-bold text-forest-950">
+                <h3 className="mt-1.5 text-sm font-bold text-forest-950">
                   Agronomy &amp; Field Stand
                 </h3>
-                <p className="mt-1.5 text-xs text-forest-950/60 leading-relaxed">
+                <p className="mt-1 text-xs text-forest-950/60 leading-relaxed">
                   Detailed block records for planting type, cultivar clones, planting year, stand density, and historical yield batches.
                 </p>
               </div>
@@ -275,7 +278,7 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
         )}
 
         {/* ================= HOW THEY WORK TOGETHER ================= */}
-        <div className="mt-24 sm:mt-32 rounded-3xl bg-forest-950 p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl max-w-5xl mx-auto">
+        <div className="mt-20 sm:mt-28 rounded-3xl bg-forest-950 p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl max-w-4xl mx-auto">
           <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-emerald-accent/10 blur-3xl" />
           <div className="pointer-events-none absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-emerald-accent/10 blur-3xl" />
 
@@ -338,6 +341,29 @@ export function ProductsPage({ onNavigate }: { onNavigate?: (p: Page) => void })
           )}
         </div>
       </div>
+
+      {/* ================= LIGHTBOX MODAL ================= */}
+      {zoomedImage && (
+        <div
+          onClick={() => setZoomedImage(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-forest-950/85 p-4 sm:p-8 backdrop-blur-md cursor-zoom-out"
+        >
+          <div className="relative max-w-6xl w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-forest-950">
+            <button
+              onClick={() => setZoomedImage(null)}
+              className="absolute top-4 right-4 z-10 grid h-9 w-9 place-items-center rounded-full bg-black/70 text-white hover:bg-black transition-colors"
+              aria-label="Close zoomed view"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <img
+              src={zoomedImage}
+              alt="Full resolution product view"
+              className="w-full h-auto object-contain max-h-[85vh]"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

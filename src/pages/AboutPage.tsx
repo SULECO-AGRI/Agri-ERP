@@ -1,15 +1,9 @@
-import { Globe2, Target, ArrowUpRight, Compass, Layers, CheckCircle2, Trees, Phone, Globe } from 'lucide-react';
+import { Target, ArrowUpRight, CheckCircle2, Phone, Globe } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
 export function AboutPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
   const { ref, shown } = useReveal();
-  const stats = [
-    { icon: Trees, v: '24,500+', l: 'Palms & trees under GIS' },
-    { icon: Globe2, v: '18 Blocks', l: 'Subdivision zones mapped' },
-    { icon: Compass, v: '100%', l: 'Spatial cadastral precision' },
-    { icon: Layers, v: '8 Modules', l: 'Integrated farm platform' },
-  ];
   
   const values = [
     { 
@@ -32,7 +26,7 @@ export function AboutPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
 
   return (
     <div className="bg-white">
-      <section className="relative overflow-hidden bg-white pt-32 sm:pt-40">
+      <section className="relative overflow-hidden bg-white pt-32 pb-8 sm:pt-40 sm:pb-12">
         <div className="pointer-events-none absolute inset-0 bg-grid grid-fade opacity-60" />
         <div className="pointer-events-none absolute -left-20 top-10 h-96 w-96 rounded-full bg-emerald-accent/[0.07] blur-3xl" />
         <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
@@ -43,32 +37,19 @@ export function AboutPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
             <h1 className="mt-3 text-5xl font-bold leading-[1.05] tracking-tightest text-forest-950 sm:text-6xl">
               Precision geospatial intelligence for <span className="shimmer-text">modern plantations.</span>
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-forest-950/60">
-              Spatio Agri is built by Spatio Data Solutions (SDS) — an engineering collective specializing in GIS, remote sensing, and smart agricultural operations. We transform traditional coconut farms and commercial plantations into transparent, data-driven enterprises.
-            </p>
-          </div>
-
-          <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-forest-950/[0.06] sm:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.l} className="bg-white p-6">
-                <s.icon className="h-5 w-5 text-emerald-deep" />
-                <div className="mt-3 text-3xl font-bold tracking-tight text-forest-950">{s.v}</div>
-                <div className="mt-1 text-sm text-forest-950/50">{s.l}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* mission + values */}
-      <section ref={ref} className="relative py-24 sm:py-28">
+      <section ref={ref} className="relative py-20 sm:py-24">
         <div className="mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className={`lg:col-span-5 transition-all duration-700 ${shown ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
               <Target className="h-7 w-7 text-emerald-deep" />
               <h2 className="mt-5 text-3xl font-bold tracking-tight text-forest-950 sm:text-4xl">Our mission</h2>
               <p className="mt-4 text-lg leading-relaxed text-forest-950/65">
-                To turn coconut farms and agricultural plantations into smart, accessible, and highly efficient operations by bridging the gap between spatial science and everyday farm management.
+                To turn commercial estates and agricultural plantations into smart, accessible, and highly efficient operations by bridging the gap between spatial science and everyday farm management.
               </p>
               <p className="mt-4 text-base leading-relaxed text-forest-950/55">
                 We measure our success by the labor waste eliminated, tree yield improved, and processing efficiency unlocked across every subdivision.
@@ -112,7 +93,7 @@ export function AboutPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
               <div>
                 <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">Want to see Spatio Agri on your plantation?</h3>
                 <p className="mt-2 max-w-lg text-white/60">
-                  Book a walkthrough with an SDS geospatial coordinator. We'll map your coconut farm live.
+                  Book a walkthrough with an SDS geospatial coordinator. We'll map your plantation live.
                 </p>
               </div>
               <button
