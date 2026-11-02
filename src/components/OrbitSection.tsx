@@ -1,67 +1,67 @@
-import { Monitor, Sprout, Factory, ShoppingCart, UserCheck, Users, CloudSun, FileCheck, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
-interface ModuleItem {
-  icon: typeof Monitor;
-  tag: string;
+interface ModuleCard {
   title: string;
-  desc: string;
+  description: string;
+  image: string;
 }
 
-const systemModules: ModuleItem[] = [
+const modulesGroup1: ModuleCard[] = [
   {
-    icon: Monitor,
-    tag: 'GIS & Maps',
     title: 'Dashboard & GIS Monitoring',
-    desc: 'Live overview of subdivisions, maps, tree statistics, and performance indicators.',
+    description: 'Live overview of subdivisions, cadastral maps, tree statistics, and performance indicators across the estate.',
+    image: '/images/modules/gis_monitoring.jpg',
   },
   {
-    icon: Sprout,
-    tag: 'Harvesting',
     title: 'Harvest Records',
-    desc: 'Track harvest quantities by date, subdivision, and crop batch.',
+    description: 'Track harvest quantities by date, subdivision, and crop batch with field-level precision.',
+    image: '/images/modules/harvest_records.jpg',
   },
   {
-    icon: Factory,
-    tag: 'Processing Mill',
     title: 'Processing Records',
-    desc: 'Record processed outputs such as copra, coconut oil, husk, and shell.',
+    description: 'Record processed outputs such as copra, coconut oil, husk, and shell production batches.',
+    image: '/images/modules/processing_records.jpg',
   },
   {
-    icon: ShoppingCart,
-    tag: 'Commercial',
     title: 'Sales Tracking',
-    desc: 'Monitor sales records, quantities, and transaction performance.',
+    description: 'Monitor commercial sales, buyer orders, fulfillment quantities, and real-time revenue performance.',
+    image: '/images/modules/sales_logistics.jpg',
   },
+];
+
+const modulesGroup2: ModuleCard[] = [
   {
-    icon: UserCheck,
-    tag: 'Management',
     title: 'Farm Managers',
-    desc: 'Organize managerial oversight and subdivision responsibility.',
+    description: 'Organize managerial oversight, division assignments, and estate leadership responsibilities.',
+    image: '/images/modules/farm_managers.jpg',
   },
   {
-    icon: Users,
-    tag: 'Workforce',
     title: 'Farm Employees',
-    desc: 'Structure workforce records and field-level accountability.',
+    description: 'Structure workforce records, daily attendance, harvest allocation, and field accountability.',
+    image: '/images/modules/farm_workforce.jpg',
   },
   {
-    icon: CloudSun,
-    tag: 'Intelligence',
     title: 'Weather & Market Intelligence',
-    desc: 'Connect weather awareness and market signals for better timing.',
+    description: 'Connect microclimate weather monitoring and commodity market signals for optimal operational timing.',
+    image: '/images/modules/weather_market.jpg',
   },
   {
-    icon: FileCheck,
-    tag: 'Compliance',
     title: 'User Management & Reports',
-    desc: 'Role-based access, filtered views, exportable records, and audit-ready reporting.',
+    description: 'Role-based access, filtered views, exportable audit records, and executive reporting.',
+    image: '/images/modules/reports_compliance.jpg',
   },
 ];
 
 export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void }) {
   const { ref, shown } = useReveal();
+
+  const handleCardClick = () => {
+    if (onNavigate) {
+      onNavigate('solutions');
+    }
+  };
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-white py-24 sm:py-32 border-b border-forest-950/[0.06]">
@@ -70,7 +70,7 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
       <div className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-emerald-accent/[0.04] blur-3xl" />
       <div className="pointer-events-none absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-emerald-accent/[0.03] blur-3xl" />
 
-      <div className="relative mx-auto max-w-8xl px-5 sm:px-8 lg:px-12">
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
           <span className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-deep">
@@ -79,49 +79,212 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
           <h2 className="mt-3 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.08]">
             Complete digital infrastructure for <span className="shimmer-text">modern plantations</span>
           </h2>
+          <p className="mt-4 text-base sm:text-lg text-forest-950/70 max-w-2xl mx-auto">
+            Explore the core modules powering precision coconut agriculture, from cadastral GIS mapping to harvest records and market intelligence.
+          </p>
         </div>
 
-        {/* 8-Card Capabilities Grid */}
-        <div className="mt-16 sm:mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {systemModules.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={item.title}
-                onClick={() => onNavigate?.('solutions')}
-                className={`group relative flex flex-col justify-between rounded-3xl border border-forest-950/[0.07] bg-white p-7 shadow-sm cursor-pointer transition-all duration-700 hover:border-emerald-accent/40 hover:shadow-glow-soft hover:-translate-y-1 ${
-                  shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                style={{ transitionDelay: `${idx * 60}ms` }}
-              >
-                <div>
-                  {/* Top row: Icon and Tag */}
-                  <div className="flex items-center justify-between">
-                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-accent/10 text-emerald-deep transition-all duration-300 group-hover:bg-emerald-accent/20 group-hover:scale-105">
-                      <Icon className="h-6 w-6" strokeWidth={1.75} />
-                    </div>
-                    <span className="rounded-full bg-forest-950/[0.04] px-3 py-1 font-mono text-[10px] font-semibold text-forest-950/60 group-hover:bg-emerald-accent/15 group-hover:text-emerald-deep transition-colors">
-                      {item.tag}
-                    </span>
-                  </div>
+        {/* Bento Gallery Grid */}
+        <div
+          className={`mt-14 sm:mt-18 transition-all duration-1000 ${
+            shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          {/* Bento Group 1 (Modules 1 - 4) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6">
+            {/* Card 1: Dashboard & GIS Monitoring (Wide Showcase) */}
+            <div
+              onClick={handleCardClick}
+              className="group relative h-[320px] sm:h-[380px] lg:h-[480px] lg:col-span-5 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+            >
+              <img
+                src={modulesGroup1[0].image}
+                alt={modulesGroup1[0].title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+              <div className="pointer-events-none absolute inset-0 rounded-[28px] sm:rounded-[32px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
+              <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-1">
+                  {modulesGroup1[0].title}
+                </h3>
+                <p className="mt-2 text-sm sm:text-base text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-3">
+                  {modulesGroup1[0].description}
+                </p>
+              </div>
+            </div>
 
-                  {/* Title & Description */}
-                  <h3 className="mt-5 text-lg font-bold tracking-tight text-forest-950 group-hover:text-emerald-deep transition-colors">
-                    {item.title}
+            {/* Stacked Center: Harvest Records & Processing Records */}
+            <div className="flex flex-col gap-5 sm:gap-6 lg:col-span-3 lg:h-[480px]">
+              {/* Card 2: Harvest Records */}
+              <div
+                onClick={handleCardClick}
+                className="group relative h-[240px] sm:h-[260px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+              >
+                <img
+                  src={modulesGroup1[1].image}
+                  alt={modulesGroup1[1].title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+                <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
+                <div className="relative z-10 flex h-full flex-col justify-end p-5 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-0.5">
+                    {modulesGroup1[1].title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-forest-950/60">
-                    {item.desc}
+                  <p className="mt-1.5 text-xs sm:text-sm text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-2">
+                    {modulesGroup1[1].description}
                   </p>
                 </div>
+              </div>
 
-                {/* Footer link */}
-                <div className="mt-6 flex items-center gap-1.5 text-xs font-semibold text-emerald-deep group-hover:text-forest-950 transition-colors pt-4 border-t border-forest-950/[0.05]">
-                  <span>Explore module</span>
-                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              {/* Card 3: Processing Records */}
+              <div
+                onClick={handleCardClick}
+                className="group relative h-[240px] sm:h-[260px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+              >
+                <img
+                  src={modulesGroup1[2].image}
+                  alt={modulesGroup1[2].title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+                <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
+                <div className="relative z-10 flex h-full flex-col justify-end p-5 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-0.5">
+                    {modulesGroup1[2].title}
+                  </h3>
+                  <p className="mt-1.5 text-xs sm:text-sm text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-2">
+                    {modulesGroup1[2].description}
+                  </p>
                 </div>
               </div>
-            );
-          })}
+            </div>
+
+            {/* Card 4: Sales Tracking (Tall Portrait) */}
+            <div
+              onClick={handleCardClick}
+              className="group relative h-[320px] sm:h-[380px] lg:h-[480px] lg:col-span-4 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+            >
+              <img
+                src={modulesGroup1[3].image}
+                alt={modulesGroup1[3].title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+              <div className="pointer-events-none absolute inset-0 rounded-[28px] sm:rounded-[32px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
+              <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-1">
+                  {modulesGroup1[3].title}
+                </h3>
+                <p className="mt-2 text-sm sm:text-base text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-3">
+                  {modulesGroup1[3].description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bento Group 2 (Modules 5 - 8) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6 mt-5 sm:mt-6">
+            {/* Card 5: Farm Managers (Tall Portrait) */}
+            <div
+              onClick={handleCardClick}
+              className="group relative h-[320px] sm:h-[380px] lg:h-[480px] lg:col-span-4 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+            >
+              <img
+                src={modulesGroup2[0].image}
+                alt={modulesGroup2[0].title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+              <div className="pointer-events-none absolute inset-0 rounded-[28px] sm:rounded-[32px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
+              <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-1">
+                  {modulesGroup2[0].title}
+                </h3>
+                <p className="mt-2 text-sm sm:text-base text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-3">
+                  {modulesGroup2[0].description}
+                </p>
+              </div>
+            </div>
+
+            {/* Stacked Center: Farm Employees & Weather & Market Intelligence */}
+            <div className="flex flex-col gap-5 sm:gap-6 lg:col-span-3 lg:h-[480px]">
+              {/* Card 6: Farm Employees */}
+              <div
+                onClick={handleCardClick}
+                className="group relative h-[240px] sm:h-[260px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+              >
+                <img
+                  src={modulesGroup2[1].image}
+                  alt={modulesGroup2[1].title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+                <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
+                <div className="relative z-10 flex h-full flex-col justify-end p-5 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-0.5">
+                    {modulesGroup2[1].title}
+                  </h3>
+                  <p className="mt-1.5 text-xs sm:text-sm text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-2">
+                    {modulesGroup2[1].description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 7: Weather & Market Intelligence */}
+              <div
+                onClick={handleCardClick}
+                className="group relative h-[240px] sm:h-[260px] lg:h-auto lg:flex-1 rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+              >
+                <img
+                  src={modulesGroup2[2].image}
+                  alt={modulesGroup2[2].title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+                <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
+                <div className="relative z-10 flex h-full flex-col justify-end p-5 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-0.5">
+                    {modulesGroup2[2].title}
+                  </h3>
+                  <p className="mt-1.5 text-xs sm:text-sm text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-2">
+                    {modulesGroup2[2].description}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 8: User Management & Reports (Wide Showcase) */}
+            <div
+              onClick={handleCardClick}
+              className="group relative h-[320px] sm:h-[380px] lg:h-[480px] lg:col-span-5 rounded-[28px] sm:rounded-[32px] overflow-hidden cursor-pointer shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+            >
+              <img
+                src={modulesGroup2[3].image}
+                alt={modulesGroup2[3].title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-black/10 transition-colors duration-500 group-hover:from-forest-950/95 group-hover:via-forest-950/50" />
+              <div className="pointer-events-none absolute inset-0 rounded-[28px] sm:rounded-[32px] ring-1 ring-inset ring-white/15 transition-colors duration-500 group-hover:ring-emerald-400/50" />
+              <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:-translate-y-1">
+                  {modulesGroup2[3].title}
+                </h3>
+                <p className="mt-2 text-sm sm:text-base text-white/80 leading-relaxed transition-transform duration-300 group-hover:-translate-y-0.5 line-clamp-3">
+                  {modulesGroup2[3].description}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Bottom CTA bridge */}
@@ -129,7 +292,7 @@ export function OrbitSection({ onNavigate }: { onNavigate?: (p: Page) => void })
           <div className="mt-14 text-center">
             <button
               onClick={() => onNavigate('solutions')}
-              className="inline-flex items-center gap-2 rounded-full bg-forest-950 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-forest-900 transition-all active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-full bg-forest-950 px-7 py-3.5 text-sm font-semibold text-white shadow-md hover:bg-forest-900 hover:shadow-lg transition-all active:scale-[0.98]"
             >
               View detailed module specifications
               <ArrowRight className="h-4 w-4" />

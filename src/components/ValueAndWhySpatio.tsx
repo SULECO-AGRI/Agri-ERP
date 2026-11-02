@@ -1,4 +1,4 @@
-import { Eye, ShieldCheck, AlertTriangle, Users, TrendingDown, TrendingUp, FileCheck2, Cpu, Satellite, Map, Layers, Compass, Phone, Globe, ArrowUpRight } from 'lucide-react';
+import { Eye, ShieldCheck, AlertTriangle, Users, TrendingDown, TrendingUp, FileCheck2, Cpu, Phone, Globe, ArrowUpRight, Star, Award } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
@@ -42,29 +42,6 @@ const roiItems = [
     icon: Cpu,
     title: 'Smart-farm foundation',
     desc: 'Future-ready foundation for IoT sensor telemetry and AI expansion.',
-  },
-];
-
-const whySpatioPillars = [
-  {
-    icon: Satellite,
-    title: 'Built on GIS, remote sensing, and smart agriculture expertise',
-    detail: 'Decades of combined agronomic science and satellite GIS engineering embedded into every screen.',
-  },
-  {
-    icon: Map,
-    title: 'Precision plantation mapping and spatial analytics capability',
-    detail: 'Accurate cadastral subdivision mapping, tree canopy counting, and micro-climate spatial intelligence.',
-  },
-  {
-    icon: Layers,
-    title: 'Modular and scalable architecture for future-ready deployment',
-    detail: 'Start with harvest logs today and scale into processing mills, financial ledgers, and sensor telemetry tomorrow.',
-  },
-  {
-    icon: Compass,
-    title: 'Delivered by a geospatial technology team focused on real operational outcomes',
-    detail: 'Hands-on deployment engineers who understand the practical realities of plantation management in the field.',
   },
 ];
 
@@ -126,34 +103,90 @@ export function ValueAndWhySpatio({ onNavigate }: { onNavigate?: (p: Page) => vo
             <h2 className="mt-3 text-4xl font-bold tracking-tightest text-forest-950 sm:text-5xl leading-[1.08]">
               Geospatial precision built for <span className="shimmer-text">real field operations.</span>
             </h2>
+
+            {/* Rating Stars & Score (Exact Reference Design) */}
+            <div className="mt-6 flex flex-col items-center justify-center">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <span className="text-base font-bold text-forest-950">5.0</span>
+              </div>
+              <p className="mt-1 text-xs font-medium text-forest-950/60">From 50+ Reviews</p>
+            </div>
           </div>
 
-          {/* 4 Pillars Balanced Grid */}
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {whySpatioPillars.map((p, idx) => {
-              const Icon = p.icon;
-              return (
-                <div
-                  key={p.title}
-                  className={`group relative flex flex-col justify-between rounded-3xl border border-forest-950/[0.07] bg-white p-7 shadow-sm transition-all duration-700 hover:border-emerald-accent/40 hover:shadow-glow-soft hover:-translate-y-1 ${
-                    shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                  }`}
-                  style={{ transitionDelay: `${idx * 80}ms` }}
-                >
-                  <div>
-                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-accent/10 text-emerald-deep transition-all duration-300 group-hover:bg-emerald-accent/20 group-hover:scale-105">
-                      <Icon className="h-6 w-6" strokeWidth={1.75} />
-                    </div>
-                    <h3 className="mt-5 text-base font-bold text-forest-950 leading-snug">
-                      {p.title}
-                    </h3>
-                    <p className="mt-2.5 text-xs text-forest-950/60 leading-relaxed">
-                      {p.detail}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+          {/* 5-Card Exact Reference Layout */}
+          <div
+            className={`mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 items-center gap-4 sm:gap-5 lg:gap-5 max-w-6xl mx-auto transition-all duration-1000 ${
+              shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            {/* Card 1: High-Tech Precision Agri Robotic Image */}
+            <div className="group relative h-[320px] sm:h-[350px] lg:h-[360px] rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+              <img
+                src="/images/smart_agri_robotics.jpg"
+                alt="Precision Agricultural Robotics"
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-black/10" />
+            </div>
+
+            {/* Card 2: Dark Teal Stat Card - 300+ */}
+            <div className="group relative h-[320px] sm:h-[350px] lg:h-[360px] rounded-[24px] sm:rounded-[28px] bg-[#0e3b33] p-7 flex flex-col items-center justify-center text-center shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+              <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/10" />
+              <span className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+                300+
+              </span>
+              <p className="mt-4 text-sm sm:text-base font-medium text-white/85 leading-snug max-w-[140px]">
+                Our Esteemed Clients and Partners
+              </p>
+            </div>
+
+            {/* Card 3: Shorter Bright Lime Green Center Card - Total Projects 2500+ */}
+            <div className="group relative h-[210px] sm:h-[230px] rounded-[22px] sm:rounded-[26px] bg-[#6bb526] p-6 flex flex-col items-center justify-center text-center shadow-lg shadow-lime-600/20 transition-all duration-500 hover:shadow-xl hover:scale-[1.02] hover:-translate-y-1">
+              <div className="pointer-events-none absolute inset-0 rounded-[22px] sm:rounded-[26px] ring-1 ring-inset ring-white/20" />
+              <span className="text-xs sm:text-sm font-semibold text-white/95">
+                Total Projects
+              </span>
+              <span className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+                2500+
+              </span>
+            </div>
+
+            {/* Card 4: Dark Charcoal Stat Card - 12+ */}
+            <div className="group relative h-[320px] sm:h-[350px] lg:h-[360px] rounded-[24px] sm:rounded-[28px] bg-[#1a2323] p-7 flex flex-col items-center justify-center text-center shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+              <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/10" />
+              <span className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+                12+
+              </span>
+              <p className="mt-4 text-sm sm:text-base font-medium text-white/85 leading-snug max-w-[140px]">
+                Years of Dedicated Service
+              </p>
+            </div>
+
+            {/* Card 5: Dark Teal Card with Organic Green Gradient Swoop & Badge */}
+            <div className="group relative h-[320px] sm:h-[350px] lg:h-[360px] rounded-[24px] sm:rounded-[28px] bg-[#0e3b33] p-7 flex flex-col justify-between items-start text-left overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+              {/* Organic Wavy Green Gradient Aura */}
+              <div className="pointer-events-none absolute -top-12 -right-12 h-52 w-52 rounded-full bg-emerald-500/30 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute top-0 right-0 left-0 h-44 bg-gradient-to-b from-emerald-500/25 via-emerald-700/10 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px] ring-1 ring-inset ring-white/10" />
+
+              {/* Circular Badge Icon */}
+              <div className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md shadow-inner transition-transform duration-300 group-hover:scale-110">
+                <Award className="h-5 w-5 text-emerald-accent" />
+              </div>
+
+              {/* Punchy Value Statement */}
+              <div className="relative z-10">
+                <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white leading-snug">
+                  Achieve Optimal Efficiency and Boost Productivity
+                </h3>
+              </div>
+            </div>
           </div>
         </div>
 
