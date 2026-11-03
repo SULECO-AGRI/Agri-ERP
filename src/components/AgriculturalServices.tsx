@@ -1,9 +1,12 @@
-import { useState } from 'react';
-import { Sprout, Trees, Target, Sparkles, Layers, BarChart3, ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Sprout, Trees, Target, Sparkles, BarChart3, ArrowRight } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
-type SolutionTab = 'plantation' | 'fertilizer' | 'harvest';
+type SolutionTab = 'plantation' | 'fertilizer';
+
+const TAB_KEYS: SolutionTab[] = ['plantation', 'fertilizer'];
+const TAB_DURATION_MS = 6000; // 6 seconds auto-advance duration per tab
 
 interface SolutionData {
   id: SolutionTab;
@@ -78,39 +81,48 @@ const SOLUTIONS: Record<SolutionTab, SolutionData> = {
       },
     ],
   },
-  harvest: {
-    id: 'harvest',
-    tabLabel: 'Harvest & Processing ERP',
-    heroImage: '/images/modules/harvest_records.jpg',
-    heroImageAlt: 'Plantation Harvest Records and Mill Processing',
-    cardImage: '/images/modules/processing_records.jpg',
-    cardTitle: 'From Tree Harvest to Processing Mills',
-    cardDesc:
-      'Connect field nut and crop yields directly to copra drying kilns, virgin oil extraction mills, and wholesale dispatch manifests without manual tally sheets.',
-    targetPage: 'solutions',
-    features: [
-      {
-        icon: Layers,
-        title: 'Block Yield Verification',
-        desc: 'Verify nut and crop counts by subdivision zone and historical harvest batches.',
-      },
-      {
-        icon: Sparkles,
-        title: 'Processing Mill Output',
-        desc: 'Record kiln drying weights, oil extraction yields, and byproduct manifests.',
-      },
-      {
-        icon: BarChart3,
-        title: 'Dispatch & Logistics',
-        desc: 'Generate buyer dispatch manifests, transport slips, and wholesale revenue logs.',
-      },
-    ],
-  },
 };
 
 export function AgriculturalServices({ onNavigate }: { onNavigate: (p: Page) => void }) {
   const { ref, shown } = useReveal();
-  const [activeTab, setActiveTab] = useState<SolutionTab>('fertilizer');
+  const [activeTab, setActiveTab] = useState<SolutionTab>('plantation');
+  const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance tabs with smooth loading bar
+  useEffect(() => {
+    let animationFrameId: number;
+    let lastTime = performance.now();
+
+    const updateTimer = (now: number) => {
+      const delta = now - lastTime;
+      lastTime = now;
+
+      if (!isPaused) {
+        setProgress((prev) => {
+          const next = prev + (delta / TAB_DURATION_MS) * 100;
+          if (next >= 100) {
+            setActiveTab((currTab) => {
+              const currentIndex = TAB_KEYS.indexOf(currTab);
+              return TAB_KEYS[(currentIndex + 1) % TAB_KEYS.length];
+            });
+            return 0;
+          }
+          return next;
+        });
+      }
+
+      animationFrameId = requestAnimationFrame(updateTimer);
+    };
+
+    animationFrameId = requestAnimationFrame(updateTimer);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isPaused]);
+
+  const handleSelectTab = (tabKey: SolutionTab) => {
+    setActiveTab(tabKey);
+    setProgress(0);
+  };
 
   const current = SOLUTIONS[activeTab];
 
@@ -133,25 +145,43 @@ export function AgriculturalServices({ onNavigate }: { onNavigate: (p: Page) => 
 
             {/* Subtitle */}
             <p className="mt-4 text-sm sm:text-base text-forest-950/70 leading-relaxed max-w-lg">
-              Integrated software engines for modern commercial plantations, variable-rate drone spraying, and cadastral estate management.
+              Integrated software engines for modern commercial plantations.
             </p>
 
-            {/* 3 Solution Selector Tabs matching screenshot */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {(['plantation', 'fertilizer', 'harvest'] as SolutionTab[]).map((tabKey) => {
+            {/* 2 Solution Selector Tabs with Loading Bar Auto-Advance */}
+            <div
+              className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              {TAB_KEYS.map((tabKey) => {
                 const item = SOLUTIONS[tabKey];
                 const active = activeTab === tabKey;
                 return (
                   <button
                     key={tabKey}
-                    onClick={() => setActiveTab(tabKey)}
-                    className={`rounded-2xl p-4 text-left sm:text-center text-xs sm:text-sm font-semibold transition-all duration-300 ${
+                    onClick={() => handleSelectTab(tabKey)}
+                    className={`group relative overflow-hidden rounded-2xl p-4 text-left sm:text-center text-xs sm:text-sm font-semibold transition-colors duration-300 min-h-[58px] flex flex-col justify-center items-center ${
                       active
                         ? 'bg-[#6b7b65] text-white shadow-md'
                         : 'bg-[#e8eae3] text-forest-950/80 hover:bg-[#dfe2da]'
                     }`}
                   >
-                    {item.tabLabel}
+                    <span className="relative z-10 block">{item.tabLabel}</span>
+
+                    {/* Loading Progress Bar at bottom */}
+                    <div
+                      className={`absolute bottom-0 left-0 right-0 h-1 overflow-hidden pointer-events-none ${
+                        active ? 'bg-black/25' : 'bg-forest-950/[0.04]'
+                      }`}
+                    >
+                      {active && (
+                        <div
+                          className="h-full bg-white rounded-r-full"
+                          style={{ width: `${Math.min(progress, 100)}%` }}
+                        />
+                      )}
+                    </div>
                   </button>
                 );
               })}
@@ -162,9 +192,10 @@ export function AgriculturalServices({ onNavigate }: { onNavigate: (p: Page) => 
           <div className="lg:col-span-6">
             <div className="relative w-full h-[320px] sm:h-[400px] lg:h-[440px] overflow-hidden rounded-bl-[140px] sm:rounded-bl-[200px] lg:rounded-bl-[260px] shadow-lg bg-forest-950">
               <img
+                key={current.heroImage}
                 src={current.heroImage}
                 alt={current.heroImageAlt}
-                className="h-full w-full object-cover transition-all duration-700 hover:scale-105"
+                className="h-full w-full object-cover transition-all duration-700 hover:scale-105 animate-fadeUp"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
             </div>
@@ -182,16 +213,17 @@ export function AgriculturalServices({ onNavigate }: { onNavigate: (p: Page) => 
             <div className="lg:col-span-3">
               <div className="relative aspect-square w-full max-w-[260px] mx-auto lg:max-w-none rounded-2xl overflow-hidden shadow-sm bg-forest-950">
                 <img
+                  key={current.cardImage}
                   src={current.cardImage}
                   alt={current.cardTitle}
-                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105 animate-fadeUp"
                 />
                 <div className="absolute inset-0 ring-1 ring-inset ring-forest-950/10 rounded-2xl pointer-events-none" />
               </div>
             </div>
 
             {/* Middle Content */}
-            <div className="lg:col-span-5 space-y-3">
+            <div key={activeTab} className="lg:col-span-5 space-y-3 animate-fadeUp">
               <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-forest-950 leading-snug">
                 {current.cardTitle}
               </h3>
@@ -214,7 +246,7 @@ export function AgriculturalServices({ onNavigate }: { onNavigate: (p: Page) => 
             </div>
 
             {/* Right Features Column with Circular Icon Badges */}
-            <div className="lg:col-span-4 space-y-4 lg:border-l lg:border-forest-950/10 lg:pl-8">
+            <div key={activeTab + '-feats'} className="lg:col-span-4 space-y-4 lg:border-l lg:border-forest-950/10 lg:pl-8 animate-fadeUp">
               {current.features.map((feat) => {
                 const IconComponent = feat.icon;
                 return (
