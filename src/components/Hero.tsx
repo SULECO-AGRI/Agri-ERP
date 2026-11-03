@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { ArrowUpRight, Play, X } from "lucide-react";
+import { Play, X } from "lucide-react";
 import type { Page } from "../nav";
 import { useReveal } from "../hooks/useReveal";
 import heroVideo from "../assets/videos/generate_a_video_related_this.mp4";
@@ -106,15 +106,8 @@ export function Hero({ onNavigate }: { onNavigate: (p: Page) => void }) {
             style={{ animationDelay: "120ms" }}
           >
             <button
-              onClick={() => onNavigate("demo")}
-              className="group inline-flex items-center gap-2 rounded-full bg-emerald-accent px-7 py-3.5 text-base font-semibold text-white shadow-glow hover:bg-emerald-deep hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-            >
-              Schedule Plantation Demo
-              <ArrowUpRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </button>
-            <button
               onClick={() => setShowVideo(true)}
-              className="group inline-flex items-center gap-2.5 rounded-full px-5 py-3.5 text-base font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/20 backdrop-blur-md transition-all hover:scale-[1.02] active:scale-[0.98] duration-300"
+              className="group inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 text-base font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/20 backdrop-blur-md transition-all hover:scale-[1.02] active:scale-[0.98] duration-300 shadow-sm"
             >
               <span className="grid h-9 w-9 place-items-center rounded-full bg-white/10 ring-1 ring-inset ring-white/25 transition-all group-hover:bg-emerald-accent/20 group-hover:ring-emerald-accent/35">
                 <Play className="h-3.5 w-3.5 fill-current text-white" />

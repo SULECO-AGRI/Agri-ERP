@@ -65,7 +65,7 @@ export function NavBar({
 
           <div className="hidden items-center gap-3 lg:flex">
             <button
-              onClick={() => go('demo')}
+              onClick={() => go('contact')}
               className={`group inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm transition-all active:scale-[0.98] ${
                 isDarkHeader
                   ? 'bg-white text-forest-950 hover:bg-cream hover:shadow-md'
@@ -106,7 +106,7 @@ export function NavBar({
               ))}
               <div className="pt-3">
                 <button
-                  onClick={() => go('demo')}
+                  onClick={() => go('contact')}
                   className="w-full rounded-full bg-forest-950 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-forest-900 active:scale-[0.98]"
                 >
                   Request Enterprise Demo

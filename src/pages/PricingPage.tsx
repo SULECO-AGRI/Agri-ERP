@@ -139,7 +139,7 @@ export function PricingPage({ onNavigate }: { onNavigate: (p: Page) => void }) {
                 </p>
 
                 <button
-                  onClick={() => onNavigate('demo')}
+                  onClick={() => onNavigate('contact')}
                   className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all active:scale-[0.98] ${
                     t.highlighted
                       ? 'bg-emerald-accent text-white shadow-glow-soft hover:bg-emerald-deep hover:shadow-glow'

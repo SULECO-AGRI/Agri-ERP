@@ -1,4 +1,4 @@
-import { Smartphone, Database, Monitor, Link2, BarChart3, TrendingUp, ArrowRight } from 'lucide-react';
+import { Smartphone, Database, Monitor, Link2, BarChart3, TrendingUp } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
@@ -82,19 +82,6 @@ export function PlatformWorkflow({ onNavigate }: { onNavigate?: (p: Page) => voi
             })}
           </div>
         </div>
-
-        {/* Bottom actionable bridge */}
-        {onNavigate && (
-          <div className="mt-14 text-center">
-            <button
-              onClick={() => onNavigate('demo')}
-              className="inline-flex items-center gap-2 rounded-full bg-forest-950 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-forest-900 transition-all active:scale-[0.98]"
-            >
-              See the interactive tour
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );

@@ -27,7 +27,7 @@ export function Footer({ onNavigate }: { onNavigate: (p: Page) => void }) {
       title: 'Resources',
       links: [
         { label: 'Products & Platforms', page: 'products' },
-        { label: 'Request Demo', page: 'demo' },
+        { label: 'Request Demo', page: 'contact' },
         { label: 'GIS & Field Specs', page: 'solutions' },
         { label: 'Estate Case Studies', page: 'about' },
       ],

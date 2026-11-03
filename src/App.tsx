@@ -9,7 +9,6 @@ import { ValueAndWhySpatio } from "./components/ValueAndWhySpatio";
 import { SolutionsPage } from "./pages/SolutionsPage";
 import { ProductsPage } from "./pages/ProductsPage";
 import { AboutPage } from "./pages/AboutPage";
-import { DemoPage } from "./pages/DemoPage";
 import { ContactPage } from "./pages/ContactPage";
 import type { Page } from "./nav";
 
@@ -71,8 +70,7 @@ function App() {
         {page === "solutions" && <SolutionsPage onNavigate={navigate} />}
         {(page === "products" || page === "pricing") && <ProductsPage onNavigate={navigate} />}
         {page === "about" && <AboutPage onNavigate={navigate} />}
-        {page === "demo" && <DemoPage />}
-        {page === "contact" && <ContactPage />}
+        {(page === "demo" || page === "contact") && <ContactPage />}
       </main>
 
       <Footer onNavigate={navigate} />
