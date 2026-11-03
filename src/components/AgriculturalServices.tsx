@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sprout, Trees, Target, Sparkles, Layers, BarChart3, Leaf, ArrowRight } from 'lucide-react';
+import { Sprout, Trees, Target, Sparkles, Layers, BarChart3, ArrowRight } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import type { Page } from '../nav';
 
@@ -11,7 +11,6 @@ interface SolutionData {
   heroImage: string;
   heroImageAlt: string;
   cardImage: string;
-  cardTag: string;
   cardTitle: string;
   cardDesc: string;
   targetPage: Page;
@@ -29,7 +28,6 @@ const SOLUTIONS: Record<SolutionTab, SolutionData> = {
     heroImage: '/images/field_aerial.png',
     heroImageAlt: 'Plantation Cadastral GIS Field Mapping',
     cardImage: '/images/modules/gis_monitoring.jpg',
-    cardTag: 'CADASTRAL GIS · TREE CENSUS · BOUNDARIES',
     cardTitle: 'Subdivision Mapping, Complete Visibility',
     cardDesc:
       'Map division boundaries, roads, stream hydrology, and every single palm or tree to sub-meter cadastral GIS precision for complete estate transparency.',
@@ -58,7 +56,6 @@ const SOLUTIONS: Record<SolutionTab, SolutionData> = {
     heroImage: '/images/drone_spraying.png',
     heroImageAlt: 'Precision Drone Spraying and Variable Rate Nutrition',
     cardImage: '/images/drone_survey.png',
-    cardTag: 'EFFICIENCY · PRECISION · GROWTH',
     cardTitle: 'Variable-Rate Spraying, Smarter Farming',
     cardDesc:
       'Our intelligent software helps plantation managers save fertilizer costs, generate variable-rate prescription maps, and dispatch autonomous DJI Agras spray drones.',
@@ -87,7 +84,6 @@ const SOLUTIONS: Record<SolutionTab, SolutionData> = {
     heroImage: '/images/modules/harvest_records.jpg',
     heroImageAlt: 'Plantation Harvest Records and Mill Processing',
     cardImage: '/images/modules/processing_records.jpg',
-    cardTag: 'HARVEST · EXTRACTION · DISPATCH',
     cardTitle: 'From Tree Harvest to Processing Mills',
     cardDesc:
       'Connect field nut and crop yields directly to copra drying kilns, virgin oil extraction mills, and wholesale dispatch manifests without manual tally sheets.',
@@ -129,14 +125,8 @@ export function AgriculturalServices({ onNavigate }: { onNavigate: (p: Page) => 
         >
           {/* Left Column: Heading, Subtitle & 3 Tabs */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#e8eae3] px-3.5 py-1 text-[11px] font-semibold text-forest-950/75 self-start">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-deep" />
-              PRECISION AGRI ERP
-            </div>
-
             {/* Main Headline */}
-            <h2 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tightest text-forest-950 leading-[1.06]">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tightest text-forest-950 leading-[1.06]">
               Plant, Spray &amp; Manage <br />
               <span className="shimmer-text">Smarter.</span>
             </h2>
@@ -202,11 +192,6 @@ export function AgriculturalServices({ onNavigate }: { onNavigate: (p: Page) => 
 
             {/* Middle Content */}
             <div className="lg:col-span-5 space-y-3">
-              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-forest-950/70">
-                <Leaf className="h-3.5 w-3.5 text-emerald-deep" />
-                <span>{current.cardTag}</span>
-              </div>
-
               <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-forest-950 leading-snug">
                 {current.cardTitle}
               </h3>
