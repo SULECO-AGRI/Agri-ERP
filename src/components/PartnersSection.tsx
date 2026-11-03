@@ -2,7 +2,12 @@ import { useReveal } from '../hooks/useReveal';
 
 export interface Partner {
   name: string;
-  categoryBadge: 'Technology & Equipment' | 'Academic Collaboration' | 'Ministry & Institute';
+  categoryBadge:
+    | 'Technology & Equipment'
+    | 'Academic Collaboration'
+    | 'Ministry'
+    | 'Government Institute'
+    | 'Private Institute';
   badgeColor: string;
   logo: string;
   subLogoText?: string;
@@ -62,30 +67,30 @@ const techPartners: Partner[] = [
   },
 ];
 
-// 2. Ministries & National Institutes
+// 2. Ministries & Institutes
 const govPartners: Partner[] = [
   {
     name: 'Ministry of Agriculture',
-    categoryBadge: 'Ministry & Institute',
+    categoryBadge: 'Ministry',
     badgeColor: 'text-emerald-700',
     logo: '/images/partners/07-2.webp',
   },
   {
     name: 'Survey Department of Sri Lanka',
-    categoryBadge: 'Ministry & Institute',
+    categoryBadge: 'Government Institute',
     badgeColor: 'text-emerald-700',
     logo: '/images/partners/01-4.webp',
   },
   {
     name: 'Civil Aviation Authority',
-    categoryBadge: 'Ministry & Institute',
+    categoryBadge: 'Government Institute',
     badgeColor: 'text-emerald-700',
     logo: '/images/partners/04-2.webp',
   },
   {
     name: 'Access Engineering',
-    categoryBadge: 'Ministry & Institute',
-    badgeColor: 'text-emerald-700',
+    categoryBadge: 'Private Institute',
+    badgeColor: 'text-amber-700',
     logo: '/images/partners/09-2.webp',
   },
 ];
