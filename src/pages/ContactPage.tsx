@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { Mail, ChevronDown, CheckCircle2, Send, ExternalLink } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 
 export function ContactPage() {
@@ -10,26 +10,42 @@ export function ContactPage() {
     email: '',
     countryCode: '+94',
     phone: '',
+    header: '',
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [mailtoUrl, setMailtoUrl] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+    const subject = formData.header.trim() || `Inquiry from ${fullName || 'Website Visitor'}`;
+    
+    // Construct clean email body with all supplied data
+    const bodyLines = [
+      fullName ? `Name: ${fullName}` : '',
+      formData.email ? `Email: ${formData.email}` : '',
+      formData.phone ? `Phone: ${formData.countryCode} ${formData.phone}` : '',
+      '',
+      'Message:',
+      formData.message.trim(),
+    ].filter((line, idx, arr) => line !== '' || (arr[idx - 1] !== '' && idx > 0));
+
+    const body = bodyLines.join('\n');
+    const mailto = `mailto:info@spatiosds.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    setMailtoUrl(mailto);
+
+    // Automatically trigger Outlook / default mail client
+    window.location.href = mailto;
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        countryCode: '+94',
-        phone: '',
-        message: '',
-      });
-    }, 800);
+    }, 400);
   };
 
   const handleInputChange = (
@@ -158,30 +174,44 @@ export function ContactPage() {
                     />
                   </div>
 
+                  {/* Header / Subject Input */}
+                  <div className="relative">
+                    <input
+                      type="text"
+                      name="header"
+                      required
+                      value={formData.header}
+                      onChange={handleInputChange}
+                      placeholder="Header / Subject"
+                      className="w-full rounded-2xl border border-forest-950/15 bg-white px-4 py-3 text-sm text-forest-950 placeholder-forest-950/35 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/15 transition-all"
+                    />
+                  </div>
+
                   {/* Message & Character Counter */}
                   <div className="relative">
                     <textarea
                       name="message"
                       required
                       rows={4}
-                      maxLength={120}
+                      maxLength={500}
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="How can we help?"
                       className="w-full rounded-2xl border border-forest-950/15 bg-white p-4 pb-7 text-sm text-forest-950 placeholder-forest-950/35 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/15 transition-all resize-none"
                     />
                     <div className="pointer-events-none absolute bottom-2.5 right-3 text-[11px] font-mono text-forest-950/35">
-                      {formData.message.length}/120
+                      {formData.message.length}/500
                     </div>
                   </div>
 
-                  {/* Submit Button (Light Green theme) */}
+                  {/* Send Message Button (Light Green theme) */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full rounded-full bg-emerald-500 py-3.5 text-sm font-semibold text-white shadow-md hover:bg-emerald-600 transition-all active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full rounded-full bg-emerald-500 py-3.5 text-sm font-semibold text-white shadow-md hover:bg-emerald-600 transition-all active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    {isSubmitting ? 'Submitting...' : 'Submit'}
+                    <Send className="h-4 w-4" />
+                    <span>{isSubmitting ? 'Opening Outlook...' : 'Send Message'}</span>
                   </button>
 
                   {/* Disclaimer */}
@@ -192,21 +222,56 @@ export function ContactPage() {
                   </p>
                 </form>
               ) : (
-                /* Success State */
-                <div className="py-12 text-center space-y-4 animate-fadeUp">
-                  <div className="inline-grid h-14 w-14 place-items-center rounded-full bg-emerald-500/15 text-emerald-600">
+                /* Proper Clean Notification Card */
+                <div className="py-8 text-center space-y-4 animate-fadeUp">
+                  <div className="inline-grid h-14 w-14 place-items-center rounded-full bg-emerald-500/15 text-emerald-600 ring-1 ring-inset ring-emerald-500/25">
                     <CheckCircle2 className="h-7 w-7" />
                   </div>
-                  <h3 className="text-xl font-bold text-forest-950">Thank You!</h3>
-                  <p className="text-xs text-forest-950/65 max-w-xs mx-auto leading-relaxed">
-                    Your message has been sent successfully. Our team will get back to you shortly.
-                  </p>
-                  <button
-                    onClick={() => setIsSubmitted(false)}
-                    className="mt-4 rounded-full border border-forest-950/20 px-6 py-2 text-xs font-semibold text-forest-950 hover:bg-forest-950 hover:text-white transition-colors"
-                  >
-                    Send another message
-                  </button>
+                  <div>
+                    <h3 className="text-xl font-bold text-forest-950">Outlook Opened</h3>
+                    <p className="mt-2 text-xs sm:text-sm text-forest-950/70 max-w-sm mx-auto leading-relaxed">
+                      Your message has been loaded into Outlook with all your supplied details. Please click <span className="font-semibold text-forest-950">Send</span> in Outlook to deliver your email to <span className="font-semibold text-emerald-700">info@spatiosds.com</span>.
+                    </p>
+                  </div>
+
+                  {/* Message Summary Box */}
+                  <div className="rounded-2xl bg-[#f0f6f2] border border-forest-950/[0.06] p-4 text-left text-xs space-y-1.5 max-w-sm mx-auto">
+                    <div className="flex justify-between text-forest-950/60">
+                      <span>Recipient:</span>
+                      <span className="font-semibold text-forest-950">info@spatiosds.com</span>
+                    </div>
+                    <div className="flex justify-between text-forest-950/60">
+                      <span>Subject:</span>
+                      <span className="font-semibold text-forest-950 truncate max-w-[200px]">{formData.header || 'Inquiry'}</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <a
+                      href={mailtoUrl}
+                      className="inline-flex items-center gap-2 rounded-full bg-emerald-500 hover:bg-emerald-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition-all"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      <span>Reopen in Outlook</span>
+                    </a>
+                    <button
+                      onClick={() => {
+                        setIsSubmitted(false);
+                        setFormData({
+                          firstName: '',
+                          lastName: '',
+                          email: '',
+                          countryCode: '+94',
+                          phone: '',
+                          header: '',
+                          message: '',
+                        });
+                      }}
+                      className="rounded-full border border-forest-950/20 px-5 py-2.5 text-xs font-semibold text-forest-950 hover:bg-forest-950/5 transition-colors"
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
