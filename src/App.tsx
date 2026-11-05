@@ -95,7 +95,7 @@ function App() {
     const currentOrigin =
       typeof window !== "undefined" && window.location.origin.includes("spatio")
         ? window.location.origin
-        : "https://agri.spatio.com";
+        : "https://agri.spatiosds.com";
     const fullUrl = `${currentOrigin}${page === "home" ? "/" : `/${page}`}`;
 
     const canonical = document.querySelector('link[rel="canonical"]');

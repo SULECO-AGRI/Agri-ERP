@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- agri.spatio.com (Primary Product Domain) -->
+  <!-- agri.spatiosds.com (Primary Product Domain) -->
   <url>
-    <loc>https://agri.spatio.com/</loc>
+    <loc>https://agri.spatiosds.com/</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://agri.spatio.com/solutions</loc>
+    <loc>https://agri.spatiosds.com/solutions</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://agri.spatio.com/products</loc>
+    <loc>https://agri.spatiosds.com/products</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://agri.spatio.com/about</loc>
+    <loc>https://agri.spatiosds.com/about</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agri.spatio.com/contact</loc>
+    <loc>https://agri.spatiosds.com/contact</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
