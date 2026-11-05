@@ -14,6 +14,44 @@ import type { Page } from "./nav";
 
 const VALID_PAGES: Page[] = ["home", "products", "solutions", "about", "demo", "contact", "pricing"];
 
+const PAGE_METADATA: Record<Page, { title: string; description: string }> = {
+  home: {
+    title: "Spatio Agri — Smart Plantation Management & Agricultural ERP",
+    description:
+      "Unified digital operating platform for commercial agricultural plantations. Track field operations, worker attendance, crop harvest logs, and piece-rate payroll.",
+  },
+  solutions: {
+    title: "Field Operations & Solutions — Spatio Agri ERP",
+    description:
+      "Explore Spatio Agri modules: field tracking, worker directories, daily geofenced attendance, task management, harvest logging, store inventory, and payroll.",
+  },
+  products: {
+    title: "Agricultural ERP Platforms & Hardware — Spatio Agri",
+    description:
+      "Explore Spatio Agri's software suite and precision agriculture hardware: mobile field apps, enterprise web portal, IoT telemetry, and drone surveys.",
+  },
+  about: {
+    title: "About Us & Partners — Spatio Agri & Spatio Data Solutions",
+    description:
+      "Learn about Spatio Agri, Spatio Data Solutions (SDS), and our institutional partnerships with the Ministry of Agriculture, Survey Department, CAA, and Access.",
+  },
+  contact: {
+    title: "Contact Us & Request Enterprise Demo — Spatio Agri",
+    description:
+      "Get in touch with Spatio Agri. Schedule a plantation walkthrough, request a quote, or call our direct hotline at +94 77 330 1274.",
+  },
+  demo: {
+    title: "Request Live Plantation Demo — Spatio Agri",
+    description:
+      "Request an interactive walkthrough of Spatio Agri tailored to your commercial estate, tea plantation, or coconut farm.",
+  },
+  pricing: {
+    title: "Plans & Enterprise Pricing — Spatio Agri",
+    description:
+      "Scalable digital plantation management plans for commercial farms, private estates, and regional plantation companies.",
+  },
+};
+
 function getPageFromPath(): Page {
   const clean = window.location.pathname.replace(/^\/|\/$/g, "").toLowerCase();
   if (!clean || clean === "home") return "home";
@@ -46,10 +84,29 @@ function App() {
   }, []);
 
   useEffect(() => {
-    document.title =
-      page === "home"
-        ? "Spatio Agri — Smart Plantation & Agriculture Operating System"
-        : `Spatio Agri — ${page[0].toUpperCase()}${page.slice(1)}`;
+    const meta = PAGE_METADATA[page] || PAGE_METADATA.home;
+    document.title = meta.title;
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", meta.description);
+    }
+
+    const currentOrigin =
+      typeof window !== "undefined" && window.location.origin.includes("spatio")
+        ? window.location.origin
+        : "https://agri.spatio.com";
+    const fullUrl = `${currentOrigin}${page === "home" ? "/" : `/${page}`}`;
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute("href", fullUrl);
+    }
+
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute("content", fullUrl);
+    }
   }, [page]);
 
   return (

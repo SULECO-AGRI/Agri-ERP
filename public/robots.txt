@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://agri.spatio.com/sitemap.xml
+Sitemap: https://www.spatiosds.com/sitemap.xml
